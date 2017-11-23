@@ -22,53 +22,50 @@ import observableStatuesStore from '../services/statuesService'
 const MainPage = TabNavigator({
     Home: {
         screen: BlogPage,
-        navigationOptions: ({ navigation }) => ({
+        navigationOptions:{
             tabBarLabel: '首页',            
             header:null,
-            tabBarIcon: ({
-                tintColor
-            }) => (<
-                    Icon name="home" color={tintColor}
-                />
-                ),
-        })
+            tabBarIcon:({tintColor}) => (
+                <Image
+                    source={require('../images/fonts/home.png')}
+                    style={[styles.icon,{tintColor: tintColor}]}
+                />),
+        }
     },
     News: {
         screen:NewsPage,
-        navigationOptions:({navigation})=>({
-                tabBarLabel: '新闻',
+        navigationOptions:{
+                tabBarLabel: '资讯',
                 header:null,
-                tabBarIcon: ({
-                    tintColor
-                }) => (<
-                        Icon name="newspaper-o" color={tintColor} type='font-awesome'
-                    />
-                    ),
-        })
+                tabBarIcon: ({tintColor}) => (
+                    <Image
+                        source={require('../images/fonts/news.png')}
+                        style={[styles.icon,{tintColor: tintColor}]}
+                    />),
+        }
     },
-    Kb: {
-        screen:KbPage,
-        navigationOptions:({navigation})=>({
-                tabBarLabel: '知识',
-                tabBarIcon: ({
-                    tintColor
-                }) => (<
-                        Icon name="book" color={tintColor} type="font-awesome"
-                    />
-                    ),
-        })
-    },
+    // Kb: {
+    //     screen:KbPage,
+    //     navigationOptions:({navigation})=>({
+    //             tabBarLabel: '知识',
+    //             tabBarIcon: ({
+    //                 tintColor
+    //             }) => (<
+    //                     Icon name="book" color={tintColor} type="font-awesome"
+    //                 />
+    //                 ),
+    //     })
+    // },
     Status: {
         screen:StatusPage,
         navigationOptions:({navigation,observableStatuesStore})=>({
                 tabBarLabel: '闪存',
                 header: <StatusHeader {...navigation}/>,
-                tabBarIcon: ({
-                    tintColor
-                }) => (<
-                        Icon name="textsms" color={tintColor}
-                    />
-                    ),
+                tabBarIcon: ({tintColor}) => (
+                    <Image
+                        source={require('../images/fonts/start.png')}
+                        style={[styles.icon,{tintColor: tintColor}]}
+                    />),
         })
     },
     Question: {
@@ -76,24 +73,22 @@ const MainPage = TabNavigator({
         navigationOptions: ({ navigation }) => ({
             tabBarLabel: '博问',
             header: <QuestionHeader {...navigation} />,
-            tabBarIcon: ({
-                tintColor
-            }) => (<
-                    Icon name="question-answer" color={tintColor}
-                />
-                ),
+            tabBarIcon: ({tintColor}) => (
+                <Image
+                    source={require('../images/fonts/question.png')}
+                    style={[styles.icon,{tintColor: tintColor}]}
+                />),
         })
     },
     Mime: {
         screen: MimePage,
         navigationOptions: {
-            tabBarLabel: '我',
-            tabBarIcon: ({
-                tintColor
-            }) => (<
-                    Icon name="account-circle" color={tintColor}
-                />
-                ),
+            tabBarLabel: '更多',
+            tabBarIcon: ({tintColor}) => (
+                <Image
+                    source={require('../images/fonts/more.png')}
+                    style={[styles.icon,{tintColor: tintColor}]}
+                />),
         }
     }
 }, {
@@ -114,10 +109,11 @@ const MainPage = TabNavigator({
                 borderColor: '#e6e6e6',
                 borderTopWidth: 1,
                 borderStyle: 'solid',
-                justifyContent: 'center'
             },
             tabStyle: {
-                height:49
+                height:49,
+                justifyContent:'flex-start',
+                marginBottom:3,
             },
             labelStyle: {
                 fontSize: 10,
@@ -126,5 +122,13 @@ const MainPage = TabNavigator({
                 paddingTop: 0
             }
         },
+    });
+
+    const styles = StyleSheet.create({
+        icon: {
+            height: 22,
+            width: 22,
+            resizeMode: 'contain'
+        }
     });
 export default MainPage;
