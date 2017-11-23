@@ -1,2 +1,3 @@
 # android-app
-Cnblogs android app 1111
+
+使用React-Native 开发的博客园移动端APP 目前只支持Android端
