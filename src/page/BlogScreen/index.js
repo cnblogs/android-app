@@ -57,12 +57,12 @@ export default class Index extends React.Component{
               <StatusBar  
                animated={true} 
                hidden={false}   
-               backgroundColor={'#2196F3'}
-               translucent={true}  
-               barStyle={'light-content'}
+               backgroundColor={'white'}
+               translucent={false}  
+               barStyle={'dark-content'}
               >  
            </StatusBar>
-              <View style={{flex:1,marginTop:10}}>
+              <View style={{flex:1}}>
                 <View>
                     <BlogHeader Switch={this._swithType.bind(this)}/>
                 </View>

@@ -10,13 +10,6 @@ class BlogContent extends React.Component{
         this.props.GoTo(item);
     }
 
-    subStringDesc(desc){
-        if(desc.length>=20){
-            return desc.substring(0,200)+'.....'
-        }
-        return desc;
-    }
-
     render(){
         const item=this.props;
         return(
@@ -27,7 +20,7 @@ class BlogContent extends React.Component{
 
                 <View style={styles.itemBody}>
                     <Text style={styles.itemTitle}>{item.Title}</Text>
-                    <Text style={styles.itemDesc}>{this.subStringDesc(item.Description)}</Text>
+                    <Text style={styles.itemDesc}>{item.Description+'...'}</Text>
                 </View>
                 <View style={styles.itemFooter}>
                     <View style={styles.itemCount}>
@@ -83,9 +76,10 @@ const styles = StyleSheet.create({
       color:'black'
     },
     itemDesc:{
-        marginTop:2,
+        marginTop:5,
         marginRight:8,
-        fontSize:13
+        fontSize:13,
+        lineHeight:25,
     },
     itemFooter:{
         marginLeft:8,

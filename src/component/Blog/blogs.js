@@ -34,7 +34,7 @@ class Blogs extends Component {
             this.setState({
                 refreshState:RefreshState.Idle,
             })
-        },1000)    
+        },1000)
     }
 
     keyExtractor = (item, index) => {
@@ -78,9 +78,7 @@ class Blogs extends Component {
 
 const styles = StyleSheet.create({
     sepa:{
-        borderTopWidth:1,
-        borderTopColor:'#D9D9D9',
-        borderStyle:'solid',
+        height:8
     }
 })
 
