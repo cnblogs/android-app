@@ -222,7 +222,7 @@ Prompt.prototype.validateChoices = function (choices) {
  * @return {String} The rendered choices key string
  */
 Prompt.prototype.generateChoicesString = function (choices, defaultIndex) {
-  var defIndex = choices.realLength - 1;
+  var defIndex = 0;
   if (_.isNumber(defaultIndex) && this.opt.choices.getChoice(defaultIndex)) {
     defIndex = defaultIndex;
   }

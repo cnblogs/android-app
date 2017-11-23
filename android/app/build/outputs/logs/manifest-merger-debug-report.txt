@@ -17,6 +17,7 @@ ADDED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidMa
 		ADDED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidManifest.xml:1:11-69
 uses-permission#android.permission.INTERNET
 ADDED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidManifest.xml:6:5-67
+MERGED from [androidapp:react-native-code-push:unspecified] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/androidapp/react-native-code-push/unspecified/AndroidManifest.xml:11:5-67
 	android:name
 		ADDED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidManifest.xml:6:22-64
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
@@ -26,6 +27,14 @@ MERGED from [com.facebook.react:react-native:0.50.3] /Users/cnblogs_tim/Desktop/
 		ADDED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidManifest.xml:7:22-75
 uses-sdk
 ADDED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidManifest.xml:9:5-11:41
+MERGED from [androidapp:rn-splash-screen:unspecified] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/androidapp/rn-splash-screen/unspecified/AndroidManifest.xml:7:5-9:41
+MERGED from [androidapp:react-native-code-push:unspecified] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/androidapp/react-native-code-push/unspecified/AndroidManifest.xml:7:5-9:41
+MERGED from [androidapp:react-native-webview-bridge:unspecified] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/androidapp/react-native-webview-bridge/unspecified/AndroidManifest.xml:7:5-9:41
+MERGED from [androidapp:react-native-vector-icons:unspecified] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/androidapp/react-native-vector-icons/unspecified/AndroidManifest.xml:7:5-9:41
+MERGED from [androidapp:react-native-spinkit:unspecified] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/androidapp/react-native-spinkit/unspecified/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.ybq:Android-SpinKit:1.1.0] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/com.github.ybq/Android-SpinKit/1.1.0/AndroidManifest.xml:6:5-8:41
+MERGED from [androidapp:react-native-cookies:unspecified] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/androidapp/react-native-cookies/unspecified/AndroidManifest.xml:7:5-9:41
+MERGED from [androidapp:react-native-autoheight-webview:unspecified] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/androidapp/react-native-autoheight-webview/unspecified/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.50.3] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.50.3/AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.0.1] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
@@ -47,6 +56,9 @@ MERGED from [com.facebook.soloader:soloader:0.1.0] /Users/cnblogs_tim/Desktop/an
 		INJECTED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidManifest.xml
 application
 ADDED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidManifest.xml:13:5-30:19
+MERGED from [androidapp:react-native-code-push:unspecified] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/androidapp/react-native-code-push/unspecified/AndroidManifest.xml:13:5-15:19
+MERGED from [androidapp:react-native-spinkit:unspecified] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/androidapp/react-native-spinkit/unspecified/AndroidManifest.xml:11:5-14:19
+MERGED from [androidapp:react-native-autoheight-webview:unspecified] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/androidapp/react-native-autoheight-webview/unspecified/AndroidManifest.xml:11:5-15:19
 MERGED from [com.facebook.react:react-native:0.50.3] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.50.3/AndroidManifest.xml:13:5-20
 MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.0.1] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
@@ -54,6 +66,8 @@ MERGED from [com.facebook.soloader:soloader:0.1.0] /Users/cnblogs_tim/Desktop/an
 MERGED from [org.webkit:android-jsc:r174650] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/org.webkit/android-jsc/r174650/AndroidManifest.xml:2:3-17
 	android:label
 		ADDED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidManifest.xml:16:7-39
+	android:supportsRtl
+		ADDED from [androidapp:react-native-spinkit:unspecified] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/androidapp/react-native-spinkit/unspecified/AndroidManifest.xml:13:9-35
 	android:allowBackup
 		ADDED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidManifest.xml:15:7-33
 	android:icon
@@ -84,6 +98,7 @@ ADDED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidMa
 		ADDED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidManifest.xml:26:23-70
 activity#com.facebook.react.devsupport.DevSettingsActivity
 ADDED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidManifest.xml:29:7-84
+MERGED from [androidapp:react-native-code-push:unspecified] /Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/androidapp/react-native-code-push/unspecified/AndroidManifest.xml:14:9-86
 	android:name
 		ADDED from /Users/cnblogs_tim/Desktop/android-app/android/app/src/main/AndroidManifest.xml:29:17-81
 android:uses-permission#android.permission.WRITE_EXTERNAL_STORAGE

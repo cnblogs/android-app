@@ -22,7 +22,7 @@ var Choice = module.exports = function (val, answers) {
   } else {
     _.extend(this, val, {
       name: val.name || val.value,
-      value: 'value' in val ? val.value : val.name,
+      value: val.hasOwnProperty('value') ? val.value : val.name,
       short: val.short || val.name || val.value
     });
   }
