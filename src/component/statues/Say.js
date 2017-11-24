@@ -81,7 +81,7 @@ class Say extends React.Component {
 const styles = StyleSheet.create({
     contains: {
         flexDirection:'row',
-        backgroundColor:'white'
+        backgroundColor:'#f9f9f9'
     },
     container_left:{
         marginLeft:8,

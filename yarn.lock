@@ -3963,6 +3963,13 @@ react-native-elements@^0.18.2:
     opencollective "^1.0.3"
     prop-types "^15.5.8"
 
+react-native-gesture-handler@^1.0.0-alpha.31:
+  version "1.0.0-alpha.31"
+  resolved "http://registry.npm.taobao.org/react-native-gesture-handler/download/react-native-gesture-handler-1.0.0-alpha.31.tgz#681b5da1c518e2b1a76c0132fcfdb13ee30ad2fa"
+  dependencies:
+    invariant "^2.2.2"
+    prop-types "^15.5.10"
+
 react-native-render-html@^3.5.1:
   version "3.5.1"
   resolved "http://registry.npm.taobao.org/react-native-render-html/download/react-native-render-html-3.5.1.tgz#94988f56323cbec2f2414efbc709302d57f26aff"

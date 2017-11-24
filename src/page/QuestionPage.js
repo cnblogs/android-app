@@ -12,17 +12,27 @@ const QuestionScreenNavigator = TabNavigator({
     HighScore:{screen:HighScoreScreen},
     My:{screen:MyScreen}
   },{
-    animationEnabled: false,
+    animationEnabled: true,
     tabBarPosition: 'top',
     lazy: false,
-    swipeEnabled:false,
+    swipeEnabled:true,
     backBehavior: 'none',
     tabBarOptions:{
+      style: {
+        backgroundColor: 'white',  
+       },
       tabStyle:{
-        borderBottomColor:'white',
-        borderBottomWidth:2
-      }
+        borderBottomColor:'#2c2c2c',
+        borderBottomWidth:1
+      },
+      labelStyle: {
+        fontSize: 10,
+        fontWeight: 'bold',
+        marginTop: 0,
+        paddingTop: 0,
+        color:'#2c2c2c'
     }
+  }
 });
 
 export default QuestionScreenNavigator;

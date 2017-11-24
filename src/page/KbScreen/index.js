@@ -6,17 +6,8 @@ import Loading from './../../component/comm/Loading'
 import kbService from '../../services/kbService'
 import RefreshListView, {RefreshState} from '../../component/comm/RefreshListView'
 
-
-
 @observer
 class KnowledgeScreen extends React.Component{
-    static navigationOptions= {
-        headerTitle: '知识库',
-        headerLeft:null,
-        headerTitleStyle:{
-            color:'white'
-        }
-    }
     constructor(){
         super();
         this.state={

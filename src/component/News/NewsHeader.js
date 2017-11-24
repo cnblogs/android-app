@@ -18,15 +18,15 @@ class NewsHeader extends React.Component{
     }
 
     _switchStyle(type){
-        if(type==this.state.type){
+        if(type){
             return styles.active
         }
-        return null
     }
 
     _handleClick(type){
         if(type!=this.state.type){
             this.setState({
+                isActive:!this.state.isActive,
                 type:type
             })
             this.props.Switch(type)
@@ -36,26 +36,18 @@ class NewsHeader extends React.Component{
         return(
         <View style={styles.contentContainer}>
             <TouchableOpacity 
-            style={[styles.container_home,this._switchStyle("home")]}
+            style={[styles.container_home,this._switchStyle(this.state.isActive)]}
             onPress={()=>this._handleClick('home')}>
             <View>
-                <Text style={[styles.home_text,{color:this.state.type=="home"?'#2c2c2c':'#D9D9D9'}]}>首页</Text>
+                <Text style={[styles.home_text,{color:this.state.isActive?'#2c2c2c':'#ADADAD'}]}>新闻</Text>
             </View>
             </TouchableOpacity>
 
             <TouchableOpacity
-            style={[styles.container_picked,this._switchStyle("hot-week")]}
-            onPress={()=>this._handleClick('hot-week')}>
+            style={[styles.container_picked,this._switchStyle(!this.state.isActive)]}
+            onPress={()=>this._handleClick('kb')}>
             <View>
-                <Text style={[styles.picked_text,{color:this.state.type=="hot-week"?'#2c2c2c':'#D9D9D9'}]}>热门</Text>
-            </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-            style={[styles.container_picked,this._switchStyle("recommended")]}
-            onPress={()=>this._handleClick('recommended')}>
-            <View>
-                <Text style={[styles.picked_text,{color:this.state.type=="recommended"?'#2c2c2c':'#D9D9D9'}]}>推荐</Text>
+                <Text style={[styles.picked_text,{color:!this.state.isActive?'#2c2c2c':'#ADADAD'}]}>文章</Text>
             </View>
             </TouchableOpacity>
         </View>)
@@ -67,10 +59,7 @@ const styles=StyleSheet.create({
         height:49,
         flexDirection:'row',        
         backgroundColor:'white',
-        justifyContent:'flex-start',
-        borderStyle:'solid',
-        borderBottomWidth:1,
-        borderBottomColor:'#D9D9D9'
+        justifyContent:'center',   
     },
     home_text:{
         fontSize:15,
@@ -85,8 +74,7 @@ const styles=StyleSheet.create({
         justifyContent:'center',
     },
     container_home:{
-        justifyContent:'center',
-        marginLeft:15
+        justifyContent:'center'
     },
     active:{
         borderStyle:'solid',

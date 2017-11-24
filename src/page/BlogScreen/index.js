@@ -1,12 +1,16 @@
 import React from 'react'
-import {View,Text,ScrollView,StyleSheet,StatusBar} from 'react-native'
+import {View,Text,ScrollView,StyleSheet,StatusBar,Dimensions} from 'react-native'
 import BlogHeader from '../../component/Blog/blogHeader'
 import BlogList from '../../component/Blog/blogs';
 import { observer } from 'mobx-react/native';
 import blogService from '../../services/blogService';
 import SplashScreen from "rn-splash-screen";
-import ScrollableTabView,{DefaultTabBar}from 'react-native-scrollable-tab-view'
-import CustomTabBar from '../../component/Blog/CustomTabBar'
+
+
+const initialLayout = {
+    height: 0,
+    width: Dimensions.get('window').width,
+  };
 
 @observer
 export default class Index extends React.Component{
@@ -14,7 +18,7 @@ export default class Index extends React.Component{
         super()
         this.state={
             type:'sitehome',
-            index:1,
+            index: 1,
         }
     }
 
@@ -57,13 +61,13 @@ export default class Index extends React.Component{
         return(
             <View style={{flex:1}}>
               <StatusBar  
-               animated={true} 
-               hidden={false}   
-               backgroundColor={'white'}
-               translucent={false}  
-               barStyle={'dark-content'}
-              >  
-           </StatusBar>
+                animated={true} 
+                hidden={false}   
+                backgroundColor={'white'}
+                translucent={false}  
+                barStyle={'dark-content'}
+               >  
+            </StatusBar>
               <View style={{flex:1}}>
                 <View>
                     <BlogHeader Switch={this._swithType.bind(this)}/>
@@ -72,5 +76,6 @@ export default class Index extends React.Component{
                 </View>
             </View>
         )
-    }
 }
+}
+  

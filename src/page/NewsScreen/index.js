@@ -4,6 +4,7 @@ import NewsList from './../../component/News/NewsList'
 import newsService from '../../services/newsService'
 import { observer } from 'mobx-react/native';
 import NewsHeader from '../../component/News/NewsHeader';
+import KbView from '../KbScreen/index'
 
 
 @observer
@@ -20,7 +21,6 @@ class Index extends React.Component{
     }
 
     async _swithType(type){
-        await newsService.getNewsList(type,1,10)
         this.setState({
             type:type,
         })
@@ -38,13 +38,17 @@ class Index extends React.Component{
     }
 
     _renderItem(){
-        return <NewsList
-                 type={this.state.type}
-                 navigation={this.props.navigation} 
-                 store={newsService.newsList}
-                 OnRefresh={this._onRefresh.bind(this)}
-                 OnLoad={this._onLoad.bind(this)}
+        if(this.state.type=='kb'){
+            return <KbView navigation={this.props.navigation} />
+        }else{
+             return <NewsList
+                    type='sitehome'
+                    navigation={this.props.navigation} 
+                    store={newsService.newsList}
+                    OnRefresh={this._onRefresh.bind(this)}
+                    OnLoad={this._onLoad.bind(this)}
                  />
+            }
     }
 
     render(){

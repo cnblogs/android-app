@@ -9,9 +9,9 @@ class ObservableStatuesStore {
     @observable statuesCommentList=[]
     @observable statues={}
 
-    async getStatuesList(index,size,type){
+    async getStatuesList(type,index,size){
         let access_token=''
-        if(type!='@all'){
+        if(type!='all'){
             const data=await AsyncStorage.getItem('a_token');
              access_token=JSON.parse(data).access_token
         }else{
@@ -19,7 +19,7 @@ class ObservableStatuesStore {
         }
         let response=await axios({
            method:'Get',
-           url:`https://api.cnblogs.com/api/statuses/${type}?pageIndex=${index}&pageSize=${size}`,
+           url:`https://api.cnblogs.com/api/statuses/@${type}?pageIndex=${index}&pageSize=${size}`,
            headers:{
              "Authorization":`Bearer ${access_token}`
                }
@@ -52,9 +52,9 @@ class ObservableStatuesStore {
            this.statuesCommentList=response.data;
     }
 
-    async loadStatuesList(index,size,type){
+    async loadStatuesList(type,index,size){
         let access_token=''
-        if(type!='@type'){
+        if(type!='type'){
             const data=await AsyncStorage.getItem('a_token');
             access_token=JSON.parse(data).access_token
         }else{
@@ -62,7 +62,7 @@ class ObservableStatuesStore {
         }
         let response=await axios({
            method:'Get',
-           url:`https://api.cnblogs.com/api/statuses/${type}?pageIndex=${index}&pageSize=${size}`,
+           url:`https://api.cnblogs.com/api/statuses/@${type}?pageIndex=${index}&pageSize=${size}`,
            headers:{
              "Authorization":`Bearer ${access_token}`
                }

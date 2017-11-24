@@ -1,128 +1,150 @@
 import * as React from 'react'
-import 
+import
 {
     Image,
     Text,
     StyleSheet,
     View,
     FlatList,
-    AsyncStorage
-} from 'react-native'
+    AsyncStorage,
+    TouchableOpacity
+}
+from 'react-native'
 import {Icon} from 'react-native-elements'
-import token from '../../model/token' 
+import token from '../../model/token'
 import Avatar from '../comm/Avatar'
 import Http from '../../utils/Http'
 
-class StatusHeader extends React.Component{
-
-    constructor(){
-        super();
-        this.state={
-            avatarUrl:'',
-            isLogin:false
-        }
-    }
-   async componentWillMount(){
-        const tokenStr=await AsyncStorage.getItem('a_token');
-        if(tokenStr!=null){
-            this.GetUserIcon();
-            this.setState({
-                isLogin:true,
-                avatarUrl:this.state.avatarUrl
-            })
-        }
-    }
-   async GetUserIcon(){
-        const tokenStr=await AsyncStorage.getItem('a_token');
-        let url='https://api.cnblogs.com/api/users'       
-        if(tokenStr){
-            let access_token=JSON.parse(tokenStr).access_token;
-            let userinfo=await this._request(url,access_token);
-            this.setState({
-                avatarUrl:userinfo.Avatar
-            })
+class StatusHeader extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            isActive: true,
+            type:'all'
         }
     }
 
-    async _request(url,access_token){
-        let response=await Http.GetAsync(url,access_token);
-        return response.data;
+    _switchStyle(type) {
+        if (type == this.state.type) {
+            return styles.active
+        }
+        return null
     }
 
-    _goToPublish(){
-        this.props.navigate("PublishStatus")     
+    _handleClick(type) {
+        if (type != this.state.type) {
+            this.setState({type: type})
+            this.props.Switch(type)
+        }
     }
-    render(){
-        if(this.state.isLogin){
-            return(
-                <View style={styles.statusContainer}>
-                <View style={styles.itemHeader}>
-                <Image source={{uri:this.state.avatarUrl}} style={styles.itemAvatar}/>                
-                    <Text style={styles.itemAuthor}>闪存</Text>
+
+    _goToPublish() {
+        this.props.navigate("PublishStatus")
+    }
+    render() {
+        return (
+            <View style={styles.container}>
+                <View style={{
+                    flex: 1,
+                    justifyContent:'center'
+                }}>
+                    <Icon name="border-color" color='#2c2c2c' size={15} onPress={() => this._goToPublish()}/>
                 </View>
-               
-                <View style={styles.spance}></View>
-    
-                <View style={styles.itemAdd}>
-                    <Icon
-                        name='add'
-                        color='white' 
-                        size={30}
-                        onPress={()=>this._goToPublish()}/>
-                </View>
-            </View>)
-        }
-            return(
-            <View style={styles.statusContainer}>
-            <View style={styles.itemHeader}>
-            <Image source={require('../../images/d_avatar.png')} style={styles.itemAvatar}/>
-                <Text style={styles.itemAuthor}>闪存</Text>
-            </View>
-           
-            <View style={styles.spance}></View>
 
-            <View style={styles.itemAdd}>
-                <Icon
-                    name='add'
-                    color='white' 
-                    size={30}
-                    onPress={()=>this._goToPublish()}/>
+                <View
+                    style={{
+                    flex: 3,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignContent:'center'
+                }}>
+                    <TouchableOpacity
+                        style={[
+                        styles.container_home,this._switchStyle("all")
+                    ]}
+                        onPress={() => this._handleClick('all')}>
+                        <View>
+                            <Text
+                                style={[
+                                styles.home_text, {
+                                    color: this.state.type == "all"
+                                        ? '#2c2c2c'
+                                        : '#ADADAD'
+                                }
+                            ]}>动态</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={[
+                        styles.container_picked, this._switchStyle("following")
+                    ]}
+                        onPress={() => this._handleClick('following')}>
+                        <View>
+                            <Text
+                                style={[
+                                styles.picked_text, {
+                                    color: this.state.type == "following"
+                                        ? '#2c2c2c'
+                                        : '#ADADAD'
+                                }
+                            ]}>关注</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={[
+                        styles.container_picked, this._switchStyle("my")
+                    ]}
+                        onPress={() => this._handleClick('my')}>
+                        <View>
+                            <Text
+                                style={[
+                                styles.picked_text, {
+                                    color: this.state.type == "my"
+                                        ? '#2c2c2c'
+                                        : '#ADADAD'
+                                }
+                            ]}>我的</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={{
+                    flex: 1,
+                    justifyContent:'center'
+                }}>
+                    <Icon name="inbox" color='#2c2c2c' size={15} onPress={() => this._goToPublish()}/>
+                </View>
             </View>
-        </View>)
+        )
     }
 }
 const styles = StyleSheet.create({
-    statusContainer:{
-        flexDirection:'row',
-        backgroundColor:'#2196F3',
-        height:40,
-        marginTop:18
+    container: {
+        flexDirection: 'row',
+        backgroundColor: 'white',
+        height: 35,
     },
-    itemAdd:{
-        width:40,
-        marginRight:20,
-        alignItems:'center' ,
-        justifyContent:'center'                
+    home_text: {
+        fontSize: 15,
+        fontWeight: 'bold'
     },
-    spance:{
-        flex:1
+    picked_text: {
+        fontSize: 15,
+        fontWeight: 'bold'
     },
-    itemHeader:{
-        flexDirection:'row',
-        width:40,
-        alignItems:'center',
-        marginLeft:20
-        },
-    itemAvatar:{
-        width:25, 
-        height: 25, 
-        marginLeft: 8, 
-        marginRight: 8,
-        borderRadius:12.5
+    container_picked: {
+        marginLeft: 20,
+        justifyContent: 'center'
     },
-    itemAuthor:{
-        fontSize:15,
-        color:'white'
+    container_home: {
+        justifyContent: 'center',
+        marginLeft: 15
+    },
+    active: {
+        borderStyle: 'solid',
+        borderBottomWidth: 2,
+        borderBottomColor: 'white'
     }
 });
 export default StatusHeader;

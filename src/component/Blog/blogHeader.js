@@ -39,14 +39,15 @@ class BlogHeader extends React.Component{
             style={[styles.container_home,this._switchStyle(this.state.isActive)]}
             onPress={()=>this._handleClick('sitehome')}>
             <View>
-                <Text style={[styles.home_text,{color:this.state.isActive?'#2c2c2c':'#dbdbdb'}]}>首页</Text>
+                <Text style={[styles.home_text,{color:this.state.isActive?'#2c2c2c':'#ADADAD'}]}>首页</Text>
             </View>
             </TouchableOpacity>
+
             <TouchableOpacity
             style={[styles.container_picked,this._switchStyle(!this.state.isActive)]}
             onPress={()=>this._handleClick('picked')}>
             <View>
-                <Text style={[styles.picked_text,{color:!this.state.isActive?'#2c2c2c':'#dbdbdb'}]}>推荐</Text>
+                <Text style={[styles.picked_text,{color:!this.state.isActive?'#2c2c2c':'#ADADAD'}]}>推荐</Text>
             </View>
             </TouchableOpacity>
         </View>)

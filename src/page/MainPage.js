@@ -9,7 +9,7 @@ import {
 import BlogPage from './BlogScreen/index';
 import MimePage from './MimePage';
 import QuestionPage from './QuestionPage';
-import StatusPage from './StatuesPage';
+import StatusPage from './StatuesScreen/index';
 import SearchBar from './../component/home/SeachBar'
 import StatusHeader from './../component/statues/StatusHeader'
 import QuestionHeader from './../component/question/QuestionHeader'
@@ -44,23 +44,11 @@ const MainPage = TabNavigator({
                     />),
         }
     },
-    // Kb: {
-    //     screen:KbPage,
-    //     navigationOptions:({navigation})=>({
-    //             tabBarLabel: '知识',
-    //             tabBarIcon: ({
-    //                 tintColor
-    //             }) => (<
-    //                     Icon name="book" color={tintColor} type="font-awesome"
-    //                 />
-    //                 ),
-    //     })
-    // },
     Status: {
         screen:StatusPage,
         navigationOptions:({navigation,observableStatuesStore})=>({
-                tabBarLabel: '闪存',
-                header: <StatusHeader {...navigation}/>,
+                tabBarLabel: '动态',
+                header:null,
                 tabBarIcon: ({tintColor}) => (
                     <Image
                         source={require('../images/fonts/start.png')}

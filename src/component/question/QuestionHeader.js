@@ -12,78 +12,48 @@ class SearchbarComm extends React.Component{
     render(){
         return(
             <View style={styles.container}>
-            <TouchableHighlight
-                  style={styles.search}
-                  onPress={()=>this._navigation()}>
-                <View>
-                    <View style={styles.searchLeft}>
-                        <View style={styles.Icon} >
-                        <Icon name="search" color="#BDC6CF"/>
-                        </View>
-                        <Text style={{marginLeft:5}}>搜索...</Text>
-                     </View>
-                </View>
-                </TouchableHighlight>                
-                <View style={styles.searchRight}>
+               <TouchableHighlight
+                   style={styles.search}
+                   onPress={()=>this._navigation()}>
+                    <View>
+                        <Icon name="search" color="#2c2c2c"/>
+                    </View>
+                </TouchableHighlight>
+
+                <View style={{
+                    flex: 3,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignContent:'center'
+                }}>
+                    <Text style={{color:'#2c2c2c',fontWeight:'bold'}}>博问</Text>
+                </View>  
+                <TouchableHighlight
+                style={styles.search}
+                onPress={()=>this._goToPublish()}>        
+                <View style={styles.create}>
                     <Icon name="border-color" 
-                          style={styles.Icon} 
-                          color="white"
-                          onPress={()=>this._goToPublish()}/>
-                </View>             
+                          color="#2c2c2c"
+                          />
+                </View>  
+                </TouchableHighlight>           
             </View>    
         )
     }
 }
 const styles=StyleSheet.create({
     container:{
-        backgroundColor:'#2196F3',
-        height:60,
+        backgroundColor:'white',
+        height:35,
         flexDirection:'row',
-        marginTop:10
     },
     search:{
-        borderWidth:1,
-        borderColor:'white',
-        borderRadius:5,
-        borderStyle:'solid',
-        flexDirection:'row',
-        justifyContent:'flex-start',
-        alignItems:'center',
-        marginTop:15,
-        marginLeft:10,
-        marginRight:10,
-        backgroundColor:'white',
-        height:40,
+        justifyContent:'center',
         flex:1
     },
-    searchLeft:{
-        flex:7,
-        flexDirection:'row',
-        justifyContent:'flex-start',
-        alignItems:'center',
-    },
-    searchRight:{
+    create:{
         justifyContent:'center',
-        alignItems:'center',
-        marginTop:15,
-        marginRight:10,
+        flex:1,
     },
-    split:{
-        height:35,
-        borderWidth:1,
-        borderColor:"#e6e6e6",
-        borderStyle:'solid',
-        alignItems:'center',
-    },
-    Icon:{
-        marginLeft:10
-    },
-    Input:{
-        flex:8,
-        marginLeft:10,  
-        backgroundColor:'transparent',  
-        fontSize:15, 
-        marginRight:10,
-    }
 })
 export default SearchbarComm;
