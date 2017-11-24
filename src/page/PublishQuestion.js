@@ -16,10 +16,7 @@ import token from '../model/token'
 @observer
 class PublishQuestion extends Component {
   static navigationOptions= {
-    headerTitle: '提问',
-    headerStyle:{
-        marginTop:15
-    }
+    headerTitle: '提问'
   }
 
   constructor(){

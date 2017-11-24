@@ -50,7 +50,7 @@ class Index extends React.Component{
     render(){
         return(
             <View style={{flex:1}}>
-            <View style={{marginTop:18,flex:1}}>
+            <View style={{flex:1}}>
                 <View>
                    <NewsHeader Switch={this._swithType.bind(this)}/>
                 </View>

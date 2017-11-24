@@ -9,9 +9,6 @@ import blogService from './../../services/blogService'
 class ShowContent extends React.Component{
     static navigationOptions= {
         headerTitle: '博客',
-        headerStyle:{
-            marginTop:20
-        }
     }
     constructor(){
         super()

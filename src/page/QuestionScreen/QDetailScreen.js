@@ -25,9 +25,6 @@ import { observer } from 'mobx-react/native';
 class QDetailScree extends React.Component{
     static navigationOptions= {
         headerTitle: '问题',
-        headerStyle:{
-            marginTop:15
-        }
     }
     constructor(){
         super()

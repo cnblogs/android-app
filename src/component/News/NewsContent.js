@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {Image,Text,StyleSheet,View,FlatList,TouchableHighlight} from 'react-native'
-import formatDate from '../../utils/formatDate'
+import moment from 'moment'
 
 class NewsContent extends React.Component{
     _navigateToContent(item){
@@ -51,7 +51,7 @@ class NewsContent extends React.Component{
                         </View>
                     </View>
                     <View style={styles.itemPostDate}>
-                       <Text>{formatDate(item.DateAdded)}</Text>
+                       <Text>{moment(item.PostDate).startOf('minute').fromNow()}</Text>
                     </View>
                 </View>
             </View>

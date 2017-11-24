@@ -12,9 +12,6 @@ import {Button} from 'react-native-elements'
 class MyScreen extends React.Component{
     static navigationOptions={
         title:'我的',
-        headerStyle:{
-            marginTop:10
-        }
     }
     constructor(){
         super();

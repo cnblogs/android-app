@@ -16,10 +16,7 @@ import Url from '../../config/Url';
 
 class MyBlogScreen extends React.Component {
 	static navigationOptions={
-        title:'我的博客',
-        headerStyle:{
-            marginTop:20
-        }
+        title:'我的博客'
     }
 	constructor(props) {
 		super(props)

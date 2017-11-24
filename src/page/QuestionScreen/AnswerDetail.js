@@ -6,9 +6,6 @@ import QuestionInput from '../../component/question/questionInput'
 class AnswerDetail extends React.Component{
     static navigationOptions= {
         headerTitle: '评论',
-        headerStyle:{
-            marginTop:20
-        }
     }
     constructor(props){
         super(props);

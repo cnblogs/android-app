@@ -8,10 +8,7 @@ let Spinner=require('react-native-spinkit');
 
 class ShowContent extends React.Component{
     static navigationOptions=({navigation})=>({
-        headerTitle:navigation.state.params.title,
-        headerStyle:{
-            marginTop:20
-        }
+        headerTitle:navigation.state.params.title
     })
 
     constructor(){

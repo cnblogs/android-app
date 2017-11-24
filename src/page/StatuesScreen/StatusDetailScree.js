@@ -10,9 +10,6 @@ import token from '../../model/token'
 class StatusDetailScree extends React.Component{
     static navigationOptions= {
         headerTitle: '闪存正文',
-        headerStyle:{
-            marginTop:15
-        }
     }
     constructor(){
         super()

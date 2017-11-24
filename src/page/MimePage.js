@@ -11,11 +11,6 @@ class MimePage extends React.Component{
         headerTitleStyle:{
             color:'white'
         },
-        headerStyle:{
-            backgroundColor:'#2196F3',
-            marginTop:15
-            
-        }
     }
     constructor(){
         super();

@@ -12,9 +12,6 @@ import RefreshListView, {RefreshState} from '../../component/comm/RefreshListVie
 class ReplyMeScreen extends React.Component{
     static navigationOptions={
         title:'回复我',
-        headerStyle:{
-            marginTop:10
-        }
     }
     constructor(){
         super();

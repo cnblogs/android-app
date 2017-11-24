@@ -5,10 +5,7 @@ import CookieManager from 'react-native-cookies'
 
 class SettingScreen extends React.Component{
     static navigationOptions={
-        title:'设置',
-        headerStyle:{
-            marginTop:15  
-        }
+        title:'设置'
     }
 constructor(){
     super()

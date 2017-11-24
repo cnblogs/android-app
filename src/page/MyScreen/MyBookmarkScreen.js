@@ -18,10 +18,7 @@ const { SwipeListView, SwipeRow }=require('react-native-swipe-list-view');
 
 class MyBookmarkScreen extends React.Component{
 	static navigationOptions={
-        title:'我的收藏',
-        headerStyle:{
-            marginTop:20
-        }
+        title:'我的收藏'
     }
 	constructor() {
 		super()

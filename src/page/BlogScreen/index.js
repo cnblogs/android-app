@@ -5,6 +5,8 @@ import BlogList from '../../component/Blog/blogs';
 import { observer } from 'mobx-react/native';
 import blogService from '../../services/blogService';
 import SplashScreen from "rn-splash-screen";
+import ScrollableTabView,{DefaultTabBar}from 'react-native-scrollable-tab-view'
+import CustomTabBar from '../../component/Blog/CustomTabBar'
 
 @observer
 export default class Index extends React.Component{

@@ -81,76 +81,9 @@ class NewsList extends React.Component {
     }
             
 const styles = StyleSheet.create({
-    sepa: {
-        borderTopWidth: 1,
-        borderTopColor: '#D9D9D9',
-        borderStyle: 'solid'
-    },
-    item: {
-        backgroundColor: 'white'
-    },
-    itemHeader: {
-        paddingTop: 15,
-        marginLeft: 8
-    },
-    itemTopIcon: {
-        marginLeft: 8,
-        marginRight: 8,
-        height: 80
-    },
-    itemBody: {
-        flexDirection: 'row',
-        flex: 1,
-        marginTop: 5,
-        marginLeft: 8
-    },
-    bodyLeft: {
-        flex: 1
-    },
-    bodyRight: {
-        flex: 2
-    },
-    itemTitle: {
-        fontSize: 16,
-        fontFamily: 'Noto',
-        color: 'black'
-    },
-    itemDesc: {
-        fontSize: 13,
-        marginTop: 2,
-        marginRight: 8,
-        height: 85
-    },
-    itemFooter: {
-        marginLeft: 8,
-        marginTop: 5,
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
-    },
-    itemCount: {
-        flex: 5,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center'
-    },
-    ViewCount: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center'
-    },
-    CommentCount: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        paddingLeft: 5
-    },
-    itemPostDate: {
-        flex: 5,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        marginRight: 8
-    }
+  sepa: {
+    height:5
+   }
 })
 
 export default NewsList

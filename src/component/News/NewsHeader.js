@@ -39,7 +39,7 @@ class NewsHeader extends React.Component{
             style={[styles.container_home,this._switchStyle("home")]}
             onPress={()=>this._handleClick('home')}>
             <View>
-                <Text style={[styles.home_text,{color:this.state.type=="home"?'white':'#D9D9D9'}]}>首页</Text>
+                <Text style={[styles.home_text,{color:this.state.type=="home"?'#2c2c2c':'#D9D9D9'}]}>首页</Text>
             </View>
             </TouchableOpacity>
 
@@ -47,7 +47,7 @@ class NewsHeader extends React.Component{
             style={[styles.container_picked,this._switchStyle("hot-week")]}
             onPress={()=>this._handleClick('hot-week')}>
             <View>
-                <Text style={[styles.picked_text,{color:this.state.type=="hot-week"?'white':'#D9D9D9'}]}>热门</Text>
+                <Text style={[styles.picked_text,{color:this.state.type=="hot-week"?'#2c2c2c':'#D9D9D9'}]}>热门</Text>
             </View>
             </TouchableOpacity>
 
@@ -55,7 +55,7 @@ class NewsHeader extends React.Component{
             style={[styles.container_picked,this._switchStyle("recommended")]}
             onPress={()=>this._handleClick('recommended')}>
             <View>
-                <Text style={[styles.picked_text,{color:this.state.type=="recommended"?'white':'#D9D9D9'}]}>推荐</Text>
+                <Text style={[styles.picked_text,{color:this.state.type=="recommended"?'#2c2c2c':'#D9D9D9'}]}>推荐</Text>
             </View>
             </TouchableOpacity>
         </View>)
@@ -66,9 +66,11 @@ const styles=StyleSheet.create({
     contentContainer:{
         height:49,
         flexDirection:'row',        
-        backgroundColor:'#2196F3',
+        backgroundColor:'white',
         justifyContent:'flex-start',
-          
+        borderStyle:'solid',
+        borderBottomWidth:1,
+        borderBottomColor:'#D9D9D9'
     },
     home_text:{
         fontSize:15,
@@ -89,7 +91,7 @@ const styles=StyleSheet.create({
     active:{
         borderStyle:'solid',
         borderBottomWidth:2,
-        borderBottomColor:'white'
+        borderBottomColor:'#2c2c2c'
     }
 })
 

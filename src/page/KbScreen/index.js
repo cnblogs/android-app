@@ -15,10 +15,6 @@ class KnowledgeScreen extends React.Component{
         headerLeft:null,
         headerTitleStyle:{
             color:'white'
-        },
-        headerStyle:{
-            backgroundColor:'#2196F3',
-            marginTop:10
         }
     }
     constructor(){

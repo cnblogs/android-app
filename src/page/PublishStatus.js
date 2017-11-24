@@ -15,10 +15,7 @@ import token from '../model/token'
 @observer
 class PublishStatus extends React.Component{
     static navigationOptions= {
-        headerTitle: '发布闪存',
-        headerStyle:{
-            marginTop:15
-        }
+        headerTitle: '发布闪存'
     }
     constructor(){
         super()

@@ -10,9 +10,6 @@ import RefreshListView, {RefreshState} from '../../component/comm/RefreshListVie
 class Comments extends React.Component{
     static navigationOptions= {
         headerTitle: '评论',
-        headerStyle:{
-            marginTop:20
-        }
     }
     constructor(){
         super()

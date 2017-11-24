@@ -22,9 +22,6 @@ const url =`https://oauth.cnblogs.com/connect/authorize?client_id=${auth.clientI
 export default class LoginPage extends React.Component {
   static navigationOptions={
     title:'登录',
-    headerStyle:{
-      marginTop:15  
-  }
 }
   componentWillMount(){
     CookieManager.clearAll().then((res)=>{
