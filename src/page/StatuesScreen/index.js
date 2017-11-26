@@ -22,7 +22,7 @@ class Index extends Component {
 			index:1
 		};
 	}
-	
+
 	_navigationToPublish(){
 		this.props.navigation.navigate("PublishStatus")
 	}

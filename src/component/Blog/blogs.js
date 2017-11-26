@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {View, StyleSheet, Text, Platform} from 'react-native'
 import RefreshListView, {RefreshState} from '../../component/comm/RefreshListView'
 import { observer } from 'mobx-react/native';
-import BlogContent  from './blogContent'
+import BlogContent  from './blogContent';
+import Loading from './../../component/comm/Loading'
 
 @observer
 class Blogs extends Component {
@@ -57,6 +58,11 @@ class Blogs extends Component {
     }
 
     render() {
+        if(this.props.isLoading){
+            return(
+                <Loading />
+            )
+        }
         return (
             <View style={{flex:1}}>
                 <RefreshListView

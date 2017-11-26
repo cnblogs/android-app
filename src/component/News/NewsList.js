@@ -10,6 +10,7 @@ import {
 import NewsContent from './NewsContent';
 import RefreshListView, {RefreshState} from '../../component/comm/RefreshListView'
 import { observer } from 'mobx-react';
+import Loading from './../../component/comm/Loading'
 
 @observer
 class NewsList extends React.Component {
@@ -62,6 +63,11 @@ class NewsList extends React.Component {
     }
 
     render() {
+        if(this.props.isLoading){
+            return(
+                <Loading />
+            )
+        }
         return (
             <View style={{flex: 1}}>
                 <RefreshListView

@@ -6,7 +6,6 @@ import {
   View,
   StatusBar
 } from 'react-native';
-
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import HomeTabBar from '../../component/Blog/HomeTabBar';
 import BlogList from '../../component/Blog/blogs'
@@ -19,24 +18,26 @@ class Index extends Component {
 		super(props);
 		this.state = {
 			tabNames: ['首页', '推荐'],
-			type:'sitehome'
+			type:'sitehome',
+			isLoading:true,
 		};
 	}
 
-	// async componentWillMount(){
-	// 	await blogService.getBlogList(this.state.type,1,10)
-	// }
-
 	async updateBlogList(obj){
+		this.setState({
+			isLoading:true
+		})
 		if(obj.i==0){
 			await blogService.getBlogList('sitehome',1,10);
 			this.setState({
-				type:'sitehome'
+				type:'sitehome',
+				isLoading:false
 			})
 		}else{
 		await blogService.getBlogList('picked',1,10);
 		this.setState({
-			type:'picked'
+			type:'picked',
+			isLoading:false			
 		})
 	  }
 	}
@@ -53,19 +54,18 @@ class Index extends Component {
     }
 
 	render() {
-		let tabNames = this.state.tabNames;
 		return (
-      <View style={{flex:1}}>
-      <StatusBar  
-      animated={true} 
-      hidden={false}   
-      backgroundColor={'white'}
-      translucent={false}  
-      barStyle={'dark-content'}
-     >  
-  </StatusBar>
+         <View style={{flex:1}}>
+           <StatusBar  
+            animated={true} 
+            hidden={false}   
+            backgroundColor={'white'}
+            translucent={false}  
+            barStyle={'dark-content'}
+            >  
+           </StatusBar>
 			<ScrollableTabView
-				renderTabBar={() => <HomeTabBar tabNames={tabNames} />}
+				renderTabBar={() => <HomeTabBar tabNames={this.state.tabNames} />}
 				tabBarPosition='top'
 				onChangeTab={(obj) => {
 					this.updateBlogList(obj);
@@ -74,6 +74,7 @@ class Index extends Component {
 
 				<View style={styles.content} tabLabel='key1'>
 				  <BlogList 
+				    isLoading={this.state.isLoading}
 				    type={this.state.type}
 				    navigation={this.props.navigation} 
 				    store={blogService.blogList}
@@ -84,6 +85,7 @@ class Index extends Component {
 
 				<View style={styles.content} tabLabel='key2'>
 				  <BlogList 
+				   isLoading={this.state.isLoading}				  
 				   type={this.state.type}
 				   navigation={this.props.navigation} 
 				   store={blogService.blogList}

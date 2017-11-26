@@ -16,11 +16,15 @@ class Index extends React.Component{
         this.state={
             type:'home',
             tabNames: ['新闻', '文章'],         
-            index:1
+            index:1,
+            isLoading:true
         }
     }
     async componentWillMount(){
-        await newsService.getNewsList(this.state.type,1,10)       
+        await newsService.getNewsList(this.state.type,1,10)  
+        this.setState({
+            isLoading:false
+        })     
     }
     
     async _onRefresh(){
@@ -43,6 +47,7 @@ class Index extends React.Component{
 
             <View style={{flex:1}} tabLabel='key1'>
               <NewsList
+                isLoading={this.state.isLoading}
                 type='sitehome'
                 navigation={this.props.navigation} 
                 store={newsService.newsList}

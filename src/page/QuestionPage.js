@@ -18,8 +18,9 @@ const QuestionScreenNavigator = TabNavigator({
     swipeEnabled:true,
     backBehavior: 'none',
     tabBarOptions:{
+      indicatorStyle: { backgroundColor: 'transparent'}, 
       style: {
-        backgroundColor: 'white',  
+        backgroundColor: 'white', 
        },
       tabStyle:{
         borderBottomColor:'#2c2c2c',
@@ -30,7 +31,7 @@ const QuestionScreenNavigator = TabNavigator({
         fontWeight: 'bold',
         marginTop: 0,
         paddingTop: 0,
-        color:'#2c2c2c'
+        color:'#2c2c2c',
     }
   }
 });

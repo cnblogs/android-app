@@ -23,9 +23,11 @@ class Question extends React.Component{
             <TouchableNativeFeedback onPress={()=>this._navigateToContent(question)}>
             <View style={styles.contains}>
                 <View style={styles.itemHeader}>
+
                     <View style={styles.itemContent}>
                         <Text style={styles.itemTitle}>{question.Title}</Text>
                     </View>
+
                     <View style={styles.itemAnswer}>
                         <Text style={styles.answerCount}>{question.AnswerCount}</Text>
                         <Text style={styles.answerText}>回答</Text>
@@ -33,9 +35,11 @@ class Question extends React.Component{
                 </View>
                 
                 <View style={styles.itemFooter}>
+
                     <View style={styles.itemLabel}>
                         <Tags items={this._getTag(question.Tags)}/>
                     </View>
+
                     <View style={styles.itemTime}>
                         <Text>{moment(question.DateAdded).startOf('minute').fromNow()}</Text>
                     </View>
@@ -76,11 +80,12 @@ const styles=StyleSheet.create({
         marginLeft:20
     },
     itemFooter:{
+        flex:1,
         flexDirection:'row',
-        justifyContent:'center',
+        justifyContent:'flex-start',
     },
     itemLabel:{
-        flex:8,
+        flex:3,
         marginLeft:20,
         marginBottom:10,
         justifyContent:'flex-start',
@@ -88,7 +93,8 @@ const styles=StyleSheet.create({
     itemTime:{
         flex:1,
         marginBottom:10,
-        marginRight:10,
+        marginRight:20,
+        flexDirection:'row',
         justifyContent:'flex-end',
     },
     answerCount:{
