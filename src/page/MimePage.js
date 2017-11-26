@@ -9,7 +9,7 @@ class MimePage extends React.Component{
         headerTitle: '我',
         headerLeft:null,
         headerTitleStyle:{
-            color:'white'
+            color:'#2c2c2c'
         },
     }
     constructor(){

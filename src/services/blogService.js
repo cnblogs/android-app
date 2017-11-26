@@ -5,6 +5,7 @@ import {AsyncStorage} from 'react-native'
 
 class ObservableBlogStore {
     @observable blogList=[]
+    @observable pickedBlogList=[]
     @observable blogContent=''
     @observable blogComments=[]
     @observable isLoading=true

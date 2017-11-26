@@ -21,7 +21,7 @@ class Blogs extends Component {
 
     onHeaderRefresh = () => {
         this.setState({refreshState: RefreshState.HeaderRefreshing})
-        this.props.OnRefresh();
+        this.props.OnRefresh(this.props.type);
         this.setState({
             refreshState: RefreshState.Idle,
         })
@@ -30,7 +30,7 @@ class Blogs extends Component {
     onFooterRefresh = () => {
         this.setState({refreshState: RefreshState.FooterRefreshing}) 
         setTimeout(() => {
-            this.props.OnLoad();
+            this.props.OnLoad(this.props.type);
             this.setState({
                 refreshState:RefreshState.Idle,
             })

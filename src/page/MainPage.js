@@ -14,7 +14,6 @@ import SearchBar from './../component/home/SeachBar'
 import StatusHeader from './../component/statues/StatusHeader'
 import QuestionHeader from './../component/question/QuestionHeader'
 import { Icon } from 'react-native-elements'
-import BlogHeader from './../component/Blog/blogHeader'
 import NewsPage from './NewsScreen/index'
 import KbPage from './KbScreen/index'
 import observableStatuesStore from '../services/statuesService'
@@ -80,7 +79,7 @@ const MainPage = TabNavigator({
         }
     }
 }, {
-        animationEnabled: true,
+        animationEnabled: false,
         tabBarPosition: 'bottom',
         lazy: true,
         swipeEnabled: false,
