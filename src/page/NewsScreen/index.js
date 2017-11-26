@@ -1,10 +1,12 @@
 import React from 'react'
-import {View} from 'react-native'
+import {View,Text} from 'react-native'
 import NewsList from './../../component/News/NewsList'
 import newsService from '../../services/newsService'
 import { observer } from 'mobx-react/native';
 import NewsHeader from '../../component/News/NewsHeader';
 import KbView from '../KbScreen/index'
+import ZiXunTabBar from '../../component/News/zixunTabBar'
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 
 @observer
@@ -13,19 +15,14 @@ class Index extends React.Component{
         super();
         this.state={
             type:'home',
+            tabNames: ['新闻', '文章'],         
             index:1
         }
     }
     async componentWillMount(){
         await newsService.getNewsList(this.state.type,1,10)       
     }
-
-    async _swithType(type){
-        this.setState({
-            type:type,
-        })
-    }
-
+    
     async _onRefresh(){
         await newsService.getNewsList(this.state.type,1,10);
     }
@@ -36,30 +33,28 @@ class Index extends React.Component{
             index:this.state.index+1
         })
     }
-
-    _renderItem(){
-        if(this.state.type=='kb'){
-            return <KbView navigation={this.props.navigation} />
-        }else{
-             return <NewsList
-                    type='sitehome'
-                    navigation={this.props.navigation} 
-                    store={newsService.newsList}
-                    OnRefresh={this._onRefresh.bind(this)}
-                    OnLoad={this._onLoad.bind(this)}
-                 />
-            }
-    }
-
     render(){
         return(
             <View style={{flex:1}}>
-            <View style={{flex:1}}>
-                <View>
-                   <NewsHeader Switch={this._swithType.bind(this)}/>
-                </View>
-                {this._renderItem()}
+            <ScrollableTabView
+            renderTabBar={() => <ZiXunTabBar tabNames={this.state.tabNames} />}
+            tabBarPosition='top'
+            >
+
+            <View style={{flex:1}} tabLabel='key1'>
+              <NewsList
+                type='sitehome'
+                navigation={this.props.navigation} 
+                store={newsService.newsList}
+                OnRefresh={this._onRefresh.bind(this)}
+                OnLoad={this._onLoad.bind(this)}
+             />
             </View>
+
+            <View style={{flex:1}} tabLabel='key2'>
+                <KbView navigation={this.props.navigation} />
+            </View>
+        </ScrollableTabView>
             </View>
         )
     }

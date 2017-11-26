@@ -11,7 +11,6 @@ class KnowledgeScreen extends React.Component{
     constructor(){
         super();
         this.state={
-            dataList:[],
             isLoading:true,
             index:1,
             refreshState: RefreshState.Idle,

@@ -24,16 +24,24 @@ class NewsContent extends React.Component{
                 <View style={styles.itemHeader}>
                     <Text style={styles.itemTitle}>{item.Title}</Text>
                 </View>
+
                 <View style={styles.itemBody}>
+                    
                     <View style={styles.bodyLeft}>
-                        <Image source={{uri:this.addHttps(item.TopicIcon)}} resizeMode={'contain'} style={styles.itemTopIcon} />
+                      <Text style={styles.itemDesc} numberOfLines={5}>{item.Summary+'.......'}</Text>
                     </View>
                     <View style={styles.bodyRight}>
-                      <Text style={styles.itemDesc}>{item.Summary+'.......'}</Text>
-                    </View>
+                    <Image source={{uri:this.addHttps(item.TopicIcon)}} resizeMode={'contain'} style={styles.itemTopIcon} />
                 </View>
+                </View>
+
+
                 <View style={styles.itemFooter}>
                     <View style={styles.itemCount}>
+                       <View style={styles.itemPostDate}>
+                          <Text>{moment(item.PostDate).subtract(1,'days').calendar()}</Text>
+                        </View>
+
                         <View style={styles.ViewCount}>
                             <Text>
                                 {item.DiggCount} 推荐 ·
@@ -49,9 +57,6 @@ class NewsContent extends React.Component{
                                  {item.CommentCount} 评论
                             </Text>
                         </View>
-                    </View>
-                    <View style={styles.itemPostDate}>
-                       <Text>{moment(item.PostDate).startOf('minute').fromNow()}</Text>
                     </View>
                 </View>
             </View>
@@ -71,9 +76,7 @@ const styles = StyleSheet.create({
         marginLeft:8
     },
     itemTopIcon:{ 
-        marginLeft: 8, 
-        marginRight: 8,
-        height:80
+        flex:1,
     },
     itemBody:{
         flexDirection:'row',
@@ -82,10 +85,10 @@ const styles = StyleSheet.create({
         marginLeft:8
     },
     bodyLeft:{
-        flex:1,
+        flex:2,
     },
     bodyRight:{
-        flex:2,
+        flex:1,
     },
     itemTitle:{
       fontSize:16,
@@ -96,7 +99,6 @@ const styles = StyleSheet.create({
         fontSize:13,
         marginTop:2,
         marginRight:8,
-        height:85
     },
     itemFooter:{
         marginLeft:8,
@@ -120,14 +122,13 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'flex-start',
         alignItems:'center',
-        paddingLeft:5
+        marginRight:8
     },
     itemPostDate:{
         flex:5,
         flexDirection:'row',
-        justifyContent:'flex-end',
-        alignItems:'center' ,
-        marginRight:8   
+        justifyContent:'flex-start',
+        alignItems:'center',
     }
 });
 
