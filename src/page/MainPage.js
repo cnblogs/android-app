@@ -11,7 +11,6 @@ import MimePage from './MimePage';
 import QuestionPage from './QuestionPage';
 import StatusPage from './StatuesScreen/index';
 import SearchBar from './../component/home/SeachBar'
-import StatusHeader from './../component/statues/StatusHeader'
 import QuestionHeader from './../component/question/QuestionHeader'
 import { Icon } from 'react-native-elements'
 import NewsPage from './NewsScreen/index'

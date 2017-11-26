@@ -37,7 +37,7 @@ class StatuesList extends React.Component{
 
     onHeaderRefresh =async() => {
         this.setState({refreshState: RefreshState.HeaderRefreshing})
-        this.props.OnRefresh();
+        this.props.OnRefresh(this.props.type);
         this.setState({                        
             refreshState: RefreshState.Idle})
     }
@@ -45,7 +45,7 @@ class StatuesList extends React.Component{
     onFooterRefresh = async() => {
         this.setState({refreshState: RefreshState.FooterRefreshing})
         setTimeout(async() => {
-            this.props.OnLoad();
+            this.props.OnLoad(this.props.type);
             this.setState({
                 refreshState: RefreshState.Idle,
                 index:this.state.index+1,

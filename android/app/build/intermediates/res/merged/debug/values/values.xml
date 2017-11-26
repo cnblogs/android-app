@@ -241,7 +241,7 @@
     <integer name="abc_max_action_buttons">2</integer>
     <integer name="cancel_button_image_alpha">127</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
-    <string name="CODE_PUSH_APK_BUILD_TIME" translatable="false">"1511696012408"</string>
+    <string name="CODE_PUSH_APK_BUILD_TIME" translatable="false">"1511717524670"</string>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
     <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
