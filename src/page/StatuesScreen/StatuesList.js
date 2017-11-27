@@ -3,7 +3,8 @@ import {
     Text, 
     View, 
     StyleSheet,
-    FlatList
+    FlatList,
+    AsyncStorage
 } from 'react-native'
 import {observer} from 'mobx-react';
 import moment from '../../component/comm/moment-zh';
@@ -11,6 +12,7 @@ import Say from './../../component/statues/Say'
 import Loading from './../../component/comm/Loading'
 import observableStatuesStore from '../../services/statuesService'
 import RefreshListView, {RefreshState} from '../../component/comm/RefreshListView'
+import {Button} from 'react-native-elements'
 
 @observer
 class StatuesList extends React.Component{
@@ -20,11 +22,10 @@ class StatuesList extends React.Component{
             index:1,
             refreshState: RefreshState.Idle,
         }
-    }
- 
-     componentWillReceiveProps(nextProps){
+    } 
+   async  componentWillReceiveProps(nextProps){
          if(this.props!=nextProps){
-             this.porps=nextProps
+             this.porps=nextProps;
          }
      }
 
@@ -63,8 +64,23 @@ class StatuesList extends React.Component{
         )
     }
     render(){
+        if(!this.props.isLogin){
+            return (<View style={{alignItems:'center',justifyContent:'center',flex:1}}>
+                <Button 
+                title='立即登录' 
+                buttonStyle={{height:30}}
+                backgroundColor="#2096F3" 
+                onPress={()=>this.props.navigation.navigate('Login')}/>
+            </View>)
+        }
+
+        if(this.props.isLoading){
+            return(
+                   <Loading />
+            )
+        }
         return(
-            <View>
+            <View style={{flex:1}}>
             <RefreshListView
               data={this.props.store}
               keyExtractor={this.keyExtractor}

@@ -18,13 +18,14 @@ const QuestionScreenNavigator = TabNavigator({
     swipeEnabled:true,
     backBehavior: 'none',
     tabBarOptions:{
-      indicatorStyle: { backgroundColor: 'transparent'}, 
+      indicatorStyle: { backgroundColor: 'white'}, 
       style: {
-        backgroundColor: 'white', 
+        backgroundColor: 'white',
+        borderBottomColor:'white',
        },
       tabStyle:{
         borderBottomColor:'#2c2c2c',
-        borderBottomWidth:1
+        borderBottomWidth:4
       },
       labelStyle: {
         fontSize: 10,

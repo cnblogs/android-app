@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
         fontSize:13,
         marginTop:2,
         marginRight:8,
+        lineHeight:25,
     },
     itemFooter:{
         marginLeft:8,
