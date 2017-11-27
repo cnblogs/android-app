@@ -1,3 +1,4 @@
+//更多 按钮列表
 const settingList = [
     {
         title: '我的收藏',

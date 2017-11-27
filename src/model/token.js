@@ -4,8 +4,6 @@ import Http from './../utils/Http'
 import Url from './../config/Url'
 import auth from '../config/auth'
 
-
-
 class Token{
    static Client_Credentials_Token=async()=>{
              let response
