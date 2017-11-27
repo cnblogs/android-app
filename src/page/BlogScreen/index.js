@@ -11,6 +11,7 @@ import HomeTabBar from '../../component/Blog/HomeTabBar';
 import BlogList from '../../component/Blog/blogs'
 import blogService from '../../services/blogService';
 import { observer } from 'mobx-react/native';
+import SplashScreen from 'rn-splash-screen';
 
 @observer
 class Index extends Component {
@@ -22,6 +23,10 @@ class Index extends Component {
 			isLoading:true,
 		};
 	}
+
+	componentDidMount() {
+      SplashScreen.hide();
+  }
 
 	async updateBlogList(obj){
 		this.setState({
