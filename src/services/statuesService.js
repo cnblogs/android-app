@@ -1,7 +1,7 @@
 import {AsyncStorage} from 'react-native'
 import {observable} from 'mobx'
 import Http from '../utils/Http'
-import token from '../model/token'
+import AppToken from '../config/AppToken';
 import axios from 'axios'
 
 class ObservableStatuesStore {
@@ -41,7 +41,7 @@ class ObservableStatuesStore {
     }
 
     async getCommentListById(statusId){
-        const access_token=await token.Update_Client_Token();
+        const access_token=await AppToken.Update_Client_Token();
         let response=await axios({
            method:'Get',
            url:`https://api.cnblogs.com/api/statuses/${statusId}/comments`,

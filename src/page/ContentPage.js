@@ -7,10 +7,6 @@ import {
   ScrollView,
   Text
 } from 'react-native'
-import Http from './../utils/Http'
-import token from './../model/token'
-import {Icon} from 'react-native-elements'
-import HtmlHelper from '../utils/htmlHelper'
 
 class ContentPage extends React.Component{
     static navigationOptions = ({ navigation }) => ({

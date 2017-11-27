@@ -1,6 +1,6 @@
 import {observable} from 'mobx'
 import Http from '../utils/Http'
-import token from '../model/token'
+import AppToken from '../config/AppToken';
 import {AsyncStorage} from 'react-native'
 
 class ObservableNewsStore {
@@ -16,7 +16,7 @@ class ObservableNewsStore {
        }else{
            url=`https://api.cnblogs.com/api/NewsItems/@${type}?pageIndex=${pageIndex}&pageSize=${pageSize}`
        }
-        const access_token=await token.Client_Credentials_Token();
+        const access_token=await AppToken.Client_Credentials_Token();
         let response=await Http.GetAsync(url,access_token);
         this.newsList=response.data
     }
@@ -28,27 +28,27 @@ class ObservableNewsStore {
         }else{
             url=`https://api.cnblogs.com/api/NewsItems/@${type}?pageIndex=${pageIndex}&pageSize=${pageSize}`
         }
-        const access_token=await token.Client_Credentials_Token();
+        const access_token=await AppToken.Client_Credentials_Token();
         let response=await Http.GetAsync(url,access_token);
         this.newsList.push(...response.data)
     }
 
     async getNewsContent(id){
         const url=`https://api.cnblogs.com/api/newsitems/${id}/body`
-        const access_token=await token.Client_Credentials_Token();
+        const access_token=await AppToken.Client_Credentials_Token();
         let response=await Http.GetAsync(url,access_token);
         this.newsContent=response.data
     }
     async getNewsComment(id,pageIndex,pageSize){
         const url=`https://api.cnblogs.com/api/news/${id}/comments?pageIndex=${pageIndex}&pageSize=${pageSize}`
-        const access_token=await token.Client_Credentials_Token();
+        const access_token=await AppToken.Client_Credentials_Token();
         let response=await Http.GetAsync(url,access_token);
         this.newsComments=response.data
     }
 
     async loadNewsComment(id,pageIndex,pageSize){
         const url=`https://api.cnblogs.com/api/news/${id}/comments?pageIndex=${pageIndex}&pageSize=${pageSize}`
-        const access_token=await token.Client_Credentials_Token();
+        const access_token=await AppToken.Client_Credentials_Token();
         let response=await Http.GetAsync(url,access_token);
         this.newsComments.push(...response.data)
     }

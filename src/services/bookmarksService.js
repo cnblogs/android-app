@@ -1,5 +1,5 @@
 import {observable} from 'mobx'
-import token from '../model/token'
+import AppToken from '../config/AppToken';
 import axios from 'axios'
 import {AsyncStorage} from 'react-native'
 

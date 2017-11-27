@@ -1,8 +1,6 @@
 import * as React from 'react'
 import {Image,Text,StyleSheet,View,FlatList,TouchableHighlight} from 'react-native'
 import Comment from './Comment'
-import token from '../../model/token'
-import axios from 'axios'
 import {observer} from 'mobx-react/native'
 import observableStatuesStore from '../../services/statuesService'
 

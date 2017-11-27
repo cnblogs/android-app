@@ -2,7 +2,6 @@ import React from 'react'
 import { View,Text,StyleSheet,TouchableHighlight,AsyncStorage} from 'react-native'
 import {Icon,Badge} from 'react-native-elements'
 import Toast from 'react-native-root-toast';
-import token from '../../model/token'
 import { observer } from 'mobx-react/native';
 import collectionService from '../../services/collectionService'
 

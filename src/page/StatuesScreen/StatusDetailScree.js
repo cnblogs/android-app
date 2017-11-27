@@ -5,7 +5,6 @@ import CommentList from '../../component/statues/CommentList'
 import {Button} from 'react-native-elements'
 import observableStatuesStore from '../../services/statuesService'
 import Toast from 'react-native-root-toast';
-import token from '../../model/token'
 
 class StatusDetailScree extends React.Component{
     static navigationOptions= {

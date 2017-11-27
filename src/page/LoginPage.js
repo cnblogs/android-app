@@ -6,14 +6,13 @@ import {
   Dimensions, 
   AsyncStorage 
 } from 'react-native'; 
-import auth from '../config/auth' 
+import AppConfig from '../config/AppConfig';
 import Http from './../utils/Http'
-import Url from './../config/Url'
 import CookieManager from 'react-native-cookies'
 
 const {width, height} = Dimensions.get('window');  
   
-const url =`https://oauth.cnblogs.com/connect/authorize?client_id=${auth.clientId}`+
+const url =`https://oauth.cnblogs.com/connect/authorize?client_id=${AppConfig.clientId}`+
 `&scope=openid profile CnBlogsApi offline_access`+
 `&response_type=code id_token`+
 `&redirect_uri=https://oauth.cnblogs.com/auth/callback`+
@@ -31,12 +30,12 @@ export default class LoginPage extends React.Component {
    async onNavigationStateChange(navState) {
       if(navState.url.indexOf('#')>0){
           let authorizationCode=this._getAuthorizationCode(navState.url)
-          let data=`client_id=${auth.clientId}`+
-          `&client_secret=${auth.clientSecret}`+
+          let data=`client_id=${AppConfig.clientId}`+
+          `&client_secret=${AppConfig.clientSecret}`+
           `&grant_type=authorization_code`+
           `&code=${authorizationCode}`+
           `&redirect_uri=https://oauth.cnblogs.com/auth/callback`
-          let response=await Http.PostAsFormAsync(Url.TOKEN,data)
+          let response=await Http.PostAsFormAsync(AppConfig.authorizedUrl,data)
           console.log(response.data)
           //保存 token
           await this._saveToken('a_token',JSON.stringify(response.data))

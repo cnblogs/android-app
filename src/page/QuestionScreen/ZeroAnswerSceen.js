@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Text, FlatList, View, StyleSheet } from 'react-native';
-import token from './../../model/token'
 import axios from 'axios'
 import Question from './../../component/question/Question'
 import Loading from './../../component/comm/Loading'

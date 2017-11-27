@@ -12,7 +12,7 @@ import {
 import Http from '../../utils/Http'
 import formatDate from '../../utils/formatDate'
 import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view'
-import Url from '../../config/Url';
+import AppConfig from '../../config/AppConfig'
 
 class MyBlogScreen extends React.Component {
 	static navigationOptions={

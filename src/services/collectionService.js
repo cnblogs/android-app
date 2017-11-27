@@ -1,7 +1,6 @@
 import {AsyncStorage} from 'react-native'
 import {observable} from 'mobx'
 import Http from '../utils/Http'
-import token from '../model/token'
 import axios from 'axios'
 import collectionService from '../services/collectionService'
 
@@ -46,12 +45,6 @@ class Collection {
            })
            return response.status;
     }
-
-    
-
-    
-
-  
 }
 
 const collection=new Collection();

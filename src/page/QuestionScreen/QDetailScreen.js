@@ -18,8 +18,8 @@ import moment from 'moment'
 import questionService from '../../services/questionService'
 import  {Button} from 'react-native-elements'
 import Toast from 'react-native-root-toast';
-import token from '../../model/token'
 import { observer } from 'mobx-react/native';
+import AppToken from '../../config/AppToken';
 
 @observer
 class QDetailScree extends React.Component{
@@ -54,7 +54,7 @@ class QDetailScree extends React.Component{
 
 
     async _requestItem(qid){
-        const access_token=await token.Update_Client_Token();
+        const access_token=await AppToken.Update_Client_Token();
         let response=await axios({
            method:'Get',
            url:`https://api.cnblogs.com/api/questions/${qid}`,

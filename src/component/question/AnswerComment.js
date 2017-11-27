@@ -12,11 +12,11 @@ import
 }
 from 'react-native'
 import Comment from './Comment'
-import token from '../../model/token'
 import axios from 'axios'
 import AutoHeightWebView from 'react-native-autoheight-webview'
 import moment from 'moment'
 import {Icon} from 'react-native-elements'
+import AppToken from '../../config/AppToken';
 
 class AnswerComment extends React.Component {
     constructor() {
@@ -44,7 +44,7 @@ class AnswerComment extends React.Component {
     }
     
     async _requestComments(answerId) {
-        const access_token = await token.Update_Client_Token();
+        const access_token = await AppToken.Update_Client_Token();
         let response = await axios({
             method: 'Get',
             url: `https://api.cnblogs.com/api/questions/answers/${answerId}/comments`,

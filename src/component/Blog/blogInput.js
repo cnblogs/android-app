@@ -5,7 +5,6 @@ import { observer } from 'mobx-react/native';
 import blogService from '../../services/blogService'
 import newsService  from '../../services/newsService'
 import Toast from 'react-native-root-toast';
-import token from '../../model/token'
 
 @observer
 class BlogInput extends React.Component{

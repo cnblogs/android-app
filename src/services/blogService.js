@@ -1,6 +1,6 @@
 import {observable} from 'mobx'
 import Http from '../utils/Http'
-import token from '../model/token'
+import AppToken from '../config/AppToken';
 import {AsyncStorage} from 'react-native'
 
 class ObservableBlogStore {
@@ -12,35 +12,35 @@ class ObservableBlogStore {
 
    async getBlogList(type,pageIndex,pageSize){
         const url=`https://api.cnblogs.com/api/blogposts/@${type}?pageIndex=${pageIndex}&pageSize=${pageSize}`
-        const access_token=await token.Client_Credentials_Token();
+        const access_token=await AppToken.Client_Credentials_Token();
         let response=await Http.GetAsync(url,access_token);
         this.blogList=response.data
     }
 
     async loadBlogList(type,pageIndex,pageSize){
         const url=`https://api.cnblogs.com/api/blogposts/@${type}?pageIndex=${pageIndex}&pageSize=${pageSize}`
-        const access_token=await token.Client_Credentials_Token();
+        const access_token=await AppToken.Client_Credentials_Token();
         let response=await Http.GetAsync(url,access_token);
         this.blogList.push(...response.data)
     }
 
     async getBlogContent(blogId){
         const url=`https://api.cnblogs.com/api/blogposts/${blogId}/body`
-        const access_token=await token.Client_Credentials_Token();
+        const access_token=await AppToken.Client_Credentials_Token();
         let response=await Http.GetAsync(url,access_token);
         this.blogContent=response.data 
     }
     
     async getBlogComments(blogApp,postId,index,size){
         const url=`https://api.cnblogs.com/api/blogs/${blogApp}/posts/${postId}/comments?pageIndex=${index}&pageSize=${size}`
-        const access_token=await token.Client_Credentials_Token();
+        const access_token=await AppToken.Client_Credentials_Token();
         let response=await Http.GetAsync(url,access_token);
         this.blogComments=response.data 
     }
 
     async loadBlogComments(blogApp,postId,index,size){
         const url=`https://api.cnblogs.com/api/blogs/${blogApp}/posts/${postId}/comments?pageIndex=${index}&pageSize=${size}`
-        const access_token=await token.Client_Credentials_Token();
+        const access_token=await AppToken.Client_Credentials_Token();
         let response=await Http.GetAsync(url,access_token);
         this.blogComments.push(...response.data)
     }

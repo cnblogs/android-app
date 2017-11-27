@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import Http from '../../utils/Http'
 import formatDate from '../../utils/formatDate'
-import Url from '../../config/Url';
+import AppConfig from '../../config/AppConfig'
 import axios from 'axios';
 
 const { SwipeListView, SwipeRow }=require('react-native-swipe-list-view');

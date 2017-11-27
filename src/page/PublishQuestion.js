@@ -11,7 +11,6 @@ import {Button} from 'react-native-elements'
 import questionService from '../services/questionService'
 import { observer } from 'mobx-react/native';
 import Toast from 'react-native-root-toast';
-import token from '../model/token'
 
 @observer
 class PublishQuestion extends Component {

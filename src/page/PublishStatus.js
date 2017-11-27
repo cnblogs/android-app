@@ -10,7 +10,6 @@ import {CheckBox,Icon,Button} from 'react-native-elements'
 import {observer} from 'mobx-react';
 import observableStatuesStore from '../services/statuesService';
 import Toast from 'react-native-root-toast';
-import token from '../model/token'
 
 @observer
 class PublishStatus extends React.Component{

@@ -4,7 +4,6 @@ import {Button} from 'react-native-elements';
 import { observer } from 'mobx-react/native';
 import qService from '../../services/questionService';
 import Toast from 'react-native-root-toast';
-import token from '../../model/token'
 
 @observer
 class questionInput extends React.Component{
@@ -23,8 +22,6 @@ class questionInput extends React.Component{
         })
         return;
       }
-      console.log(this.props.qid)
-      console.log(this.props.aid)
       await qService.sendComment(this.props.qid,this.props.aid,this.state.inputValue)
         Toast.show('发布成功',{
             position: Toast.positions.CENTER,
