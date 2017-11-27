@@ -9,8 +9,8 @@ class BlogContent extends React.Component{
     _navigateToContent(item){
         this.props.GoTo(item);
     }
-
     render(){
+        //接口获取blog数据
         const item=this.props;
         return(
             <TouchableHighlight
@@ -63,7 +63,7 @@ class BlogContent extends React.Component{
 }
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:'#f9f9f9',
+        backgroundColor:'white',
     },
     itemBody:{
         flexDirection:'column',

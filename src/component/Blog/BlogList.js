@@ -2,11 +2,12 @@ import React, {Component} from 'react'
 import {View, StyleSheet, Text, Platform} from 'react-native'
 import RefreshListView, {RefreshState} from '../../component/comm/RefreshListView'
 import { observer } from 'mobx-react/native';
-import BlogContent  from './blogContent';
+import BlogItem  from './BlogItem';
 import Loading from './../../component/comm/Loading'
+import ItemSeparator from '../../component/comm/ItemSeparator'
 
 @observer
-class Blogs extends Component {
+class BlogList extends Component {
     constructor() {
         super()
         this.state = {
@@ -54,7 +55,7 @@ class Blogs extends Component {
       }
 
     _renderItem = ({item}) => {
-        return <BlogContent {...item} GoTo={this._goDeail.bind(this)}/>
+        return <BlogItem {...item} GoTo={this._goDeail.bind(this)}/>
     }
 
     render() {
@@ -72,7 +73,7 @@ class Blogs extends Component {
                     refreshState={this.state.refreshState}
                     onHeaderRefresh={this.onHeaderRefresh}
                     onFooterRefresh={this.onFooterRefresh}
-                    ItemSeparatorComponent={()=><View style={styles.sepa}></View>}                    
+                    ItemSeparatorComponent={()=><ItemSeparator />}                    
                     footerRefreshingText= '玩命加载中 >.<'
                     footerFailureText = '我擦嘞，居然失败了 =.=!'
                     footerNoMoreDataText= '-我是有底线的-'
@@ -81,11 +82,4 @@ class Blogs extends Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    sepa:{
-        height:8
-    }
-})
-
-export default Blogs;
+export default BlogList;

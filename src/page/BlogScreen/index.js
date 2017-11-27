@@ -7,12 +7,16 @@ import {
   StatusBar
 } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
-import HomeTabBar from '../../component/Blog/HomeTabBar';
-import BlogList from '../../component/Blog/blogs'
+import HomeTabBar from '../../component/comm/ScrollTabBar';
+import BlogList from '../../component/Blog/BlogList'
 import blogService from '../../services/blogService';
 import { observer } from 'mobx-react/native';
 import SplashScreen from 'rn-splash-screen';
 
+
+/**
+ * App首页---首页博文列表以及推荐博文列表渲染
+ */
 @observer
 class Index extends Component {
 	constructor(props) {
@@ -24,7 +28,8 @@ class Index extends Component {
 		};
 	}
 
-	componentDidMount() {
+componentDidMount() {
+			//添加APP启动应用图  加载完成隐藏应用图
       SplashScreen.hide();
   }
 
@@ -33,30 +38,46 @@ class Index extends Component {
 			isLoading:true
 		})
 		if(obj.i==0){
-			await blogService.getBlogList('sitehome',1,10);
-			this.setState({
-				type:'sitehome',
-				isLoading:false
-			})
-		}else{
-		await blogService.getBlogList('picked',1,10);
+			this._updateList('sitehome')
+			return;
+		}
+		this._updateList('picked')
+  }
+
+	async _updateList(type){
+		await blogService.getBlogList(type,1,10);
 		this.setState({
-			type:'picked',
-			isLoading:false			
+			type:type,
+			isLoading:false
 		})
-	  }
 	}
 	
-	async _onRefresh(type){
+		//下拉刷新
+	  async _onRefresh(type){
         await blogService.getBlogList(type,1,10);    
     }
 
+		//上拉加载更多
     async _onLoad(type){
         await blogService.loadBlogList(type,this.state.index+1,10);
         this.setState({
             index:this.state.index+1
         })
-    }
+		}
+
+		//根据 this.state.type渲染不同的列表
+		_renderItem(){
+			return(
+			 	 <BlogList 
+				  isLoading={this.state.isLoading}
+				  type={this.state.type}
+				  navigation={this.props.navigation} 
+				  store={blogService.blogList}
+				  OnRefresh={this._onRefresh.bind(this)}
+				  OnLoad={this._onLoad.bind(this)}
+			  />
+			)
+		}
 
 	render() {
 		return (
@@ -70,35 +91,20 @@ class Index extends Component {
             >  
            </StatusBar>
 			<ScrollableTabView
-				renderTabBar={() => <HomeTabBar tabNames={this.state.tabNames} />}
-				tabBarPosition='top'
-				onChangeTab={(obj) => {
-					this.updateBlogList(obj);
-				 }}
+				  renderTabBar={() => <HomeTabBar tabNames={this.state.tabNames} />}
+				  tabBarPosition='top'
+				  onChangeTab={(obj) => {
+					  this.updateBlogList(obj);
+				  }}
 				>
-
-				<View style={styles.content} tabLabel='key1'>
-				  <BlogList 
-				    isLoading={this.state.isLoading}
-				    type={this.state.type}
-				    navigation={this.props.navigation} 
-				    store={blogService.blogList}
-				    OnRefresh={this._onRefresh.bind(this)}
-				    OnLoad={this._onLoad.bind(this)}
-				  />
-				</View>
-
-				<View style={styles.content} tabLabel='key2'>
-				  <BlogList 
-				   isLoading={this.state.isLoading}				  
-				   type={this.state.type}
-				   navigation={this.props.navigation} 
-				   store={blogService.blogList}
-				   OnRefresh={this._onRefresh.bind(this)}
-				   OnLoad={this._onLoad.bind(this)}
-				 />
-                </View>
-            </ScrollableTabView>
+			   <View style={styles.content} tabLabel='key1'>
+				  	{this._renderItem()}
+					</View>
+					
+				  <View style={styles.content} tabLabel='key2'>
+				     {this._renderItem()}
+					</View>
+      </ScrollableTabView>
       </View>
 		);
 	}
