@@ -48,7 +48,6 @@ class SeachPage extends React.Component{
 
 render(){
     const ds=observeableSeachResultStore.results
-    console.log(ds)
     return(
             <View>
                 <FlatList

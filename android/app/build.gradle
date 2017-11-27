@@ -92,7 +92,7 @@ def enableSeparateBuildPerCPUArchitecture = false
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-def enableProguardInReleaseBuilds = false
+def enableProguardInReleaseBuilds = true
 
 android {
     compileSdkVersion 23
@@ -103,7 +103,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -127,9 +127,13 @@ android {
         }
     }
     buildTypes {
+        releaseStaging {
+            buildConfigField "String", "CODEPUSH_KEY", '"K-0QyrI5DzjXoG_ngeN84alo_Yyq487f23ee-7ab9-474a-b2ea-308f881eabe4"'
+        }
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            buildConfigField "String", "CODEPUSH_KEY", '"Na445gxFz-KIIu2j1gGjEmUq4QpZ487f23ee-7ab9-474a-b2ea-308f881eabe4"'            
             signingConfig signingConfigs.release
         }
     }

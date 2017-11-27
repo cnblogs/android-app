@@ -37,7 +37,6 @@ const styles=StyleSheet.create({
         backgroundColor:'#2196F3',
         height:80,
         flexDirection:'row',
-        marginTop:15
     },
     search:{
         borderWidth:1,

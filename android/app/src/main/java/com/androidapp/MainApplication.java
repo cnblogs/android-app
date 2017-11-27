@@ -37,7 +37,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new SplashScreenPackage(),
-            new CodePush(null, getApplicationContext(), BuildConfig.DEBUG),
+            new CodePush("Na445gxFz-KIIu2j1gGjEmUq4QpZ487f23ee-7ab9-474a-b2ea-308f881eabe4", getApplicationContext(), BuildConfig.DEBUG),
             new WebViewBridgePackage(),
             new VectorIconsPackage(),
             new RNSpinkitPackage(),
