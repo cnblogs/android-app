@@ -61,12 +61,14 @@ const styles = StyleSheet.create({
     container:{
         flexDirection:'row',
         backgroundColor:'white',
-        height:45
+        height:45,
+        alignItems:'center', 
     },
 	tabs: {
         flex:2,
         flexDirection: 'row',
-        justifyContent:'center', 
+        justifyContent:'center',
+        alignItems:'center',         
         height:45  
 	},
 
@@ -74,7 +76,8 @@ const styles = StyleSheet.create({
 		marginLeft:20,
 	},
 	tabItem: {
-		flexDirection: 'column',
+        flexDirection: 'column',
+        justifyContent:'center',         
     },
     iconCreate:{
         flex:1,        

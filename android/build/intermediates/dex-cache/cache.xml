@@ -75,21 +75,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/cnblogs_tim/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
-        <dex dex="/Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_e560172bac561de9dc9ec78177a19b717aaa666a.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/exploded-aar/com.github.ybq/Android-SpinKit/1.1.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="21c0f1b0de29bfe601028757c5cb125c343f5164">
         <dex dex="/Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/pre-dexed/debug/com.github.ybq-Android-SpinKit-1.1.0_a20ed12b2793e9e048a707c3be3c3c4c97e58435.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cnblogs_tim/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="/Users/cnblogs_tim/Desktop/android-app/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_e560172bac561de9dc9ec78177a19b717aaa666a.jar" />
     </item>
     <item
         is-multidex="false"
