@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React,{Component} from 'react'
 import {
     Image,
     Text,
@@ -11,9 +11,10 @@ import NewsContent from './NewsContent';
 import RefreshListView, {RefreshState} from '../../component/comm/RefreshListView'
 import { observer } from 'mobx-react';
 import Loading from './../../component/comm/Loading'
+import ItemSeparator from '../../component/comm/ItemSeparator'
 
 @observer
-class NewsList extends React.Component {
+class NewsList extends Component {
     static navigationOptions = {
         title: '新闻'
     }
@@ -36,20 +37,20 @@ class NewsList extends React.Component {
             Id: item.Id,
             Data: item,
             Type: 'newsitems',
-            title: item.Title
+            Title: item.Title
         });
     }
 
     onHeaderRefresh = () => {
         this.setState({refreshState: RefreshState.HeaderRefreshing})
-        this.props.OnRefresh();
+        this.props.OnRefresh(this.props.type);
         this.setState({refreshState: RefreshState.Idle})
     }
 
     onFooterRefresh = () => {
         this.setState({refreshState: RefreshState.FooterRefreshing})
         setTimeout(() => {
-            this.props.OnLoad();
+            this.props.OnLoad(this.props.type);
             this.setState({refreshState: RefreshState.Idle})
         }, 1000)
     }
@@ -77,7 +78,7 @@ class NewsList extends React.Component {
                     refreshState={this.state.refreshState}
                     onHeaderRefresh={this.onHeaderRefresh}
                     onFooterRefresh={this.onFooterRefresh}
-                    ItemSeparatorComponent={() =><View style ={styles.sepa} ></View>}
+                    ItemSeparatorComponent={() =><ItemSeparator />}
                     footerRefreshingText='玩命加载中 >.<'
                     footerFailureText='我擦嘞，居然失败了 =.=!'
                     footerNoMoreDataText='-我是有底线的-'/>
@@ -85,11 +86,5 @@ class NewsList extends React.Component {
             ) 
         } 
     }
-            
-const styles = StyleSheet.create({
-  sepa: {
-    height:5
-   }
-})
 
 export default NewsList

@@ -15,7 +15,7 @@ class ObservableStatuesStore {
             const data=await AsyncStorage.getItem('a_token');
              access_token=JSON.parse(data).access_token
         }else{
-          access_token=await token.Update_Client_Token();          
+          access_token=await AppToken.Update_Client_Token();          
         }
         let response=await axios({
            method:'Get',
@@ -58,7 +58,7 @@ class ObservableStatuesStore {
             const data=await AsyncStorage.getItem('a_token');
             access_token=JSON.parse(data).access_token
         }else{
-           access_token=await token.Update_Client_Token();                 
+           access_token=await AppToken.Update_Client_Token();                 
         }
         let response=await axios({
            method:'Get',

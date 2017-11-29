@@ -65,9 +65,6 @@ class NewsContent extends React.Component{
     }
 }
 const styles = StyleSheet.create({
-    sepa:{
-        height:10
-    },
     item: {
         backgroundColor:'#f9f9f9',
     },
@@ -77,6 +74,7 @@ const styles = StyleSheet.create({
     },
     itemTopIcon:{ 
         flex:1,
+        
     },
     itemBody:{
         flexDirection:'row',
@@ -89,6 +87,7 @@ const styles = StyleSheet.create({
     },
     bodyRight:{
         flex:1,
+        marginRight:8,
     },
     itemTitle:{
       fontSize:16,
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     },
     itemFooter:{
         marginLeft:8,
-        marginTop:5,
+        marginTop:10,
         marginBottom:10,
         flexDirection:'row',
         justifyContent: 'flex-end'

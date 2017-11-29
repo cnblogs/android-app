@@ -10,24 +10,15 @@ class ObservableNewsStore {
 
 
    async getNewsList(type,pageIndex,pageSize){
-       let url='';
-       if(type=="home"){
-           url=`https://api.cnblogs.com/api/NewsItems?pageIndex=${pageIndex}&pageSize=${pageSize}`        
-       }else{
-           url=`https://api.cnblogs.com/api/NewsItems/@${type}?pageIndex=${pageIndex}&pageSize=${pageSize}`
-       }
+       
+        let url=`https://api.cnblogs.com/api/NewsItems?pageIndex=${pageIndex}&pageSize=${pageSize}`        
         const access_token=await AppToken.Client_Credentials_Token();
         let response=await Http.GetAsync(url,access_token);
         this.newsList=response.data
     }
 
-    async loadNewsList(type,pageIndex,pageSize){
-        let url='';
-        if(type=="home"){
-            url=`https://api.cnblogs.com/api/NewsItems?pageIndex=${pageIndex}&pageSize=${pageSize}`        
-        }else{
-            url=`https://api.cnblogs.com/api/NewsItems/@${type}?pageIndex=${pageIndex}&pageSize=${pageSize}`
-        }
+    async loadNewsList(pageIndex,pageSize){
+        let url=`https://api.cnblogs.com/api/NewsItems?pageIndex=${pageIndex}&pageSize=${pageSize}`        
         const access_token=await AppToken.Client_Credentials_Token();
         let response=await Http.GetAsync(url,access_token);
         this.newsList.push(...response.data)

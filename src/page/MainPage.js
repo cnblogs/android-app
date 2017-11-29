@@ -13,8 +13,7 @@ import StatusPage from './StatuesScreen/index';
 import SearchBar from './../component/home/SeachBar'
 import QuestionHeader from './../component/question/QuestionHeader'
 import { Icon } from 'react-native-elements'
-import NewsPage from './NewsScreen/index'
-import KbPage from './KbScreen/index'
+import ZiXunPage from './ZiXunScreen/index'
 import observableStatuesStore from '../services/statuesService'
 
 const MainPage = TabNavigator({
@@ -31,7 +30,7 @@ const MainPage = TabNavigator({
         }
     },
     News: {
-        screen:NewsPage,
+        screen:ZiXunPage,
         navigationOptions:{
                 tabBarLabel: '资讯',
                 header:null,

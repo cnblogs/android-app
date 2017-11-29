@@ -16,9 +16,9 @@ import QuestionDetail from './page/QuestionScreen/QDetailScreen'
 import QAnswerDetail from './page/QuestionScreen/AnswerDetail'
 import BlogContent from './page/BlogScreen/showContent'
 import BlogComments from './page/BlogScreen/Comments'
-import NewsContent from './page/NewsScreen/showContent'
-import NewsComments from './page/NewsScreen/comments'
-import KbContent from './page/KbScreen/showContent'
+import NewsContent from './page/ZiXunScreen/showNewsContent'
+import NewsComments from './page/ZiXunScreen/comments'
+import KbContent from './page/ZiXunScreen/showKbContent'
 
 
 const AndroidCnBlogsApp=StackNavigator({

@@ -48,7 +48,6 @@ class BlogList extends Component {
         navigate("BlogContent",{
               Data:item,
               Id:item.Id,
-              Url:`https://www.cnblogs.com/${item.BlogApp}/p/${item.Id}.html`,
               title:`${item.Author}的博客`,
               Type:'blogposts'
           });

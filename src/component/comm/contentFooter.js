@@ -1,10 +1,9 @@
 import React from 'react'
 import { View,Text,StyleSheet,TouchableHighlight,AsyncStorage} from 'react-native'
 import {Icon,Badge} from 'react-native-elements'
-import Toast from 'react-native-root-toast';
 import { observer } from 'mobx-react/native';
 import collectionService from '../../services/collectionService'
-
+import {Info,Success,Error,Waring} from './CustomToast'
 
 @observer
 class ContentFooter extends React.Component{
@@ -44,9 +43,7 @@ class ContentFooter extends React.Component{
    async _saveUrl(){
         const data=await AsyncStorage.getItem('a_token');
         if(data==null){
-           Toast.show('请先登录',{
-            position: Toast.positions.CENTER,
-           })
+            Info('请先登录！')
         }else{
             if(!this.state.isCollection){
                 let linkUrl=this.props.data.Url;
@@ -61,16 +58,12 @@ class ContentFooter extends React.Component{
                 }
                let code= await collectionService.Save(data);
                if(code==201){
-                  Toast.show('已添加收藏',{
-                      position: Toast.positions.CENTER,
-                   })
+                  Success('已添加收藏')
                    this.setState({
                       isCollection:!this.state.isCollection
                    })
                }else{
-                  Toast.show('收藏失败',{
-                      position: Toast.positions.CENTER,
-                   })
+                   Error('收藏失败,请联系管理员!')
                }     
             }else{
                 let linkUrl=this.props.data.Url;
