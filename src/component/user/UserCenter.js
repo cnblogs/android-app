@@ -4,12 +4,17 @@ import User from './User';
 import list from '../../config/Setting'
 import {List,ListItem} from 'react-native-elements'
 import codePush from 'react-native-code-push'
+import {Info} from '../comm/CustomToast'
 
 
 const deploymentKey="Na445gxFz-KIIu2j1gGjEmUq4QpZ487f23ee-7ab9-474a-b2ea-308f881eabe4";
 
 class UserCenter extends React.Component{
     navigation(pagename,blogApp){
+        if(!this.props.isLogin&&pagename=="MyBlog"||pagename=="MyBookmark"){
+            Info("请先登录")
+            return;
+        }
         if(pagename=="update"){
             this.checkUpdate();
         }else{
@@ -17,7 +22,7 @@ class UserCenter extends React.Component{
             BlogApp:blogApp
         }
         this.props.navigation.navigate(pagename,data)
-    }
+      }
     }
 
     checkUpdate(){
