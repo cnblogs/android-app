@@ -11,9 +11,6 @@ import {
 class ContentPage extends React.Component{
     static navigationOptions = ({ navigation }) => ({
         title: navigation.state.params.title,
-        headerStyle:{
-            marginTop:20
-        }
       })
       render(){
           return(

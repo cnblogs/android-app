@@ -37,7 +37,12 @@ class Question extends React.Component{
                 <View style={styles.itemFooter}>
 
                     <View style={styles.itemLabel}>
-                        <Tags items={this._getTag(question.Tags)}/>
+                      <Image
+                         source={{
+                          uri: `https://pic.cnblogs.com/avatar/${question.QuestionUserInfo.IconName}`
+                       }}
+                    style={styles.UserIcon}/>
+                        <Text style={{color:'#2c2c2c',marginRight:3}}>{question.QuestionUserInfo.UserName}</Text>
                     </View>
 
                     <View style={styles.itemTime}>
@@ -88,7 +93,9 @@ const styles=StyleSheet.create({
         flex:3,
         marginLeft:20,
         marginBottom:10,
+        flexDirection:'row',        
         justifyContent:'flex-start',
+        alignItems:'center',        
     },
     itemTime:{
         flex:1,
@@ -102,7 +109,14 @@ const styles=StyleSheet.create({
     },
     answerText:{
         color:'#49A065'
-    }
+    },
+    UserIcon: {
+        width: 25,
+        height: 25,
+        marginLeft: 8,
+        marginRight: 8,
+        borderRadius: 12.5
+    },
 })
 
 export default Question;

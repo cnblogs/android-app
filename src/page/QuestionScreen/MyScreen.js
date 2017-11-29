@@ -16,9 +16,9 @@ class MyScreen extends React.Component{
     constructor(){
         super()
         this.state={
-            isLoading:true,
-            questions:[],
+            isLoading: true,
             index:1,
+            refreshState: RefreshState.Idle,
             isLogin:false
         }
     }
@@ -29,7 +29,6 @@ class MyScreen extends React.Component{
            this.setState({
             isLoading:false,
             isLogin:true,
-            questions:observableQuestionStore.questionList
         })
     }
     }
@@ -45,7 +44,6 @@ onHeaderRefresh =async() => {
     this.setState({refreshState: RefreshState.HeaderRefreshing})
     await observableQuestionStore.getQuestionList(1,10,'@myquestion')
     this.setState({
-        questions: observableQuestionStore.questionList,
         refreshState: RefreshState.Idle
     })
 }
@@ -55,7 +53,6 @@ onFooterRefresh = async() => {
     setTimeout(async() => {
         await observableQuestionStore.loadQuestionList(this.state.index+1,10,'@myquestion')
         this.setState({
-            questions: observableQuestionStore.questionList,
             refreshState: RefreshState.Idle,
             index:this.state.index+1
         })
@@ -85,7 +82,7 @@ keyExtractor = (item, index) => {
         return(
             <View>
             <RefreshListView
-              data={this.state.questions}
+              data={observableQuestionStore.questionList}
               keyExtractor={this.keyExtractor}
               renderItem={this._renderItem}
               refreshState={this.state.refreshState}

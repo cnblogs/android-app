@@ -1,9 +1,9 @@
 import {Image,Text,StyleSheet,View} from 'react-native';
 import { TabNavigator } from "react-navigation";
-import MyScreen from './QuestionScreen/MyScreen'
-import HighScoreScreen from './QuestionScreen/HighScoreScreen'
-import RealTimeScreen from './QuestionScreen/RealTimeScreen'
-import ZeroAnswerSceen from './QuestionScreen/ZeroAnswerSceen'
+import MyScreen from './MyScreen'
+import HighScoreScreen from './HighScoreScreen'
+import RealTimeScreen from './RealTimeScreen'
+import ZeroAnswerSceen from './ZeroAnswerSceen'
 
 
 const QuestionScreenNavigator = TabNavigator({
@@ -32,7 +32,7 @@ const QuestionScreenNavigator = TabNavigator({
         backgroundColor: 'white',        
       },
       labelStyle: {
-        fontSize: 10,
+        fontSize: 13,
         fontWeight: 'bold',
         marginTop: 0,
         paddingTop: 0,

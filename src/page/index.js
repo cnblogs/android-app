@@ -7,14 +7,12 @@ import {
     TabNavigator
 } from 'react-navigation';
 import BlogPage from './BlogScreen/index';
-import MimePage from './MimePage';
-import QuestionPage from './QuestionPage';
+import MimePage from './MyScreen/index';
+import QuestionPage from './QuestionScreen/index';
 import StatusPage from './StatuesScreen/index';
-import SearchBar from './../component/home/SeachBar'
 import QuestionHeader from './../component/question/QuestionHeader'
 import { Icon } from 'react-native-elements'
 import ZiXunPage from './ZiXunScreen/index'
-import observableStatuesStore from '../services/statuesService'
 
 const MainPage = TabNavigator({
     Home: {

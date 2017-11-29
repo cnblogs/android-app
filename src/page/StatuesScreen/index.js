@@ -103,10 +103,10 @@ class Index extends Component {
 				renderTabBar={() => <StatusTabBar 
 					   tabNames={this.state.tabNames} 
 					   navigationToPublish={this._navigationToPublish.bind(this)}/>}
-				tabBarPosition='top'
-				onChangeTab={(obj) => {
-					this.updateZiXunList(obj);
-				 }}
+				  tabBarPosition='top'
+				  onChangeTab={(obj) => {
+					 this.updateZiXunList(obj);
+				   }}
 				>
 
 				<View style={styles.content} tabLabel='key1'>

@@ -16,16 +16,15 @@ class ZeroAnswerScreen extends React.Component{
     constructor(){
         super()
         this.state={
-            isLoading:true,
-            questions:[],
-            index:1
+            isLoading: true,
+            index:1,
+            refreshState: RefreshState.Idle,
         }
     }
     async componentWillMount(){
        await observableQuestionStore.getQuestionList(1,10,'@noanswer')
         this.setState({
             isLoading:false,
-            questions:observableQuestionStore.questionList
         })
     }
  _goToDetail(item) {
@@ -39,7 +38,6 @@ onHeaderRefresh =async() => {
     this.setState({refreshState: RefreshState.HeaderRefreshing})
     await observableQuestionStore.getQuestionList(1,10,'@noanswer')
     this.setState({
-        questions: observableQuestionStore.questionList,
         refreshState: RefreshState.Idle
     })
 }
@@ -49,7 +47,6 @@ onFooterRefresh = async() => {
     setTimeout(async() => {
         await observableQuestionStore.loadQuestionList(this.state.index+1,10,'@noanswer')
         this.setState({
-            questions: observableQuestionStore.questionList,
             refreshState: RefreshState.Idle,
             index:this.state.index+1
         })
@@ -74,7 +71,7 @@ keyExtractor = (item, index) => {
         return(
             <View>
             <RefreshListView
-              data={this.state.questions}
+              data={observableQuestionStore.questionList}
               keyExtractor={this.keyExtractor}
               renderItem={this._renderItem}
               refreshState={this.state.refreshState}

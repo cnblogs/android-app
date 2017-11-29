@@ -17,9 +17,10 @@ import AutoHeightWebView from 'react-native-autoheight-webview'
 import moment from 'moment'
 import questionService from '../../services/questionService'
 import  {Button} from 'react-native-elements'
-import Toast from 'react-native-root-toast';
 import { observer } from 'mobx-react/native';
 import AppToken from '../../config/AppToken';
+import {Info,Error,Success,Waring} from '../../component/comm/CustomToast'
+
 
 @observer
 class QDetailScree extends React.Component{
@@ -66,7 +67,7 @@ class QDetailScree extends React.Component{
      }
 
      async _requestComments(qid){
-        const access_token=await token.Update_Client_Token();
+        const access_token=await AppToken.Update_Client_Token();
         let response=await axios({
            method:'Get',
            url:`https://api.cnblogs.com/api/questions/${qid}/answers`,
@@ -86,16 +87,12 @@ class QDetailScree extends React.Component{
     async sendComment(qid,answer){
         const data=await AsyncStorage.getItem('a_token');
         if(data==null){
-            Toast.show('请先登录',{
-               position: Toast.positions.CENTER,
-          })
+            Info('请先登录');
           return;
         }
         await questionService.sendAnswer(qid,answer);
-        Toast.show('回答成功',{
-            position: Toast.positions.CENTER,
-       })
-       this.refs.input.clear();       
+          Success('回答成功');
+       this.refs.input.clear();     
     }
 
     render(){

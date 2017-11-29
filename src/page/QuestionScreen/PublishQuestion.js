@@ -8,9 +8,9 @@ import {
     AsyncStorage
 } from 'react-native'
 import {Button} from 'react-native-elements'
-import questionService from '../services/questionService'
+import questionService from '../../services/questionService'
 import { observer } from 'mobx-react/native';
-import Toast from 'react-native-root-toast';
+import {Info,Error,Success} from '../../component/comm/CustomToast'
 
 @observer
 class PublishQuestion extends Component {
@@ -30,15 +30,11 @@ class PublishQuestion extends Component {
   async onSubmit(){
     const data=await AsyncStorage.getItem('a_token');
     if(data==null){
-        Toast.show('请先登录',{
-           position: Toast.positions.CENTER,
-      })
+        Info("请先登录");
       return;
     }
     await questionService.publishQuestion(this.state.titleValue,this.state.contentValue,this.state.labelValue)
-      Toast.show('发布成功',{
-          position: Toast.positions.CENTER,
-         })
+      Success("发布成功")
       this.refs.inputTitle.clear();
       this.refs.inputLabel.clear();
       this.refs.inputQuestion.clear();   

@@ -16,15 +16,15 @@ class RealTimeScreen extends React.Component{
         super()
         this.state = {
             isLoading: true,
-            questions: [],
-            pageIndex:1
+            index:1,
+            refreshState: RefreshState.Idle,
+            
         }
     }
     async componentWillMount() {
         await observableQuestionStore.getQuestionList(1,10,'@all')
         this.setState({
             isLoading: false,
-            questions: observableQuestionStore.questionList
         })
     }
 
@@ -38,7 +38,6 @@ class RealTimeScreen extends React.Component{
         this.setState({refreshState: RefreshState.HeaderRefreshing})
         await observableQuestionStore.getQuestionList(1,10,'@all')
         this.setState({
-            questions: observableQuestionStore.questionList,
             refreshState: RefreshState.Idle
         })
     }
@@ -46,9 +45,8 @@ class RealTimeScreen extends React.Component{
     onFooterRefresh = async() => {
         this.setState({refreshState: RefreshState.FooterRefreshing})
         setTimeout(async() => {
-            await observableQuestionStore.loadQuestionList(1,10,'@all')
+            await observableQuestionStore.loadQuestionList(this.state.index+1,10,'@all')
             this.setState({
-                questions: observableQuestionStore.questionList,
                 refreshState: RefreshState.Idle,
                 index:this.state.index+1
             })
@@ -73,7 +71,7 @@ class RealTimeScreen extends React.Component{
         return (
             <View>
             <RefreshListView
-              data={this.state.questions}
+              data={observableQuestionStore.questionList}
               keyExtractor={this.keyExtractor}
               renderItem={this._renderItem}
               refreshState={this.state.refreshState}

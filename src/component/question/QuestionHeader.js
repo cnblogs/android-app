@@ -20,13 +20,8 @@ class SearchbarComm extends React.Component{
                     </View>
                 </TouchableHighlight>
 
-                <View style={{
-                    flex: 3,
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignContent:'center'
-                }}>
-                    <Text style={{color:'#2c2c2c',fontWeight:'bold'}}>博问</Text>
+                <View style={styles.Title}>
+                    <Text style={{color:'#2c2c2c',fontWeight:'bold',fontSize:16}}>博问</Text>
                 </View>  
                 <TouchableHighlight
                 style={styles.search}
@@ -44,8 +39,13 @@ class SearchbarComm extends React.Component{
 const styles=StyleSheet.create({
     container:{
         backgroundColor:'white',
-        height:35,
+        height:45,
         flexDirection:'row',
+    },
+    Title:{
+        flex: 4,
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
     search:{
         justifyContent:'center',

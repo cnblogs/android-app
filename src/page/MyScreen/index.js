@@ -1,7 +1,7 @@
 import  * as React from 'react';
 import {Text, AsyncStorage,View} from 'react-native';
-import UserCenter from './../component/user/UserCenter'
-import Http from '../utils/Http'
+import UserCenter from '../../component/user/UserCenter'
+import Http from '../../utils/Http'
 
 
 class MimePage extends React.Component{

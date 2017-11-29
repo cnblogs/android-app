@@ -10,9 +10,9 @@ import {
     AsyncStorage
 } from 'react-native';
 import Http from '../../utils/Http'
-import formatDate from '../../utils/formatDate'
 import AppConfig from '../../config/AppConfig'
 import axios from 'axios';
+import moment from 'moment'
 
 const { SwipeListView, SwipeRow }=require('react-native-swipe-list-view');
 
@@ -88,7 +88,7 @@ class MyBookmarkScreen extends React.Component{
 							>
 								<View>
 									<Text style={styles.title}>{data.Title}</Text>
-                                    <Text style={{marginLeft:10}}>收藏于 {formatDate(data.DateAdded)}</Text>
+                                    <Text style={{marginLeft:10}}>收藏于 {moment(data.DateAdded).format('YYYY-MM-DD HH:mm')}</Text>
 								</View>
 							</TouchableHighlight>
 						)}

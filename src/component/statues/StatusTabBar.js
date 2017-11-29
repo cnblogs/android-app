@@ -8,6 +8,7 @@ import {
 	TouchableOpacity,
 	Text
 } from 'react-native';
+
 import {Icon} from 'react-native-elements'
 
 class StatusTabBar extends Component {
@@ -18,12 +19,10 @@ class StatusTabBar extends Component {
 	componentDidMount() {
 		// Animated.Value监听范围 [0, tab数量-1]
 		this.props.scrollValue.addListener(this.setAnimationValue);
-    }
-    
+	}
     _goToPublish(){
         this.props.navigationToPublish();
     }
-
 	renderTabOption(tab, i) {
         let color = this.props.activeTab == i ? '#2c2c2c':'#ADADAD'; // 判断i是否是当前选中的tab，设置不同的颜色
         let active=this.props.activeTab==i?styles.active:null;
@@ -34,23 +33,21 @@ class StatusTabBar extends Component {
 						{this.props.tabNames[i]}
 					</Text>
 				</View>
-            </TouchableOpacity>
+			</TouchableOpacity>
 		);
 	}
 
 	render() {
 		return (
-            <View style={styles.container}>
-               <View style={styles.iconCreate}>
-                 <Icon name="border-color" color='#2c2c2c' onPress={this._goToPublish.bind(this)}/>
-               </View>
-
-                <View style={styles.tabs}>
-                   {this.props.tabs.map((tab, i) => this.renderTabOption(tab, i))}
-                </View>
-
-                <View style={styles.iconNotice}>
-                   <Icon name="inbox" color='#2c2c2c'  onPress={() => this._goToPublish()}/>
+            <View style={styles.container}> 
+            <View style={styles.iconCreate}>
+              
+            </View> 
+              <View style={styles.tabs}>
+                 {this.props.tabs.map((tab, i) => this.renderTabOption(tab, i))}
+               </View>   
+                <View style={styles.iconCreate}>
+                    <Icon name="border-color" color='#2c2c2c' onPress={this._goToPublish.bind(this)}/>
                 </View>
             </View>
 		);
@@ -59,38 +56,39 @@ class StatusTabBar extends Component {
 
 const styles = StyleSheet.create({
     container:{
-        flexDirection:'row',
-        backgroundColor:'white',
         height:45,
-        alignItems:'center', 
+        flexDirection: 'row',
+        backgroundColor:'white',
+        borderBottomWidth:1,
+        borderBottomColor:'#e6e6e6'
     },
 	tabs: {
-        flex:2,
+        flex:4,
         flexDirection: 'row',
-        justifyContent:'center',
-        alignItems:'center',         
-        height:45  
+		justifyContent: 'center',     
+        height:45,
+        
 	},
 
 	tab: {
+		height:45,
 		marginLeft:20,
+		justifyContent: 'center',
 	},
 	tabItem: {
-        flexDirection: 'column',
-        justifyContent:'center',         
-    },
-    iconCreate:{
-        flex:1,        
-    },
-    iconNotice:{
-        flex:1,        
+		flexDirection: 'column',
     },
     active:{
         borderStyle:'solid',
         borderBottomWidth:2,
         borderBottomColor:'#2c2c2c'
+    },
+    iconCreate:{
+        flex:1, 
+        justifyContent: 'flex-end',
+        marginLeft:10,
+        marginBottom:5    
     }
 });
-
 
 export default StatusTabBar;

@@ -15,7 +15,7 @@ class ObservableQuestionStore {
             const data=await AsyncStorage.getItem('a_token');
              access_token=JSON.parse(data).access_token
         }else{
-          access_token=await token.Update_Client_Token();          
+          access_token=await AppToken.Update_Client_Token();          
         }
         let response=await axios({
            method:'Get',
@@ -54,11 +54,11 @@ class ObservableQuestionStore {
 
     async loadQuestionList(index,size,type){
         let access_token=''
-        if(type!='@type'){
+        if(type=='@myquestion'){
             const data=await AsyncStorage.getItem('a_token');
-            access_token=JSON.parse(data).access_token
+             access_token=JSON.parse(data).access_token
         }else{
-           access_token=await AppToken.Update_Client_Token();                 
+          access_token=await AppToken.Update_Client_Token();          
         }
         let response=await axios({
            method:'Get',

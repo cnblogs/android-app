@@ -16,8 +16,9 @@ class HighScoreScreen extends React.Component{
     constructor(){
         super()
         this.state={
-            isLoading:true,
-            questions:[]
+            isLoading: true,
+            index:1,
+            refreshState: RefreshState.Idle,
         }
     }
 
@@ -41,7 +42,6 @@ class HighScoreScreen extends React.Component{
         this.setState({refreshState: RefreshState.HeaderRefreshing})
         await observableQuestionStore.getQuestionList(1,10,'@highscore')
         this.setState({
-            questions: observableQuestionStore.questionList,
             refreshState: RefreshState.Idle
         })
     }
@@ -51,7 +51,6 @@ class HighScoreScreen extends React.Component{
         setTimeout(async() => {
             await observableQuestionStore.loadQuestionList(this.state.index+1,10,'@highscore')
             this.setState({
-                questions: observableQuestionStore.questionList,
                 refreshState: RefreshState.Idle,
                 index:this.state.index+1
             })
@@ -78,7 +77,7 @@ class HighScoreScreen extends React.Component{
         return(
             <View>
             <RefreshListView
-              data={this.state.questions}
+              data={observableQuestionStore.questionList}
               keyExtractor={this.keyExtractor}
               renderItem={this._renderItem}
               refreshState={this.state.refreshState}

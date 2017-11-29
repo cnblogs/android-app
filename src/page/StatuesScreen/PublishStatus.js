@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import {CheckBox,Icon,Button} from 'react-native-elements'
 import {observer} from 'mobx-react';
-import observableStatuesStore from '../services/statuesService';
-import Toast from 'react-native-root-toast';
+import observableStatuesStore from '../../services/statuesService';
+import {Info,Error,Success} from '../../component/comm/CustomToast'
 
 @observer
 class PublishStatus extends React.Component{
@@ -34,18 +34,15 @@ class PublishStatus extends React.Component{
      const data=await AsyncStorage.getItem('a_token');
 
      if(data==null){
-        Toast.show('请先登录',{
-           position: Toast.positions.CENTER,
-      })
+        Info("请先登录");
       return;
     }
 
       await observableStatuesStore.publishStatues(this.state.txtValue,this.state.check)
-      Toast.show('发布成功',{
-         position: Toast.positions.CENTER,
-       })
+       Success("发布成功");
       this.refs.input.clear();       
     }
+    
     render(){
         return(
             <View>

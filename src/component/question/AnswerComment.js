@@ -59,6 +59,7 @@ class AnswerComment extends React.Component {
             <View>
                 <View style={styles.container}>
                     <View style={styles.header}>
+
                         <View style={styles.avatar}>
                             <Image
                                 source={{
@@ -66,14 +67,17 @@ class AnswerComment extends React.Component {
                             }}
                                 style={styles.UserIcon}/>
                         </View>
+
                         <View style={styles.user}>
                             <View>
                                 <Text style={styles.DisplayName}>{this.state.answerUserInfo.UserName}</Text>
                             </View>
                         </View>
+
                         <View style={styles.publishTime}>
                             <Text>{moment(this.state.answer.DateAdded).startOf('minute').fromNow()}</Text>
                         </View>
+
                     </View >
 
                     <View style={styles.containerComment}>
@@ -96,11 +100,12 @@ class AnswerComment extends React.Component {
                     </View>
 
                     <View style={styles.comment}>
-                    <View>
-                        <TouchableNativeFeedback onPress={()=>this._navigationToAnswerDetail(this.state.comments)}>
+                      <View>
+                         <TouchableNativeFeedback onPress={()=>this._navigationToAnswerDetail(this.state.comments)}>
                             <Text>回复</Text>
-                       </TouchableNativeFeedback>
-                    </View>
+                        </TouchableNativeFeedback>
+                      </View>
+
                     <View style={styles.commentIcon}>
                         <Icon
                             name='comment-o'
@@ -140,7 +145,8 @@ const styles = StyleSheet.create({
         flex: 1
     },
     user: {
-        flex: 11
+        flex: 10,
+        marginRight:5
     },
     UserIcon: {
         width: 25,
@@ -153,12 +159,12 @@ const styles = StyleSheet.create({
         flex: 2,
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        marginRight: 8
+        marginRight:10
     },
     comment:{
         flexDirection:'row',
         justifyContent:'flex-end',
-        marginLeft:8,
+        marginLeft:10,
         marginBottom:8          
     },
     commentIcon:{

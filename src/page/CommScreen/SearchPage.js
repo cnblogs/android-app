@@ -6,11 +6,10 @@ import {
   View,
   FlatList
 } from 'react-native';
-import Avatar from '../component/comm/Avatar'
-import formatDate from '../utils/formatDate'
+import Avatar from '../../component/comm/Avatar'
 import HTML from 'react-native-render-html'
 import {observer} from 'mobx-react/native'
-import observeableSeachResultStore from '../services/searchService'
+import observeableSeachResultStore from '../../services/searchService'
 import moment from 'moment'
 
 @observer

@@ -6,8 +6,8 @@ import {
   Dimensions, 
   AsyncStorage 
 } from 'react-native'; 
-import AppConfig from '../config/AppConfig';
-import Http from './../utils/Http'
+import AppConfig from '../../config/AppConfig';
+import Http from '../../utils/Http'
 import CookieManager from 'react-native-cookies'
 
 const {width, height} = Dimensions.get('window');  
