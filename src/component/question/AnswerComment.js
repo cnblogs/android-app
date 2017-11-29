@@ -142,11 +142,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     avatar: {
-        flex: 1
+        width:35
     },
     user: {
-        flex: 10,
-        marginRight:5
+        flex:1,
+        marginLeft:5
     },
     UserIcon: {
         width: 25,
@@ -156,7 +156,6 @@ const styles = StyleSheet.create({
         borderRadius: 12.5
     },
     publishTime: {
-        flex: 2,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         marginRight:10
@@ -164,7 +163,7 @@ const styles = StyleSheet.create({
     comment:{
         flexDirection:'row',
         justifyContent:'flex-end',
-        marginLeft:10,
+        marginLeft:8,
         marginBottom:8          
     },
     commentIcon:{
