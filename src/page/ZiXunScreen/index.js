@@ -16,7 +16,7 @@ class Index extends React.Component{
         super();
         this.state={
             type:'news',
-            tabNames: ['新闻', '文章'],         
+            tabNames: ['新闻', '知识库'],        
             index:1,
             isLoading:true
         }

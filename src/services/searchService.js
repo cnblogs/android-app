@@ -8,7 +8,7 @@ class ObserveableSeachResultStore{
     @observable results=[]
 
     async seachResult(keyWords){
-        const access_token=await AppToken.Update_Client_Token();
+        const access_token=await AppToken.Client_Credentials_Token();
         let response=await axios({
            method:'Get',
            url:`https://api.cnblogs.com/api/ZzkDocuments/all?keyWords=${keyWords}`,

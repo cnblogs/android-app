@@ -21,7 +21,7 @@ class MimePage extends React.Component{
     }
     async componentWillMount(){
         const tokenStr=await AsyncStorage.getItem('a_token');
-       let url='https://api.cnblogs.com/api/users'       
+        let url='https://api.cnblogs.com/api/users'       
         if(tokenStr){
             let access_token=JSON.parse(tokenStr).access_token;
             let userinfo=await this._request(url,access_token);

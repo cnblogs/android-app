@@ -15,7 +15,7 @@ class ObservableStatuesStore {
             const data=await AsyncStorage.getItem('a_token');
              access_token=JSON.parse(data).access_token
         }else{
-          access_token=await AppToken.Update_Client_Token();          
+          access_token=await AppToken.Client_Credentials_Token();          
         }
         let response=await axios({
            method:'Get',
@@ -41,7 +41,7 @@ class ObservableStatuesStore {
     }
 
     async getCommentListById(statusId){
-        const access_token=await AppToken.Update_Client_Token();
+        const access_token=await AppToken.Client_Credentials_Token();
         let response=await axios({
            method:'Get',
            url:`https://api.cnblogs.com/api/statuses/${statusId}/comments`,
@@ -58,7 +58,7 @@ class ObservableStatuesStore {
             const data=await AsyncStorage.getItem('a_token');
             access_token=JSON.parse(data).access_token
         }else{
-           access_token=await AppToken.Update_Client_Token();                 
+           access_token=await AppToken.Client_Credentials_Token();                 
         }
         let response=await axios({
            method:'Get',
