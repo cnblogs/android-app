@@ -12,6 +12,7 @@ class SearchbarComm extends React.Component{
     render(){
         return(
             <View style={styles.container}>
+                <View style={styles.containerHeader}>
                <TouchableHighlight
                    style={styles.search}
                    onPress={()=>this._navigation()}>
@@ -21,7 +22,7 @@ class SearchbarComm extends React.Component{
                 </TouchableHighlight>
 
                 <View style={styles.Title}>
-                    <Text style={{color:'#2c2c2c',fontWeight:'bold',fontSize:16}}>博问</Text>
+                    <Text style={{color:'#2c2c2c',fontWeight:'bold',fontSize:16,}}>博问</Text>
                 </View>  
                 <TouchableHighlight
                 style={styles.search}
@@ -31,7 +32,8 @@ class SearchbarComm extends React.Component{
                           color="#2c2c2c"
                           />
                 </View>  
-                </TouchableHighlight>           
+                </TouchableHighlight> 
+                </View>        
             </View>    
         )
     }
@@ -40,7 +42,12 @@ const styles=StyleSheet.create({
     container:{
         backgroundColor:'white',
         height:45,
+        
+    },
+    containerHeader:{
         flexDirection:'row',
+        alignItems:'center',
+        flex:1, 
     },
     Title:{
         flex: 4,
