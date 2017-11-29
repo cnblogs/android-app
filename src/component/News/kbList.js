@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {observer} from 'mobx-react/native';
 import {Image,Text,StyleSheet,View,FlatList,TouchableHighlight} from 'react-native'
-import KbItem from './../../component/home/Knowledge'
+import KbItem from './KbContent'
 import Loading from './../../component/comm/Loading'
 import kbService from '../../services/kbService'
 import RefreshListView, {RefreshState} from '../../component/comm/RefreshListView'

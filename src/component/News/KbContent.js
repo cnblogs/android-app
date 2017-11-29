@@ -4,7 +4,7 @@ import Avatar from '../comm/Avatar'
 import Loading from '../comm/Loading'
 import moment from 'moment'
 
-class Knowledge extends React.Component{
+class KbContent extends React.Component{
 
     _navigateToContent(item){
         this.props.GoTo(item);
@@ -110,4 +110,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Knowledge;
+export default KbContent;
