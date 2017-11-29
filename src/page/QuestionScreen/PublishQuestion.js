@@ -37,7 +37,8 @@ class PublishQuestion extends Component {
       Success("发布成功")
       this.refs.inputTitle.clear();
       this.refs.inputLabel.clear();
-      this.refs.inputQuestion.clear();   
+      this.refs.inputQuestion.clear();
+      this.props.navigation.goBack();   
   }
 
 
