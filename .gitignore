@@ -44,3 +44,8 @@ android/gradle.properties
 source/config/index.bak.js
 
 __tests__
+.DS_Store
+android/app/.DS_Store
+android/app/src/.DS_Store
+android/app/src/main/.DS_Store
+android/app/src/main/res/.DS_Store
