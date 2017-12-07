@@ -41,7 +41,7 @@ class PublishStatus extends React.Component{
       await observableStatuesStore.publishStatues(this.state.txtValue,this.state.check)
       Success("发布成功");
       this.refs.input.clear();   
-      this.props.navigation.goBack();        
+      this.props.navigation.navigate('Status')  
     }
     
     render(){

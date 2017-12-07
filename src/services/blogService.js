@@ -13,7 +13,6 @@ class ObservableBlogStore {
    async getBlogList(type,pageIndex,pageSize){
         const url=`https://api.cnblogs.com/api/blogposts/@${type}?pageIndex=${pageIndex}&pageSize=${pageSize}`
         const access_token=await AppToken.Client_Credentials_Token();
-        console.log(access_token);
         let response=await Http.GetAsync(url,access_token);
         this.blogList=response.data
     }

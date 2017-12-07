@@ -38,7 +38,7 @@ class PublishQuestion extends Component {
       this.refs.inputTitle.clear();
       this.refs.inputLabel.clear();
       this.refs.inputQuestion.clear();
-      this.props.navigation.goBack();   
+      this.props.navigation.navigate('Question');
   }
 
 

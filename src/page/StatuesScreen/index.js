@@ -124,7 +124,7 @@ class Index extends Component {
                 <View style={styles.content} tabLabel='key2'>
 				 <StatuesList
 				   type={this.state.type}
-					isLogin={this.state.islogin}					
+				   isLogin={this.state.islogin}					
 				   isLoading={this.state.isLoading}						
 				   navigation={this.props.navigation} 
 				   store={statuesService.statuesList}
@@ -133,16 +133,16 @@ class Index extends Component {
 			       />
                 </View>
 
-				<View style={styles.content} tabLabel='key2'>
+				<View style={styles.content} tabLabel='key3'>
 				  <StatuesList
-				   type={this.state.type}
+				    type={this.state.type}
 					isLogin={this.state.islogin}					
-				   isLoading={this.state.isLoading}					
-				   navigation={this.props.navigation} 
-				   store={statuesService.statuesList}
-				   OnRefresh={this._onRefresh.bind(this)}
-				   OnLoad={this._onLoad.bind(this)}
-				 />
+				    isLoading={this.state.isLoading}					
+				    navigation={this.props.navigation} 
+				    store={statuesService.statuesList}
+				    OnRefresh={this._onRefresh.bind(this)}
+				    OnLoad={this._onLoad.bind(this)}
+				  />
                 </View>
             </ScrollableTabView>
 		);
