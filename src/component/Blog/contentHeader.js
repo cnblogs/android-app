@@ -1,7 +1,7 @@
 import React from 'react'
 import {Text,View,StyleSheet} from 'react-native'
 import {Icon,Avatar,Button} from 'react-native-elements'
-import formatDate from '../../utils/formatDate'
+import moment from 'moment'
 
 
 class ContentHeader extends React.Component{
@@ -23,7 +23,7 @@ class ContentHeader extends React.Component{
                     </View>
                     <View style={styles.info}>
                         <Text style={{color:'black'}}>{data.Author}</Text>
-                        <Text style={{color:'black'}}>{formatDate(data.PostDate)}</Text>
+                        <Text style={{color:'black'}}>{moment(data.PostDate).startOf("minute").fromNow()}</Text>
                     </View>
                     <View style={styles.Button}>
                         <Button 

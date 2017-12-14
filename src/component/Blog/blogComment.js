@@ -2,7 +2,6 @@ import React from 'react'
 import {View,Text,StyleSheet,Platform,Dimensions,TouchableHighlight} from 'react-native'
 import {Avatar} from 'react-native-elements'
 import AutoHeightWebView from 'react-native-autoheight-webview'
-import formatDate from '../../utils/formatDate'
 import moment from 'moment'
 
 

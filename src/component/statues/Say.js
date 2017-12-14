@@ -8,7 +8,6 @@ import {
     TouchableHighlight,
     TouchableNativeFeedback
 } from 'react-native'
-import formatDate from '../../utils/formatDate'
 import CommentList from './CommentList'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import CommentBox from './CommentBox'

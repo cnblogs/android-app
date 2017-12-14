@@ -2,7 +2,6 @@ import * as React from 'react'
 import {Image,Text,StyleSheet,View,FlatList,TouchableHighlight} from 'react-native'
 import Avatar from '../comm/Avatar'
 import Loading from '../comm/Loading'
-import formatDate from '../../utils/formatDate'
 import moment from 'moment'
 
 class BlogContent extends React.Component{
@@ -29,9 +28,9 @@ class BlogContent extends React.Component{
                               {item.DiggCount}
                             </Text>
                             <Text style={{marginLeft:6}}>
-                            推荐 · 
+                            推荐 ·
                             </Text>
-                        </View> 
+                        </View>
 
                         <View style={styles.ViewCount}>
                             <Text  style={{marginLeft:6}}>
@@ -40,7 +39,7 @@ class BlogContent extends React.Component{
                             <Text style={{marginLeft:6}}>
                             阅读  ·
                             </Text>
-                        </View> 
+                        </View>
 
                         <View style={styles.CommentCount}>
                             <Text style={{marginLeft:6}}>
@@ -57,7 +56,7 @@ class BlogContent extends React.Component{
                     </View>
                 </View>
             </View>
-            </TouchableHighlight> 
+            </TouchableHighlight>
         )
     }
 }
@@ -110,7 +109,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'flex-end',
         alignItems:'center' ,
-        marginRight:8   
+        marginRight:8
     }
 });
 
