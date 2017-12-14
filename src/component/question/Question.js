@@ -2,7 +2,6 @@ import * as React from 'react'
 import {Image,Text,StyleSheet,View,FlatList,TouchableHighlight, TouchableNativeFeedback} from 'react-native'
 import Avatar from '../comm/Avatar'
 import Loading from '../comm/Loading'
-import formatDate from '../../utils/formatDate'
 import axios from 'axios'
 import Tags from './Tags'
 import moment from 'moment'
@@ -17,6 +16,25 @@ class Question extends React.Component{
      _navigateToContent(item){
         this.props.GoTo(item);
     }
+
+    checkAvatar(avartarurl){
+        if(avartarurl=="sample_face.gif"){
+            return(
+                <Image 
+                source={require('../../images/d_avatar.png')} 
+                style={styles.UserIcon}
+                />
+            )
+        }
+        return (
+            <Image
+            source={{
+             uri: `https://pic.cnblogs.com/avatar/${avartarurl}`
+          }}
+        style={styles.UserIcon}/>
+        )
+    }
+
     render(){
         const question=this.props;
         return(
@@ -37,11 +55,7 @@ class Question extends React.Component{
                 <View style={styles.itemFooter}>
 
                     <View style={styles.itemLabel}>
-                      <Image
-                         source={{
-                          uri: `https://pic.cnblogs.com/avatar/${question.QuestionUserInfo.IconName}`
-                       }}
-                    style={styles.UserIcon}/>
+                        {this.checkAvatar(question.QuestionUserInfo.IconName)}
                         <Text style={{color:'#2c2c2c',marginRight:3}}>{question.QuestionUserInfo.UserName}</Text>
                     </View>
 
