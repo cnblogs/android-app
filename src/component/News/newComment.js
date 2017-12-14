@@ -2,8 +2,7 @@ import React from 'react'
 import {View,Text,StyleSheet,Platform,Dimensions,TouchableHighlight} from 'react-native'
 import {Avatar} from 'react-native-elements'
 import AutoHeightWebView from 'react-native-autoheight-webview'
-import formatDate from '../../utils/formatDate'
-
+import moment from 'moment'
 
 class NewsComment extends React.Component{
     render(){
@@ -54,7 +53,7 @@ class NewsComment extends React.Component{
                     />
                     </View>
                     <View style={styles.container_bottom}>
-                        <Text style={{marginLeft:5}}>{formatDate(data.DateAdded)}</Text>
+                        <Text style={{marginLeft:5}}>{moment(data.DateAdded).startOf("minute").fromNow()}</Text>
                     </View>
                 </View>
             </View>

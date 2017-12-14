@@ -10,9 +10,9 @@ import {
     AsyncStorage
 } from 'react-native';
 import Http from '../../utils/Http'
-import formatDate from '../../utils/formatDate'
 import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view'
 import AppConfig from '../../config/AppConfig'
+import moment from 'moment'
 
 class MyBlogScreen extends React.Component {
 	static navigationOptions={
@@ -93,7 +93,7 @@ class MyBlogScreen extends React.Component {
 										</View>
 									</View>
 									<View style={styles.itemPostDate}>
-									   <Text>{formatDate(data.PostDate)}</Text>
+									   <Text>{moment(data.PostDate).startOf('minute').fromNow()}</Text>
 									</View>
 								</View>
 								</View>
