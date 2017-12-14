@@ -56,8 +56,9 @@ const styles = StyleSheet.create({
 
 	tab: {
 		height:45,
-		marginLeft:20,
-		justifyContent: 'center',
+		marginLeft:10,
+		marginRight:10,
+		justifyContent:'center'
 	},
 	tabItem: {
 		flexDirection: 'column',
