@@ -13,7 +13,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 class ScrollTabBar extends Component {
 	setAnimationValue({value}) {
-		console.log(value);
+		// console.log(value);
 	}
 
 	componentDidMount() {
