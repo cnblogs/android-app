@@ -6,17 +6,9 @@ class NewsContent extends React.Component{
     _navigateToContent(item){
         this.props.GoTo(item);
     }
-
-    addHttps(topicIcon){
-        if(topicIcon.indexOf("https")>=0){
-          return topicIcon;        
-        }else{
-            return "https:"+topicIcon;
-        }
-    }
-
     render(){
         const item=this.props;
+        console.log(item);
         return(
             <TouchableHighlight
             onPress={()=>this._navigateToContent(item)}>
@@ -31,7 +23,7 @@ class NewsContent extends React.Component{
                       <Text style={styles.itemDesc} numberOfLines={5}>{item.Summary+'.......'}</Text>
                     </View>
                     <View style={styles.bodyRight}>
-                    <Image source={{uri:this.addHttps(item.TopicIcon)}} resizeMode={'contain'} style={styles.itemTopIcon} />
+                    <Image source={{uri:item.TopicIcon}} resizeMode={'contain'} style={styles.itemTopIcon} />
                 </View>
                 </View>
 

@@ -24,6 +24,7 @@ class Index extends Component {
 		this.state = {
 			tabNames: ['首页', '推荐'],
 			type:'sitehome',
+			index:1,
 			isLoading:true,
 		};
 	}
@@ -98,12 +99,12 @@ componentDidMount() {
 				  }}
 				>
 			   <View style={styles.content} tabLabel='key1'>
-				  	{this._renderItem()}
-					</View>
+				   {this._renderItem()}
+			  </View>
 					
-				  <View style={styles.content} tabLabel='key2'>
-				     {this._renderItem()}
-					</View>
+			  <View style={styles.content} tabLabel='key2'>
+				 {this._renderItem()}
+			 </View>
       </ScrollableTabView>
       </View>
 		);

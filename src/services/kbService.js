@@ -13,7 +13,7 @@ class ObservableKnowledgeStore{
         this.knowledgeList=response.data;
     }
 
-    async loadKnowledgeList(index,size){
+    async loadkbList(index,size){
         let url=`https://api.cnblogs.com/api/KbArticles?pageIndex=${index}&pageSize=${size}`
         let access_token=await AppToken.Client_Credentials_Token()
         let response=await Http.GetAsync(url,access_token);

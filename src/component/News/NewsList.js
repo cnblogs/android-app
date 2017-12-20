@@ -50,7 +50,7 @@ class NewsList extends Component {
     onFooterRefresh = () => {
         this.setState({refreshState: RefreshState.FooterRefreshing})
         setTimeout(() => {
-            this.props.OnLoad(this.props.type);
+            this.props.OnLoad(this.props.type,this.props.index);
             this.setState({refreshState: RefreshState.Idle})
         }, 1000)
     }

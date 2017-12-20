@@ -14,10 +14,11 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 class Index extends React.Component{
     constructor(){
         super();
-        this.state={
+        this.state= {
             type:'news',
             tabNames: ['新闻', '知识库'],        
-            index:1,
+            newsindex:1,
+            kbindex:1,
             isLoading:true
         }
     }
@@ -54,52 +55,54 @@ class Index extends React.Component{
             type:type,
             isLoading:false
         })
-	}
+    }
     
     async _onRefresh(type){
-        if(type=='news'){
-           await newsService.getNewsList(1,10);
-           return;
-        }
-        await kbService.getKnowledgeList(1,10)
+       if(type=='news'){
+          await newsService.getNewsList(1,10);
+          return;
+       }  
+       await kbService.getKnowledgeList(1,10);
     }
 
-    async _onLoad(type){
+		//上拉加载更多
+    async _onLoad(type,indexNum){
         if(type=='news'){
-            await newsService.loadNewsList(this.state.index+1,10);
-            this.setState({
-                index:this.state.index+1
-            })
+            await newsService.loadNewsList(this.state.newsindex+1,10);
+           this.setState({
+               newsindex:this.state.newsindex+1,
+           })
             return;
         }
-        await kbService.loadKnowledgeList(this.state.index+1,10);
+        await kbService.loadkbList(this.state.kbindex+1,10);
         this.setState({
-            index:this.state.index+1
-        })
-    }
+            kbindex:this.state.kbindex+1
+        });
+	}
 
     _renderItem(type){
         if(type=='news'){
-           return (
-            <NewsList
-            isLoading={this.state.isLoading}
-            type='news'
-            navigation={this.props.navigation} 
-            store={newsService.newsList}
-            OnRefresh={this._onRefresh.bind(this)}
-            OnLoad={this._onLoad.bind(this)}
-           />);
+           return <NewsList
+                   index={this.state.newsindex}
+                   type={this.state.type}
+                   isLoading={this.state.isLoading}
+                   navigation={this.props.navigation} 
+                   store={newsService.newsList}
+                   OnRefresh={this._onRefresh.bind(this)}
+                   OnLoad={this._onLoad.bind(this)}
+                />; 
         }
-
-        return (<KbList 
+        return <KbList 
+                 index={this.state.kbindex}
+                 type={this.state.type}
                  isLoading={this.state.isLoading}
-                 type='kb'
                  navigation={this.props.navigation} 
                  store={kbService.knowledgeList}
                  OnRefresh={this._onRefresh.bind(this)}
                  OnLoad={this._onLoad.bind(this)}
-                 />)
+                 />
     }
+
     render(){
         return(
             <View style={{flex:1}}>
