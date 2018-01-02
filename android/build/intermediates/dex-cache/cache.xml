@@ -21,12 +21,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-urlconnection\3.6.0\3f9b16b774f2c36cfd86dd2053d0b3059531dacc\okhttp-urlconnection-3.6.0.jar"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
-        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-3.6.0_7ce0a27f2c852526580c35fd45e50d159e8ded05.jar" />
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.soloader-soloader-0.1.0_0245549c05e7bb248bc1d39258cc48e239d4b18d.jar" />
     </item>
     <item
         is-multidex="false"
@@ -36,6 +36,15 @@
         revision="23.0.1"
         sha1="f162442a19fff13995fbd51ba414d9ee05579080">
         <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\staticlayout-proxy-1.0_993cbb616cb5c5d1c6be80670f25de13d0eeecfa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-base\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-base-1.3.0_4456f0931bb860d2c5d978262051e3fcd2c596b3.jar" />
     </item>
     <item
         is-multidex="false"
@@ -57,15 +66,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.4.0_05b36534a68e63023f229f4d198921ff7a4f5bc4.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\com.nimbusds\nimbus-jose-jwt\5.1\98dfb9ee74d290afce026a262c6297138a0c8ec4\nimbus-jose-jwt-5.1.jar"
         jumboMode="false"
         optimize="true"
@@ -84,6 +84,240 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-okhttp3-1.3.0_6ecd243c48c86b54d06c869c1e14f2bafd3c6900.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-urlconnection\3.6.0\3f9b16b774f2c36cfd86dd2053d0b3059531dacc\okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-3.6.0_7ce0a27f2c852526580c35fd45e50d159e8ded05.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.4.0_05b36534a68e63023f229f4d198921ff7a4f5bc4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fresco\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fresco-1.3.0_72cae595d8828110693195c0ef950a2f05ed5540.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\okio-1.13.0_40882615428b070df62fd8fce50665c222533df8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-1.3.0_f4cb2af5fed8a3894f06c9ec651041227140e33b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fbui.textlayoutbuilder\textlayoutbuilder\1.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_4ee82c5b9d9b05f8fe13126ab05547d4b6bf577f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-base\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-base-1.3.0_4456f0931bb860d2c5d978262051e3fcd2c596b3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\okio-1.13.0_40882615428b070df62fd8fce50665c222533df8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.50.3\jars\libs\infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\infer-annotations-4.0_483112e90580146dcff85e62cad329bc0814f02b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-okhttp3-1.3.0_027217dfe7c7003e7cc6b096789640468a5f4854.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\com.facebook.fbui.textlayoutbuilder\staticlayout-proxy\1.0\f162442a19fff13995fbd51ba414d9ee05579080\staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\staticlayout-proxy-1.0_993cbb616cb5c5d1c6be80670f25de13d0eeecfa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\javax.inject-1_63d30e6b755f6404773f4eab69b518079d64eae9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\javax.inject-1_63d30e6b755f6404773f4eab69b518079d64eae9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\androidapp\react-native-autoheight-webview\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="71954af8dc48ebc5638e476d6b134e0ce33936cb">
+        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\androidapp-react-native-autoheight-webview-unspecified_4e32d4a37823466ef20f8c7a686d2bfc1735d137.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fresco\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fresco-1.3.0_72cae595d8828110693195c0ef950a2f05ed5540.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1_388ad1199da74c0cefc5ec2f96cb435645102f91.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\androidapp\react-native-spinkit\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="47b99616af6817e323d7b404b2f1922ca22228ad">
+        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\androidapp-react-native-spinkit-unspecified_d2274490af8ca310bc0beb602627e4208d5c32e6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\androidapp\react-native-code-push\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ea9972f0bde142410d211bf4e473369016a0fbb2">
+        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\androidapp-react-native-code-push-unspecified_36109c314084ec9aa05f422e2c58e302491b8ea5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1_bb8c3b3072b2b139f0a9f909529c93c852fb225f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fbcore-1.3.0_ca8ea7c6146db8f7cc6bffdf940ab734711f2b59.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.0.1_6cd669837d04ed7c577b1e73518b8269920ff75a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-urlconnection\3.6.0\3f9b16b774f2c36cfd86dd2053d0b3059531dacc\okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-3.6.0_7ce0a27f2c852526580c35fd45e50d159e8ded05.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.4.0_05b36534a68e63023f229f4d198921ff7a4f5bc4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.0\5871fb60dc68d67da54a663c3fd636a10a532948\jsr305-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\jsr305-3.0.0_50d44c7efa3fc08a553bd63a84e2218674173fb9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\drawee\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-drawee-1.3.0_4bfec491cfd2baf017de2d168c431d0c7e039836.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\androidapp\react-native-cookies\unspecified\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -99,6 +333,24 @@
         revision="23.0.1"
         sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
         <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fbcore-1.3.0_6fd162a30c96b49c7a8ad987ea85477392087b60.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1_bb8c3b3072b2b139f0a9f909529c93c852fb225f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.51.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="99941aaaf86dc5e525cd9208c2f7c9a624f4f004">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.react-react-native-0.51.0_8e29aa28583de175e2820f61f3b8a4a2b5ae3fa5.jar" />
     </item>
     <item
         is-multidex="false"
@@ -129,21 +381,21 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.soloader-soloader-0.1.0_0245549c05e7bb248bc1d39258cc48e239d4b18d.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="8f615bca00639150c9eb6175d4b5471193f70794">
         <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.soloader-soloader-0.1.0_ba33d3615bfdc7c9ccf652e1d726c8777a1ca115.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.0.1_320b87181b19a121352a913d5eeee3e76e4c2c78.jar" />
     </item>
     <item
         is-multidex="false"
@@ -156,12 +408,30 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-okhttp3-1.3.0_6ecd243c48c86b54d06c869c1e14f2bafd3c6900.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
-        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\okio-1.13.0_40882615428b070df62fd8fce50665c222533df8.jar" />
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.0.1_0b34c56157d4b41b4122b2354d7ee68868fc7a2b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.6.0\69edde9fc4b01c9fd51d25b83428837478c27254\okhttp-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\okhttp-3.6.0_e9e5449808b115322561505d65bc8f935312a500.jar" />
     </item>
     <item
         is-multidex="false"
@@ -174,12 +444,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.50.3\jars\libs\infer-annotations-4.0.jar"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\1.3.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
-        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\infer-annotations-4.0_483112e90580146dcff85e62cad329bc0814f02b.jar" />
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fbcore-1.3.0_ca8ea7c6146db8f7cc6bffdf940ab734711f2b59.jar" />
     </item>
     <item
         is-multidex="false"
@@ -192,12 +462,30 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1_388ad1199da74c0cefc5ec2f96cb435645102f91.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\androidapp\rn-splash-screen\unspecified\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="0ac1189a56cb1a24623db56883eb0a2044cc190d">
         <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\androidapp-rn-splash-screen-unspecified_24f558b2f7dd01883756ec5d34e0d199091b2a4c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.51.0\jars\libs\infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\infer-annotations-4.0_fdf25ab1e8bca31d11084874aafa26e7845490e9.jar" />
     </item>
     <item
         is-multidex="false"
@@ -219,66 +507,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\1.3.0\jars\classes.jar"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\drawee\1.3.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
-        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-okhttp3-1.3.0_027217dfe7c7003e7cc6b096789640468a5f4854.jar" />
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-drawee-1.3.0_4bfec491cfd2baf017de2d168c431d0c7e039836.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\tim\.gradle\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="6975da39a7040257bd51d21a231b76c915872d38">
-        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\javax.inject-1_63d30e6b755f6404773f4eab69b518079d64eae9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\androidapp\react-native-autoheight-webview\unspecified\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="71954af8dc48ebc5638e476d6b134e0ce33936cb">
-        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\androidapp-react-native-autoheight-webview-unspecified_4e32d4a37823466ef20f8c7a686d2bfc1735d137.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1_ebeee153613d1b1f63037f51d0f61a20ca9042aa.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\androidapp\react-native-spinkit\unspecified\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="47b99616af6817e323d7b404b2f1922ca22228ad">
-        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\androidapp-react-native-spinkit-unspecified_d2274490af8ca310bc0beb602627e4208d5c32e6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\cnblogs\android-app\android\app\build\intermediates\exploded-aar\androidapp\react-native-code-push\unspecified\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="ea9972f0bde142410d211bf4e473369016a0fbb2">
-        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\androidapp-react-native-code-push-unspecified_36109c314084ec9aa05f422e2c58e302491b8ea5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\tim\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1_bb8c3b3072b2b139f0a9f909529c93c852fb225f.jar" />
+        revision="27.0.2"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.0.1_6cd669837d04ed7c577b1e73518b8269920ff75a.jar" />
     </item>
     <item
         is-multidex="false"
@@ -288,6 +531,24 @@
         revision="23.0.1"
         sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
         <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-1.3.0_66460d6a1210cfe958a20247066d12218bffe278.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fbui.textlayoutbuilder\textlayoutbuilder\1.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_4ee82c5b9d9b05f8fe13126ab05547d4b6bf577f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.0.1_0b34c56157d4b41b4122b2354d7ee68868fc7a2b.jar" />
     </item>
     <item
         is-multidex="false"
@@ -306,6 +567,15 @@
         revision="23.0.1"
         sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
         <dex dex="D:\cnblogs\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-drawee-1.3.0_afe8d2f68f6920342993bff9250eb2d4accf0e89.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.2"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="C:\Users\tim\Desktop\android-app\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-1.3.0_f4cb2af5fed8a3894f06c9ec651041227140e33b.jar" />
     </item>
 
 </items>
