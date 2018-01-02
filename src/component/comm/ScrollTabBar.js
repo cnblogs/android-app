@@ -25,7 +25,7 @@ class ScrollTabBar extends Component {
         let color = this.props.activeTab == i ? '#2c2c2c':'#ADADAD'; // 判断i是否是当前选中的tab，设置不同的颜色
         let active=this.props.activeTab==i?styles.active:null;
 		return (
-			<TouchableOpacity onPress={()=>this.props.goToPage(i)} style={[styles.tab,active]}>
+			<TouchableOpacity onPress={()=>this.props.goToPage(i)} style={[styles.tab,active]} key={i}>
 				<View style={[styles.tabItem]}>
 					<Text style={{color: color,fontSize:15,fontWeight:'bold'}}>
 						{this.props.tabNames[i]}
