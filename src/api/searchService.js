@@ -10,6 +10,12 @@ import axios from 'axios'
  */
 class SeachService{
 
+    static instance = null;
+    static getInstance() {
+        return !SeachService.instance
+            ? new SeachService()
+            : SeachService.instance;
+    } 
     /**
      * 根据关键字搜索内容
      * 
@@ -29,5 +35,5 @@ class SeachService{
        return response;
     } 
 };
-const seachService=new SeachService();
+const seachService=SeachService.getInstance()
 export default seachService;

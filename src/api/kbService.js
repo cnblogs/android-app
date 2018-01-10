@@ -7,6 +7,13 @@ import AppToken from '../config/AppToken';
  * @class KbService
  */
 class KbService {
+
+    static instance = null;
+    static getInstance() {
+        return !KbService.instance
+            ? new KbService()
+            : KbService.instance;
+    } 
     
     /**
  * 分页获取知识库
@@ -34,5 +41,5 @@ class KbService {
         return response;
     }
 }
-const kbService = new KbService();
-export default kbService;
+const _kbService =KbService.getInstance();
+export default _kbService;

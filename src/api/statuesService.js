@@ -10,6 +10,12 @@ import axios from 'axios'
  * @class StatusService
  */
 class StatusService {
+    static instance = null;
+    static getInstance() {
+        return !StatusService.instance
+            ? new StatusService()
+            : StatusService.instance;
+    } 
 
     /**
      * 分页获取闪存
@@ -116,5 +122,5 @@ class StatusService {
          }
     }
 }
-const statusService=new StatusService()
+const statusService=StatusService.getInstance();
 export default statusService;

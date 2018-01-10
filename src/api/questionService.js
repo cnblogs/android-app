@@ -9,6 +9,12 @@ import axios from 'axios'
  * @class QuestionService
  */
 class QuestionService {
+    static instance = null;
+    static getInstance() {
+        return !QuestionService.instance
+            ? new QuestionService()
+            : QuestionService.instance;
+    } 
 
     /**
      * 分页获取问题列表
@@ -101,5 +107,5 @@ class QuestionService {
     }
 }
 
-const questionService=new QuestionService()
+const questionService=QuestionService.getInstance();
 export default questionService

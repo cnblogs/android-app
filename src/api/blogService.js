@@ -11,6 +11,13 @@ import AppToken from '../config/AppToken';
  */
 class BlogService {
 
+    static instance = null;
+    static getInstance() {
+        return !BlogService.instance
+            ? new BlogService()
+            : BlogService.instance;
+    }
+    
     /**
      * 分页获取博客列表内容
      * @param {any} category 
@@ -89,6 +96,6 @@ class BlogService {
     }
 }
 
-const _blogService = new BlogService();
+const _blogService =BlogService.getInstance();
 
 export default _blogService;

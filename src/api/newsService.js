@@ -9,6 +9,13 @@ import {AsyncStorage} from 'react-native'
  */
 class NewsService {
 
+    static instance = null;
+    static getInstance() {
+        return !NewsService.instance
+            ? new NewsService()
+            : NewsService.instance;
+    } 
+
    /**
     * 获取最新的新闻
     * @param {any} pageIndex 
@@ -67,5 +74,5 @@ class NewsService {
        return await Http.PostAsJsonAsync(url,access_token,data)
     }
 }
-const newsService = new NewsService();
+const newsService =NewsService.getInstance();
 export default newsService;

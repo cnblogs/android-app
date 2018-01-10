@@ -10,6 +10,12 @@ import _http from '../utils/Http'
  */
 class BookMarksService {
 
+    static instance = null;
+    static getInstance() {
+        return !BookMarksService.instance
+            ? new BookMarksService()
+            : BookMarksService.instance;
+    } 
     /**
     * 分页获取网摘
     *
@@ -83,5 +89,5 @@ class BookMarksService {
         return await _http.DeleteAsync(url,access_token);
     }
 }
-const bookmarksService=new BookMarksService();
+const bookmarksService=BookMarksService.getInstance();
 export default bookmarksService;
