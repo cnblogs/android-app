@@ -54,7 +54,7 @@ class NewsService {
         const url=`https://api.cnblogs.com/api/news/${id}/comments?pageIndex=${pageIndex}&pageSize=${pageSize}`
         const access_token=await AppToken.Client_Credentials_Token();
         let response=await Http.GetAsync(url,access_token);
-        this.newsComments=response.data
+        return response;
     }
 
     /**
