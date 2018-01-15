@@ -38,7 +38,7 @@ class BookMarksService {
      * @returns 
      * @memberof BookMarksService
      */
-    async checkBookmarks(){
+    async checkBookmarks(url){
         const data=await AsyncStorage.getItem('a_token');
         const access_token=JSON.parse(data).access_token
         let response=await axios({
@@ -73,6 +73,23 @@ class BookMarksService {
         })
         return response;
     }
+
+
+/**
+ * 
+ *根据Url删除网摘 
+ * @param {any} url 
+ * @returns 
+ * @memberof BookMarksService
+ */
+async removeBookmarkByUrl(url){
+        const tokenStr = await AsyncStorage.getItem('a_token');
+        let access_token = JSON
+            .parse(tokenStr)
+            .access_token;
+        const apiUrl=`https://api.cnblogs.com/api/bookmarks?url=${url}`;
+        return await _http.DeleteAsync(apiUrl,access_token);
+    }   
 
 
     /**

@@ -10,7 +10,6 @@ import AppToken from '../config/AppToken';
  * @class BlogService
  */
 class BlogService {
-
     static instance = null;
     static getInstance() {
         return !BlogService.instance
@@ -36,10 +35,10 @@ class BlogService {
      * 
      * @param {any} blogApp 
      * @param {any} pageIndex 
-     * @param {any} pageSize 
+     * @param {any} pageSize
      * @memberof BlogService
      */
-    async getMyblogs(blogApp,pageIndex,pageSize){
+    async getMyBlogs(blogApp,pageIndex,pageSize){
         const tokenStr=await AsyncStorage.getItem('a_token');
          let access_token=JSON.parse(tokenStr).access_token;
          let response=await axios({
