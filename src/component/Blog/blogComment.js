@@ -2,7 +2,6 @@ import React from 'react'
 import {View,Text,StyleSheet,Platform,Dimensions,TouchableHighlight} from 'react-native'
 import {Thumbnail} from 'native-base'
 import moment from 'moment'
-import HtmlView from '../comm/HtmlView'
 
 /**
  * 评论组件
