@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {View} from 'react-native'
 import {Toast,Spinner} from 'native-base'
-import RefreshListView, {RefreshState} from '../../component/comm/RefreshListView'
+import RefreshListView, {RefreshState} from 'react-native-refresh-list-view'
 import BlogItem  from './BlogItem'
 import _blogService from '../../api/blogService'
 import PropTypes from 'prop-types';
@@ -108,7 +108,7 @@ class BlogListView extends Component {
     render() {
         if(this.state.isLoading){
             return(
-                <View style={{flex:1,}}>
+                <View style={{flex:1}}>
                   <Spinner color='#3385ff'/>
                 </View>
             )
