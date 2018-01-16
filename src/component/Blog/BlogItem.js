@@ -6,6 +6,12 @@ import moment from '../../config/momentConfig'
 import GlobalStyles from '../../config/GlobalStyles'
 import CAvatar from '../comm/Avatar';
 
+/**
+ * 博客组件
+ * 
+ * @class BlogItem
+ * @extends {React.Component}
+ */
 class BlogItem extends React.Component{
     linkToDetails(id,title,avatar,author,postDate,blogApp){
         this.props.linkToDetails(id,title,avatar,author,postDate,blogApp);
@@ -21,7 +27,7 @@ class BlogItem extends React.Component{
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Grid>
                     <Col>
-                       <CAvatar avatar={avatar} author={author}/>
+                       <CAvatar avatar={avatar} author={author} color={'black'}/>
                     </Col>
                     <Col>
                          <View style={styles.fromDate}>
