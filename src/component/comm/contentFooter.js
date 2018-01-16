@@ -1,8 +1,9 @@
 import React from 'react'
-import { View,Text,StyleSheet,TouchableHighlight,AsyncStorage} from 'react-native'
+import { View,Text,StyleSheet,TouchableHighlight,AsyncStorage,Dimensions} from 'react-native'
 import {Icon,Badge,StyleProvider,getTheme,Button,Toast} from 'native-base';
 import _bookmarkService from '../../api/bookmarksService'
 
+const height=Dimensions.get("window").height;
 /**
  * 底部推荐 收藏 评论功能组件
  * 
@@ -63,27 +64,50 @@ class ContentFooter extends React.Component{
         return true;
     }
 
+    /**
+     * 点击推荐
+     * 
+     * @memberof ContentFooter
+     */
+   async _recommend(){
+        let isLogin=await this.isLogin();
+        if(isLogin){
+            this.setState({
+              isDigg:!this.state.isDigg
+            })
+            return;
+        }
+      return  Toast.show({
+            text:'请先登陆！',
+            position: "bottom",
+            style:{'marginBottom':height/2-49-49},
+            type:'warning'
+         })
+    }
+
    /**
     * 点击收藏按钮
     * 
     * @memberof ContentFooter
     */
    async diggBookmark(){
-        let isLogin=this.isLogin();
+        let isLogin=await this.isLogin();
         if(isLogin){
             if(this.state.isCollection){
                 await this._removeBookmark();
+                return;
             }else{
                 await this._addBookmark();
+                return;
             }
-        }else{
-            Toast.show({
-                text:'请先登陆！',
-                position:"center",
-                type:'warning'
-             })
         }
-    }
+      return  Toast.show({
+          text:'请先登陆！',
+          position: "bottom",
+          style:{'marginBottom':height/2-49-49},
+          type:'warning'
+        })
+      }
 
    /**
     * 添加收藏
@@ -104,21 +128,22 @@ class ContentFooter extends React.Component{
             }
          let response= await _bookmarkService.addBookmarks(data);
         if(response.status!=201){
-            Toast.show({
+          return  Toast.show({
               text:'服务器走丢了.',
-              position:"center",
+              position: "bottom",
+              style:{'marginBottom':height/2-49-49},
               type:'danger'
             })
-            return;
         }
-        Toast.show({
-            text:'已收藏',
-            position:"center",
-            type:'success'
-         })
         this.setState({
             isCollection:!this.state.isCollection
         })
+        return  Toast.show({
+            text:'已收藏',
+            position: "bottom",
+            style:{'marginBottom':height/2-49-49},
+            type:'success'
+         })
     }
 
     /**
@@ -143,7 +168,7 @@ class ContentFooter extends React.Component{
             <View style={styles.container}>  
                 <TouchableHighlight 
                     style={styles.container_comment_box}
-                    onPress={()=>this.props.linkToComments(data.Id)}>
+                    onPress={()=>this.props.linkToComments(data.BlogApp,data.PostId)}>
                     <View style={styles.container_comment}>
                     <StyleProvider style={getTheme({ iconFamily: 'MaterialIcons' })}>
                     <Icon
