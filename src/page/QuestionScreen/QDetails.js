@@ -242,6 +242,7 @@ class QDetails extends React.Component{
 
     render(){
         return(
+            <View style={{flex:1}}>
             <ScrollView style={styles.container}>
                 <View style={{backgroundColor:'white'}}>
                     {this.renderQdetails()}
@@ -252,13 +253,15 @@ class QDetails extends React.Component{
              <View style={{flex:1}}>
                  {this.renderAnswerList()}
              </View>
-            <View> 
+          </ScrollView>
+             
+            <View style={{marginBottom:0}}> 
                  <CommentInput 
                     postComment={this.postAnswer}
                     update={this.updateData}
                     reply=''/>
               </View>
-          </ScrollView>
+              </View>
         )
     }
     
