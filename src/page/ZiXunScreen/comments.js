@@ -1,10 +1,10 @@
 import React from 'react'
 import {View,FlatList,Text, StyleSheet,Dimensions} from 'react-native'
 import NewsComment from '../../component/Blog/blogComment'
-import BlogInput from '../../component/Blog/blogInput'
 import _newsService from '../../api/newsService' 
 import RefreshListView, {RefreshState} from 'react-native-refresh-list-view'
 import {Spinner} from 'native-base'
+import CommentInput from '../../component/comm/commentInput'
 
 const height=Dimensions.get('window').height;
 /**
@@ -86,6 +86,16 @@ class Comments extends React.Component{
     }
 
     /**
+     * 发布新闻评论
+     * 
+     * @memberof Comments
+     */
+    postNewsComment=async(content)=>{
+        const {Id}=this.props.navigation.state.params;
+        await _newsService.postNewsComment(Id,content)
+    }
+
+    /**
      * 下拉刷新
      * 
      * @memberof Comments
@@ -158,11 +168,9 @@ class Comments extends React.Component{
              />
             </View>
             <View>
-              <BlogInput 
+              <CommentInput 
+                postComment={this.postNewsComment}
                 update={this.updateData}
-                blogApp={this.props.navigation.state.params.BlogApp}
-                id={this.props.navigation.state.params.Id}
-                type='news'
                 reply={this.state.reply}/>
            </View>
         </View>
