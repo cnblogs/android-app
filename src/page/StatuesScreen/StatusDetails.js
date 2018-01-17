@@ -66,18 +66,22 @@ class StatusDetailScree extends React.Component{
         return(
             <View style={styles.container}>
              <Say {...item} />
+             
               <View style={styles.containerComment}>
                   <Text style={styles.commentText}>评论 {item.CommentCount}</Text>
               </View>
+
               <View style={styles.containerCommentList}>
                 <CommentList statusId={item.Id} getSendName={this.sendToUser}/>
               </View>
+
               <View>
                  <CommentInput 
                     postComment={this.postStatuesComent}
                     update={this.updateData}
                     reply={this.state.txtValue}/>
               </View>
+
             </View>
         )
     }   
