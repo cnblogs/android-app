@@ -43,6 +43,63 @@ class QuestionService {
     }
 
     /**
+     *获取问题详情
+     * 
+     * @param {any} qid 
+     * @returns 
+     * @memberof QuestionService
+     */
+    async getQuestionDetailsAsync(qid){
+      const access_token=await AppToken.Update_Client_Token();
+        let response=await axios({
+           method:'Get',
+           url:`https://api.cnblogs.com/api/questions/${qid}`,
+           headers:{
+             "Authorization":`Bearer ${access_token}`
+               }
+           })
+           return response;
+    }
+
+    /**
+     * 问题答案列表
+     * 
+     * @param {any} qid 
+     * @returns 
+     * @memberof QuestionService
+     */
+    async getQuestionAnswerAsync(qid){
+        const access_token=await AppToken.Update_Client_Token();
+        let response=await axios({
+           method:'Get',
+           url:`https://api.cnblogs.com/api/questions/${qid}/answers`,
+           headers:{
+             "Authorization":`Bearer ${access_token}`
+               }
+           })
+           return response;
+    }
+
+    /**
+     * 答案评论列表
+     * 
+     * @param {any} qid 
+     * @returns 
+     * @memberof QuestionService
+     */
+    async getAnswerCommentAsync(answerId){
+        const access_token=await AppToken.Update_Client_Token();
+        let response=await axios({
+           method:'Get',
+           url:`https://api.cnblogs.com/api/questions/answers/${answerId}/comments`,
+           headers:{
+             "Authorization":`Bearer ${access_token}`
+               }
+           })
+           return response;
+    }
+
+    /**
      * 发布问题
      * 
      * @param {any} title 
