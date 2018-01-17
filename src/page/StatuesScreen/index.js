@@ -10,6 +10,12 @@ import { Container,Tabs,Tab,ScrollableTab,Header,Left,Body, Right, Button, Icon,
 import StatuesList from '../../component/statues/StatuesList';
 import GlobalStyles  from '../../config/GlobalStyles'
 
+/**
+ * 闪存
+ * 
+ * @class Main
+ * @extends {Component}
+ */
 class Main extends Component {
 	constructor(props) {
 		super(props);
@@ -32,6 +38,11 @@ class Main extends Component {
 		};
 	}
 
+	/**
+	 * 跳转到发布闪存
+	 * 
+	 * @memberof Main
+	 */
 	linkToPublish=()=>{
 		this.props.navigation.navigate('PublishStatus')
 	}
