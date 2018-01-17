@@ -2,9 +2,9 @@ import React from 'react'
 import {View,Text,StyleSheet} from 'react-native'
 import {Spinner,Toast} from 'native-base'
 import BlogComment from '../../component/Blog/blogComment'
-import BlogInput from '../../component/Blog/blogInput'
 import _blogService from '../../api/blogService'
 import RefreshListView, {RefreshState} from 'react-native-refresh-list-view'
+import CommentInput from '../../component/comm/commentInput'
 
 /**
  * 博客评论
@@ -82,8 +82,19 @@ class Comments extends React.Component{
     })
    }
 
+  /**
+   * 发布博客评论
+   * 
+   * @param {any} content 
+   * @memberof Comments
+   */
+   postBlogComment=async(content)=>{
+      const {PostId,BlogApp}=this.props.navigation.state.params;
+      await _blogService.postBlogComment(BlogApp,PostId,content)
+   }
+
     /**
-     * 下拉刷新
+     * 下拉刷新postBlogComment
      * 
      * @memberof Comments
      */
@@ -152,11 +163,9 @@ class Comments extends React.Component{
               />
             </View>
             <View>
-              <BlogInput
+              <CommentInput
+                postComment={this.postBlogComment}
                 update={this.updateData}
-                blogApp={this.props.navigation.state.params.BlogApp}
-                id={this.props.navigation.state.params.PostId}
-                type='blogs'
                 reply={this.state.reply} />
            </View>
         </View>
