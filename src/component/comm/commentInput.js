@@ -7,16 +7,26 @@ import _newsService  from '../../api/newsService'
 const height=Dimensions.get('window').height;
 
 /**
- * 博客评论框组件
+ * 评论框组件
  * 
  * @class BlogInput
  * @extends {React.Component}
  */
-class BlogInput extends React.Component{
+class CommentInput extends React.Component{
     constructor(){
         super()
         this.state={
             inputValue:''
+        }
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(this.props!=nextProps){
+            this.porps=nextProps
+            const {reply}=nextProps;
+            this.setState({
+               inputValue:`${reply}`
+            })
         }
     }
 
@@ -37,11 +47,7 @@ class BlogInput extends React.Component{
           })
       }
       const {id,blogApp}=this.props;
-      if(this.props.type=='news'){
-            await _newsService.postNewsComment(id,this.state.inputValue)
-        }else if(this.props.type=='blogs'){
-            await _blogService.postBlogComment(blogApp,id,this.state.inputValue)
-        }
+      this.props.postComment(this.state.inputValue);
         Toast.show({
             text:'发布成功！',
             position: "bottom",
@@ -63,7 +69,9 @@ class BlogInput extends React.Component{
                 underlineColorAndroid='transparent'
                 blurOnSubmit={false}
                 multiline={true}
-                onChangeText={(text)=>this.setState({inputValue:text})}
+                onChangeText={(text)=>this.setState({
+                    inputValue:text
+                })}
                 value={this.state.inputValue}
                 />
             </View>
@@ -93,4 +101,4 @@ const styles=StyleSheet.create({
     },
 })
 
-export default BlogInput;
+export default CommentInput;
