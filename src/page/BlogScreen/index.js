@@ -70,7 +70,7 @@ export default class Main extends Component {
 		  <StatusBar  
             animated={true} 
             hidden={false}   
-            backgroundColor={'#2196F3'}
+            backgroundColor={'#007FFF'}
             translucent={false}  
             barStyle={'dark-content'}
             />
