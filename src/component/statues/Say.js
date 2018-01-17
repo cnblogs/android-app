@@ -9,15 +9,34 @@ import {
     TouchableNativeFeedback
 } from 'react-native'
 import CommentList from './CommentList'
-import CommentBox from './CommentBox'
-import HtmlBody from '../comm/htmlBody';
 import moment from 'moment'
 import {Thumbnail,Icon,StyleProvider,getTheme} from 'native-base'
 
+/**
+ * 单条闪存组件
+ * 
+ * @class Say
+ * @extends {React.Component}
+ */
 class Say extends React.Component {
+
+    /**
+     * 跳转到详情页
+     * 
+     * @param {any} item 
+     * @memberof Say
+     */
     linkToDetails(item) {
         this.props.linkToDetails(item);
     }
+
+    /**
+     * 处理回复人名
+     * 
+     * @param {any} content 
+     * @returns 
+     * @memberof Say
+     */
     _getReplyUser(content) {
         let regx = /<a.*?>(.*?)<\/a>/ig;
         let replyUser = regx.exec(content);
@@ -26,6 +45,14 @@ class Say extends React.Component {
         }
         return '';
     }
+
+    /**
+     * 处理内容
+     * 
+     * @param {any} content 
+     * @returns 
+     * @memberof Say
+     */
     _getReplyContent(content) {
         if (content.includes("</a>")) {
             let commentStr = content.split('</a>');

@@ -9,7 +9,6 @@ import {
     TouchableNativeFeedback
 } from 'react-native'
 import CommentList from './CommentList'
-import CommentBox from './CommentBox'
 import {Icon, Thumbnail,StyleProvider,getthem} from 'native-base'
 import moment from 'moment'
 
