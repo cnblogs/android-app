@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {View,StyleSheet} from 'react-native'
-import {Toast,Spinner} from 'native-base'
+import {View,StyleSheet,AsyncStorage} from 'react-native'
+import {Toast,Spinner,Button,Text} from 'native-base'
 import RefreshListView, {RefreshState} from 'react-native-refresh-list-view'
 import QuestionItem  from './QuestionItem'
 import _qService from '../../api/questionService'
@@ -19,12 +19,20 @@ class QuestionListView extends Component {
             refreshState: RefreshState.Idle,
             listData:[],
             isLoading:true,
-            index:1
+            index:1,
+            isNeedLogin:false
         }
     }
 
     async componentDidMount(){
         const {category}=this.props;
+        const islogin=await AsyncStorage.getItem('a_token');
+        if(category=='myquestion'&&islogin==null){
+              this.setState({
+                  isNeedLogin:true
+              })
+              return;
+        }
         let data=await this._getOrUpdateData(category,1,10);
         this.setState({
            listData:data,            
@@ -113,6 +121,16 @@ class QuestionListView extends Component {
     }
 
     render() {
+        if(this.state.isNeedLogin){
+            return(
+             <View style={{flex:1,marginTop:200,margin:8}}>
+             <Button
+                onPress={()=>this.props.navigation.navigate('Login')}
+                full
+                primary
+           ><Text style={{color:'white'}}>立即登录</Text></Button>
+           </View>)
+        }
         if(this.state.isLoading){
             return(
                 <View style={{flex:1,}}>

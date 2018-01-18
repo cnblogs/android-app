@@ -6,7 +6,7 @@ import {
     FlatList,
     AsyncStorage
 } from 'react-native'
-import {Spinner,StyleProvider,getTheme,} from 'native-base'
+import {Spinner,StyleProvider,getTheme,Button,Toast} from 'native-base'
 import Say from './Say'
 import _statuesService from '../../api/statuesService'
 import RefreshListView, {RefreshState} from 'react-native-refresh-list-view'
@@ -24,22 +24,46 @@ class StatuesList extends React.Component{
             refreshState: RefreshState.Idle,
             listData:[],
             isLoading:true,
-            index:1
+            index:1,
+            isNeedLogin:false
         }
     }
 
     async componentDidMount(){
         const {category}=this.props;
-        let data=await this._getOrUpdateData(category,1,10);
+        const islogin=await AsyncStorage.getItem('a_token');
+        if(category=='following'&&islogin!=null){
+              let data=await this._getOrUpdateData(category,1,10);
+              this.setState({
+                 listData:data,            
+                 isLoading:false
+           })
+           return;
+        }
+        if(category=='my'&&islogin!=null){
+            let data=await this._getOrUpdateData(category,1,10);
+            this.setState({
+               listData:data,            
+               isLoading:false
+         })
+         return;
+       }
+        if(category=='all'){
+            let data=await this._getOrUpdateData(category,1,10);
+              this.setState({
+                 listData:data,            
+                 isLoading:false
+           })
+           return;
+        }
         this.setState({
-           listData:data,            
-           isLoading:false,
-        })
+            isNeedLogin:true
+        }) 
     }
 
-    componentWillReceiveProps(nextProps){
+   async componentWillReceiveProps(nextProps){
         if(this.props!=nextProps){
-            this.porps=nextProps
+            this.porps=nextProps;
         }
     }
 
@@ -55,7 +79,12 @@ class StatuesList extends React.Component{
     async _getOrUpdateData(categroy,index,size){
         let response=await _statuesService.getStatusAsync(categroy,index,size);
         if(response.status!=200){
-            return []
+            Toast.show({
+                text:'服务器走丢了',
+                position: "bottom",
+                style:{'marginBottom':height/2-49-49},
+                type:'error'
+             })
         }
         return response.data;
      }
@@ -74,6 +103,8 @@ class StatuesList extends React.Component{
             listData:data
         })
     }
+
+
 
     /**
      * 上拉加载
@@ -125,18 +156,18 @@ class StatuesList extends React.Component{
         )
     }
 
-    render(){
-        if(!this.props.isLogin){
-            return (<View style={{alignItems:'center',justifyContent:'center',flex:1}}>
-                      <Button
-                        title='立即登录' 
-                        buttonStyle={{height:30}}
-                        backgroundColor="#2096F3" 
-                        onPress={()=>this.props.navigation.navigate('Login')}/>
-                    </View>)
-        }
-
-        if(this.state.isLoading){
+ render(){   
+     if(this.state.isNeedLogin){
+         return(
+          <View style={{flex:1,marginTop:200,margin:8}}>
+          <Button
+             onPress={()=>this.props.navigation.navigate('Login')}
+             full
+             primary
+        ><Text style={{color:'white'}}>立即登录</Text></Button>
+        </View>)
+     }
+    if(this.state.isLoading){
             return(
                 <View style={{flex:1,}}>
                   <Spinner color='#3385ff'/>
@@ -157,9 +188,9 @@ class StatuesList extends React.Component{
               footerFailureText='我擦嘞，居然失败了 =.=!'
               footerNoMoreDataText='-我是有底线的-'/>
         </View>
-        )
+        ) 
+      }
     }
-}
 const styles=StyleSheet.create({
     sepa:{
         borderTopWidth:1,
