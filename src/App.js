@@ -4,8 +4,7 @@ import { StackNavigator } from "react-navigation"
 import {AppRegistry} from 'react-native'
 import MainPage from './page/index'
 import ContentPage from './page/CommScreen/ContentPage'
-// import SearchPage from './page/CommScreen/SearchPage'
-// import SearchHeader from './component/seach/SeachHeader'
+import SearchPage from './page/CommScreen/SearchPage'
 import LoginPage from './page/CommScreen/LoginPage'
 import MyBlogPage from './page/MyScreen/MyBlogScreen'
 import MyBookmarksPage from './page/MyScreen/MyBookmarkScreen'
@@ -38,12 +37,12 @@ const AndroidCnBlogsApp=StackNavigator({
     MyBlog:{screen:MyBlogPage},
     MyBookmark:{screen:MyBookmarksPage},
     Setting:{screen:SettingPage},
-    // Search:{
-    //     screen:SearchPage,
-    //     navigationOptions:({navigation})=>({
-    //         header:<SearchHeader {...navigation}/>
-    //     })
-    // },
+    Search:{
+        screen:SearchPage,
+        navigationOptions:({navigation})=>({
+            header:null
+        })
+    },
     StatusDetail:{screen:StatusDetail},
     PublishStatus:{screen:PublishStatus},
     QuestionDetail:{screen:QuestionDetail},   
