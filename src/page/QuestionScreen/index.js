@@ -51,6 +51,15 @@ class Main extends Component {
 		this.props.navigation.navigate('PublishQuestion')
 	}
 
+	/**
+	 * 跳转到搜索页面
+	 * 
+	 * @memberof Main
+	 */
+	linkToSearch=()=>{
+		this.props.navigation.navigate('Search')
+	}
+
 	_renderTabOptions=(item)=>{
 		return(
 		  <Tab heading={item.labelName}
@@ -76,7 +85,7 @@ class Main extends Component {
                  </Body>
                  <Right style={{flex:1}}>
                   <Button transparent>
-				  	<Icon name='search' style={{marginRight:15}}/>
+				  	<Icon name='search' style={{marginRight:15}} onPress={this.linkToSearch}/>
                     <Icon name='create' onPress={this.linkToPublish}/>
                   </Button>
                 </Right>
