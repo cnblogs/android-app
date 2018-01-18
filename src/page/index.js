@@ -21,10 +21,7 @@ const MainPage = TabNavigator({
             header:null,
             tabBarIcon:({tintColor}) => (
                 <StyleProvider style={getTheme({ iconFamily: 'MaterialIcons' })}>
-                <Image
-                    source={require('../images/fonts/home.png')}
-                    style={[styles.icon,{tintColor: tintColor}]}
-                />
+                   <Icon name='home' style={{color:tintColor,fontSize:24}}/>
                 </StyleProvider>),
         }
     },
@@ -34,10 +31,9 @@ const MainPage = TabNavigator({
                 tabBarLabel: '资讯',
                 header:null,
                 tabBarIcon: ({tintColor}) => (
-                    <Image
-                        source={require('../images/fonts/news.png')}
-                        style={[styles.icon,{tintColor: tintColor}]}
-                    />),
+                    <StyleProvider style={getTheme({ iconFamily: 'FontAwesome' })}>
+                        <Icon name='newspaper-o' style={{color:tintColor,fontSize:24}}/>                       
+                    </StyleProvider>),
         }
     },
     Status: {
@@ -46,10 +42,9 @@ const MainPage = TabNavigator({
                 tabBarLabel: '动态',
                 header:null,
                 tabBarIcon: ({tintColor}) => (
-                    <Image
-                        source={require('../images/fonts/start.png')}
-                        style={[styles.icon,{tintColor: tintColor}]}
-                    />),
+                    <StyleProvider style={getTheme({ iconFamily: 'FontAwesome' })}>
+                       <Icon name='comments-o' style={{color:tintColor,fontSize:24}}/>
+                    </StyleProvider>),
         })
     },
     Question: {
@@ -58,10 +53,9 @@ const MainPage = TabNavigator({
             tabBarLabel: '博问',
             header:null,
             tabBarIcon: ({tintColor}) => (
-                <Image
-                    source={require('../images/fonts/question.png')}
-                    style={[styles.icon,{tintColor: tintColor}]}
-                />),
+                <StyleProvider style={getTheme({ iconFamily: 'MaterialIcons' })}>
+                   <Icon name='question-answer' style={{color:tintColor,fontSize:24}}/>
+                </StyleProvider>),
         })
     },
     Mime: {
@@ -70,10 +64,9 @@ const MainPage = TabNavigator({
             tabBarLabel: '更多',
             header:null,
             tabBarIcon: ({tintColor}) => (
-                <Image
-                    source={require('../images/fonts/more.png')}
-                    style={[styles.icon,{tintColor: tintColor}]}
-                />),
+                <StyleProvider style={getTheme({ iconFamily: 'MaterialIcons' })}>
+                   <Icon name='more-horiz' style={{color:tintColor,fontSize:24}}/>
+                </StyleProvider>),
         }
     }
 }, {
