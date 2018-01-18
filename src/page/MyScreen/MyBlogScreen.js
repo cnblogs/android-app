@@ -49,8 +49,12 @@ class MyBlogScreen extends React.Component {
         let url=`https://api.cnblogs.com/api/blogs/${blogApp}/posts?pageIndex=${index}`		
 		let response=await Http.GetAsync(url,access_token);
 		if(response.status!=200){
-			console.log('请求出错！！！')
-		}
+			Toast.show({
+                text:'服务器走丢了.',
+                position:"center",
+                type:'danger'
+             })
+        }
         return response.data;
     }
 
