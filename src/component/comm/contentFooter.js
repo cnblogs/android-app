@@ -94,9 +94,11 @@ class ContentFooter extends React.Component{
         let isLogin=await this.isLogin();
         if(isLogin){
             if(this.state.isCollection){
+                console.log('删除')
                 await this._removeBookmark();
                 return;
             }else{
+                console.log('添加')
                 await this._addBookmark();
                 return;
             }
@@ -154,13 +156,16 @@ class ContentFooter extends React.Component{
     async _removeBookmark(){
         let linkUrl=this.props.data.Url;
         if(this.props.data.url==null){
-            linkUrl=`https://news.cnblogs.com/n/${this.props.data.Id}/`
+            linkUrl=`https://news.cnblogs.com/n/${this.props.data.PostId}/`
         }
-        await _bookmarkService.removeBookmarkByUrl(linkUrl)
+        console.log(linkUrl);
         this.setState({
             isCollection:!this.state.isCollection
          })
+        await _bookmarkService.removeBookmarkByUrl(linkUrl)
+        
     }
+
 
     render(){
         const {data}=this.props;
