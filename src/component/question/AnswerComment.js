@@ -42,7 +42,9 @@ class AnswerComment extends React.Component {
         })
     }
     
+    
     render() {
+        console.log(this.state.answerUserInfo.IconName);
         return (
             <View>
                 <View style={styles.container}>

@@ -1,21 +1,33 @@
 import React from 'react'
-import {View,Text,StyleSheet,Platform,Dimensions,TouchableHighlight} from 'react-native'
-import {Thumbnail} from 'native-base'
+import {View,Text,StyleSheet,Platform,Dimensions,TouchableHighlight,Image} from 'react-native'
 import AutoHeightWebView from 'react-native-autoheight-webview'
 import moment from 'moment'
 
 
 class Comment extends React.Component{
+    setDefaultAvatar=(avatar)=>{
+        if(avatar.indexOf('.gif')<0){
+            return(
+            <View style={styles.container}>
+            <Image source={require('../../images/d_avatar.png')}
+                       style={styles.avatar}
+                       />
+        </View>)
+        }
+        return(
+            <View style={styles.container}>
+                <Image source={{uri:`https://pic.cnblogs.com/avatar/${avatar}`}} 
+                           style={styles.avatar}
+                           />
+            </View>
+        );
+    }
     render(){
         const data=this.props.data;
         return(
             <View style={styles.container}>
               <View style={styles.container_left}>
-                 <Thumbnail
-                  small
-                  source={{uri:`https://pic.cnblogs.com/avatar/${data.PostUserInfo.IconName}`}}
-                  activeOpacity={0.7}
-               />
+                 {this.setDefaultAvatar(data.PostUserInfo.IconName)}
                 </View>
                 <View style={styles.container_right}>
                     <View>
@@ -59,6 +71,11 @@ const styles=StyleSheet.create({
     container:{
         flexDirection:'row',
         backgroundColor:'white'
+    },
+    avatar:{
+        width:25, 
+        height: 25,
+        borderRadius:12.5
     },
     container_left:{
         width:50,
