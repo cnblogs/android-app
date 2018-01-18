@@ -36,6 +36,7 @@ async componentWillMount(){
         return(
             <View style={styles.container}>
               <Button
+                 full
                  backgroundColor={this.state.btnBackgroundColor}
                  color='white'
                  disabled={!this.state.isLogin}
