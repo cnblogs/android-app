@@ -1,18 +1,35 @@
 import React, {Component} from 'react'
-import {View, StyleSheet, Text, Platform} from 'react-native'
-import RefreshListView, {RefreshState} from '../../component/comm/RefreshListView'
-import { observer } from 'mobx-react/native';
-import BlogItem  from './BlogItem';
-import Loading from './../../component/comm/Loading'
-import ItemSeparator from '../../component/comm/ItemSeparator'
+import {View} from 'react-native'
+import {Toast,Spinner} from 'native-base'
+import RefreshListView, {RefreshState} from 'react-native-refresh-list-view'
+import BlogItem  from './BlogItem'
+import _blogService from '../../api/blogService'
+import PropTypes from 'prop-types';
 
-@observer
-class BlogList extends Component {
+/**
+ * 博客列表
+ * 
+ * @class BlogList
+ * @extends {Component}
+ */
+class BlogListView extends Component {
     constructor() {
         super()
         this.state = {
             refreshState: RefreshState.Idle,
+            listData:[],
+            isLoading:true,
+            index:1
         }
+    }
+
+    async componentDidMount(){
+        const {category}=this.props;
+        let data=await this._getOrUpdateData(category,1,10);
+        this.setState({
+           listData:data,            
+           isLoading:false,
+        })
     }
 
     componentWillReceiveProps(nextProps){
@@ -21,58 +38,90 @@ class BlogList extends Component {
         }
     }
 
-    onHeaderRefresh = () => {
+    /**
+     * 分页获取最新的博客列表
+     * @memberof BlogList
+     */
+     _getOrUpdateData=async(categroy,index,size)=>{
+        let response=await _blogService.getBlogsByCategoryAsync(categroy,index,size);
+        if(response.status!=200){
+           Toast.show({
+              text:'服务器走丢了.',
+              position:"center",
+              type:'danger'
+           })
+        }
+        return response.data;
+     }
+
+    /**
+     * 下拉刷新
+     * 
+     * @memberof BlogList
+     */
+    onHeaderRefresh =async () => {
         this.setState({refreshState: RefreshState.HeaderRefreshing})
-        this.props.OnRefresh(this.props.type);
+        const {category}=this.props;
+        let data=await this._getOrUpdateData(category,1,10);
         this.setState({
             refreshState: RefreshState.Idle,
+            listData:data
         })
     }
 
-    onFooterRefresh = () => {
-        this.setState({refreshState: RefreshState.FooterRefreshing}) 
-        setTimeout(() => {
-            this.props.OnLoad(this.props.type);
-            this.setState({
-                refreshState:RefreshState.Idle,
-            })
-        },1000)
+    /**
+     * 上拉加载
+     * 
+     * @memberof BlogList
+     */
+    onFooterRefresh =async () => {
+        this.setState({refreshState: RefreshState.FooterRefreshing})
+        const {category}=this.props;        
+        let data=await this._getOrUpdateData(category,this.state.index+1,10);
+        this.state.listData.push(...data);
+        this.setState({
+            refreshState:RefreshState.Idle,
+            listData:this.state.listData,
+            index:this.state.index+1
+        })
     }
 
+    /**
+     * 生成Key
+     * 
+     * @memberof BlogList
+     */
     keyExtractor = (item, index) => {
         return index
     }
 
-    async  _goDeail(item){
-        const { navigate } = this.props.navigation;
-        navigate("BlogContent",{
-              Data:item,
-              Id:item.Id,
-              title:`${item.Author}的博客`,
-              Type:'blogposts'
-          });
-      }
-
+    /**
+     * 渲染BlogItem
+     * 
+     * @memberof BlogList
+     */
     _renderItem = ({item}) => {
-        return <BlogItem {...item} GoTo={this._goDeail.bind(this)}/>
+        const {linkToDetails}=this.props;        
+        return <BlogItem {...item} linkToDetails={linkToDetails}/>
     }
 
     render() {
-        if(this.props.isLoading){
+        if(this.state.isLoading){
             return(
-                <Loading />
+                <View style={{flex:1}}>
+                  <Spinner color='#3385ff'/>
+                </View>
             )
         }
         return (
             <View style={{flex:1}}>
                 <RefreshListView
-                    data={this.props.store}
+                    data={this.state.listData}
                     keyExtractor={this.keyExtractor}
                     renderItem={this._renderItem}
                     refreshState={this.state.refreshState}
                     onHeaderRefresh={this.onHeaderRefresh}
-                    onFooterRefresh={this.onFooterRefresh}
-                    ItemSeparatorComponent={()=><ItemSeparator />}                    
+                    onFooterRefresh={this.onFooterRefresh}                   
                     footerRefreshingText= '玩命加载中 >.<'
                     footerFailureText = '我擦嘞，居然失败了 =.=!'
                     footerNoMoreDataText= '-我是有底线的-'
@@ -81,4 +130,10 @@ class BlogList extends Component {
         )
     }
 }
-export default BlogList;
+
+BlogListView.propTypes={
+    category:PropTypes.string,
+    navigation:PropTypes.object,
+}
+
+export default BlogListView;

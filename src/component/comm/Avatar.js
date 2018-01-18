@@ -1,43 +1,58 @@
 import * as React from 'react'
-import {Image,Text,StyleSheet,View,FlatList,TouchableHighlight} from 'react-native'
+import
+ {
+    Image,
+    Text,
+    StyleSheet,
+    View,
+} from 'react-native'
+import {Thumbnail} from 'native-base'
 
-class Avatar extends React.Component{
+/**
+ * 头像
+ * 
+ * @class CAvatar
+ * @extends {React.Component}
+ */
+class CAvatar extends React.Component{
     render(){
-        const item =this.props;
-        if(item.Url.indexOf('.png')<0){
+        const {avatar,author,color} =this.props;
+        let authorColor=this.props.color?this.props.color:'black';
+        if(avatar.indexOf('.png')<0){
             return(
-            <View style={styles.itemHeader}>
+            <View style={styles.container}>
             <Image source={require('../../images/d_avatar.png')}
-                       style={styles.itemAvatar}
+                       style={styles.avatar}
                        />
-                <Text style={styles.itemAuthor}>{item.Author}</Text>
+            <Text style={[styles.author,{color:authorColor}]}>{author}</Text>
         </View>)
         }
         return(
-            <View style={styles.itemHeader}>
-                <Image source={{uri:item.Url}} 
-                           style={styles.itemAvatar}
+            <View style={styles.container}>
+                <Image source={{uri:avatar}} 
+                           style={styles.avatar}
                            />
-                    <Text style={styles.itemAuthor}>{item.Author}</Text>
+                    <Text style={[styles.author,{color:authorColor}]}>{author}</Text>
             </View>
         );
     }
 }
 const styles = StyleSheet.create({
-    itemHeader:{
+    container:{
         flexDirection:'row',
-        paddingTop:15
     },
-    itemAvatar:{
+    avatar:{
         width:25, 
         height: 25, 
-        marginLeft: 8, 
-        marginRight: 8,
+        marginRight:3,
         borderRadius:12.5
     },
-    itemAuthor:{
-        fontSize:13,
-        color:'#333333'
-    }
+    author: {
+        height: 25,
+        textAlignVertical:'center',
+        fontSize: 14,
+        alignItems: 'center'
+    },
 });
-export default Avatar;
+
+export default CAvatar;

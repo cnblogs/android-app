@@ -10,9 +10,8 @@ import BlogPage from './BlogScreen/index';
 import MimePage from './MyScreen/index';
 import QuestionPage from './QuestionScreen/index';
 import StatusPage from './StatuesScreen/index';
-import QuestionHeader from './../component/question/QuestionHeader'
-import { Icon } from 'react-native-elements'
 import ZiXunPage from './ZiXunScreen/index'
+import {Icon,StyleProvider,getTheme} from 'native-base'
 
 const MainPage = TabNavigator({
     Home: {
@@ -21,22 +20,20 @@ const MainPage = TabNavigator({
             tabBarLabel: '首页',            
             header:null,
             tabBarIcon:({tintColor}) => (
-                <Image
-                    source={require('../images/fonts/home.png')}
-                    style={[styles.icon,{tintColor: tintColor}]}
-                />),
+                <StyleProvider style={getTheme({ iconFamily: 'MaterialIcons' })}>
+                   <Icon name='home' style={{color:tintColor,fontSize:24}}/>
+                </StyleProvider>),
         }
     },
-    News: {
+    ZiXun: {
         screen:ZiXunPage,
         navigationOptions:{
                 tabBarLabel: '资讯',
                 header:null,
                 tabBarIcon: ({tintColor}) => (
-                    <Image
-                        source={require('../images/fonts/news.png')}
-                        style={[styles.icon,{tintColor: tintColor}]}
-                    />),
+                    <StyleProvider style={getTheme({ iconFamily: 'FontAwesome' })}>
+                        <Icon name='newspaper-o' style={{color:tintColor,fontSize:24}}/>                       
+                    </StyleProvider>),
         }
     },
     Status: {
@@ -45,33 +42,31 @@ const MainPage = TabNavigator({
                 tabBarLabel: '动态',
                 header:null,
                 tabBarIcon: ({tintColor}) => (
-                    <Image
-                        source={require('../images/fonts/start.png')}
-                        style={[styles.icon,{tintColor: tintColor}]}
-                    />),
+                    <StyleProvider style={getTheme({ iconFamily: 'FontAwesome' })}>
+                       <Icon name='comments-o' style={{color:tintColor,fontSize:24}}/>
+                    </StyleProvider>),
         })
     },
     Question: {
         screen: QuestionPage,
         navigationOptions: ({ navigation }) => ({
             tabBarLabel: '博问',
-            header: <QuestionHeader {...navigation} />,
+            header:null,
             tabBarIcon: ({tintColor}) => (
-                <Image
-                    source={require('../images/fonts/question.png')}
-                    style={[styles.icon,{tintColor: tintColor}]}
-                />),
+                <StyleProvider style={getTheme({ iconFamily: 'MaterialIcons' })}>
+                   <Icon name='question-answer' style={{color:tintColor,fontSize:24}}/>
+                </StyleProvider>),
         })
     },
     Mime: {
         screen: MimePage,
         navigationOptions: {
             tabBarLabel: '更多',
+            header:null,
             tabBarIcon: ({tintColor}) => (
-                <Image
-                    source={require('../images/fonts/more.png')}
-                    style={[styles.icon,{tintColor: tintColor}]}
-                />),
+                <StyleProvider style={getTheme({ iconFamily: 'MaterialIcons' })}>
+                   <Icon name='more-horiz' style={{color:tintColor,fontSize:24}}/>
+                </StyleProvider>),
         }
     }
 }, {

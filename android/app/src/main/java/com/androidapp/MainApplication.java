@@ -4,10 +4,6 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.mehcode.reactnative.splashscreen.SplashScreenPackage;
-import com.microsoft.codepush.react.CodePush;
-import com.github.alinz.reactnativewebviewbridge.WebViewBridgePackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-import com.react.rnspinkit.RNSpinkitPackage;
 import com.psykar.cookiemanager.CookieManagerPackage;
 import com.dscj.autoheightwebview.AutoHeightWebViewPackage;
 import com.facebook.react.ReactNativeHost;
@@ -17,16 +13,16 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.Arrays;
 import java.util.List;
+import cn.jiguang.analytics.android.api.JAnalyticsInterface;
+import cn.jpush.reactnativejanalytics.JAnalyticsPackage;
+
 
 public class MainApplication extends Application implements ReactApplication {
 
-  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+   private static boolean SHUTDOWN_LOG = false;
+    private static boolean SHUTDOWN_TOAST = false;
 
-        @Override
-        protected String getJSBundleFile() {
-        return CodePush.getJSBundleFile();
-        }
-    
+  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
@@ -36,11 +32,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new JAnalyticsPackage(SHUTDOWN_TOAST, SHUTDOWN_LOG),
             new SplashScreenPackage(),
-            new CodePush("Na445gxFz-KIIu2j1gGjEmUq4QpZ487f23ee-7ab9-474a-b2ea-308f881eabe4", getApplicationContext(), BuildConfig.DEBUG),
-            new WebViewBridgePackage(),
-            new VectorIconsPackage(),
-            new RNSpinkitPackage(),
             new CookieManagerPackage(),
             new AutoHeightWebViewPackage()
       );
@@ -61,5 +54,7 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+    JAnalyticsInterface.setDebugMode(true);
+    JAnalyticsInterface.init(this);
   }
 }

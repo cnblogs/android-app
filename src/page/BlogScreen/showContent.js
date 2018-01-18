@@ -1,70 +1,100 @@
 import React from 'react'
-import {Text,View,StyleSheet,ScrollView,Dimensions} from 'react-native'
-import ContentHeader from '../../component/Blog/contentHeader'
-import BlogBody from '../../component/comm/htmlBody'
+import {
+    Container,
+    Text,
+    Content,
+    Header,
+    Body,
+    Left,
+    Right,
+    Button,
+    Icon,
+    StyleProvider,
+    Toast
+} from 'native-base'
+import {View} from 'react-native'
+import HtmlView from '../../component/comm/htmlBody'
+import Avatar from '../../component/comm/Avatar'
 import BlogFooter from '../../component/comm/contentFooter'
-import Loading from './../../component/comm/Loading'
-import blogService from './../../services/blogService'
+import _blogService from './../../api/blogService'
 
-class ShowContent extends React.Component{
-    static navigationOptions= {
-        headerTitle: '博客',
-    }
-    constructor(){
+/**
+ * 博文内容展示
+ * 
+ * @class ShowContent
+ * @extends {React.Component}
+ */
+class ShowContent extends React.Component {
+    constructor() {
         super()
-        this.state={
-            isLoading:true, 
+        this.state = {
+            htmlCode: ''
         }
     }
 
-    async componentWillMount(){
-        await blogService.getBlogContent(this.props.navigation.state.params.Id)
-        this.setState({
-            isLoading:false
-        })
+    async componentDidMount() {
+        const {Id}=this.props.navigation.state.params;
+        let data = await this._getBlogContentById(Id);
+        this.setState({htmlCode: data})
     }
 
-    _navigationComments(blogApp,id){
-        const { navigate } = this.props.navigation;
-        navigate("BlogComments",{
-            Id:id,
-            BlogApp:blogApp,
+    /**
+     * 跳转到评论页
+     * 
+     * @memberof ShowContent
+     */
+    linkToComments=(blogApp, postId)=>{
+        const {navigate} = this.props.navigation;
+        navigate("BlogComments", {
+            PostId: postId,
+            BlogApp: blogApp
         });
     }
-    render(){
-        if(this.state.isLoading){
-            return(
-                <Loading />
-            )
+
+    /**
+     * 根据Id获取博文内容
+     * 
+     * @param {any} id 
+     * @returns 
+     * @memberof ShowContent
+     */
+    async _getBlogContentById(id) {
+        let response = await _blogService.getBlogContent(id);
+        if (response.status != 200) {
+            Toast.show({
+                text:'服务器走丢了.',
+                position:"center",
+                type:'danger'
+             })
         }
-        return(
-            <View style={styles.container}>
-                 <ScrollView style={{flex:1}}>
-                   <ContentHeader data={this.props.navigation.state.params.Data} />
-                   <BlogBody html={blogService.blogContent} />
-                 </ScrollView>
+        return response.data;
+    }
+    
+    render() {
+        const {Data} = this.props.navigation.state.params;
+        return (
+            <Container>
+                <Header androidStatusBarColor="#007FFF" style={{backgroundColor:'#007FFF'}}>
+                    <Left>
+                        <Button transparent onPress={()=>this.props.navigation.goBack()}>
+                            <Icon name='arrow-back'/>
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Avatar avatar={Data.Avatar} author={Data.Author} color='white'/>
+                    </Body>
+                    <Right />
+                </Header>
+                <Content>
+                    <HtmlView html={this.state.htmlCode} data={Data} type='blog'/>
+                </Content>
                 <View>
-                   <BlogFooter data={this.props.navigation.state.params.Data} 
-                    navigation={this._navigationComments.bind(this)}/>
+                   <BlogFooter data={Data}
+                    linkToComments={this.linkToComments}/>
                 </View>
-            </View>
+            </Container>
         )
     }
 }
-const styles=StyleSheet.create({
-    container:{
-        flex:1
-    },
-    loading:{
-        flex:1,
-        justifyContent:"center",
-        alignItems:"center"
-    },
-    text:{
-        color:'#666666',
-        fontSize:12,
-        marginTop:10
-    }
-})
 
 export default ShowContent;

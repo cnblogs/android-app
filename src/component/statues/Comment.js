@@ -8,9 +8,23 @@ import {
     TouchableNativeFeedback
 } from 'react-native'
 import moment from 'moment'
-import {Avatar} from 'react-native-elements'
+import {Thumbnail} from 'native-base'
 
+/**
+ * 评论组件
+ * 
+ * @class Comment
+ * @extends {React.Component}
+ */
 class Comment extends React.Component {
+
+    /**
+     * 处理回复用户名
+     * 
+     * @param {any} content 
+     * @returns 
+     * @memberof Comment
+     */
     _getReplyUser(content) {
         let regx = /<a.*?>(.*?)<\/a>/ig;
         let replyUser = regx.exec(content);
@@ -19,6 +33,14 @@ class Comment extends React.Component {
         }
         return '';
     }
+
+    /**
+     * 处理html内容
+     * 
+     * @param {any} content 
+     * @returns 
+     * @memberof Comment
+     */
     _getReplyContent(content) {
         if (content.includes("</a>")) {
             let commentStr = content.split('</a>');
@@ -26,25 +48,27 @@ class Comment extends React.Component {
         }
         return content;
     }
-    _sendUserName() {
-        this
-            .props
-            .send('@' + this.props.comment.UserDisplayName)
+    
+    /**
+     * @某人
+     * 
+     * @memberof Comment
+     */
+    _sendUserName(comment) {
+        this.props.getSendName('@' +comment.UserDisplayName)
     }
+
     render() {
         const comment = this.props.comment
         return (
             <TouchableNativeFeedback>
-
                 <View style={styles.container}>
                     <View style={styles.container_left}>
-                        <Avatar
+                        <Thumbnail
                             small
-                            rounded
                             source={{
                             uri: comment.UserIconUrl
                         }}
-                            onPress={() => console.log("Works!")}
                             activeOpacity={0.7}/>
                     </View>
 
@@ -67,7 +91,7 @@ class Comment extends React.Component {
                             </Text>
                         </View>
 
-                        <TouchableNativeFeedback onPress={() => this._sendUserName(comment)}>
+                     <TouchableNativeFeedback onPress={() => this._sendUserName(comment)}>
                         <View style={{marginBottom:10}}>
                             <Text>回复</Text>
                         </View>

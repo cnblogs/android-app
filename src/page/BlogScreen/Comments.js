@@ -1,74 +1,156 @@
 import React from 'react'
-import {View,FlatList,Text, StyleSheet,Dimensions} from 'react-native'
+import {View,Text,StyleSheet} from 'react-native'
+import {Spinner,Toast} from 'native-base'
 import BlogComment from '../../component/Blog/blogComment'
-import BlogInput from '../../component/Blog/blogInput'
-import {observer} from 'mobx-react';
-import BlogService from '../../services/blogService'
-import RefreshListView, {RefreshState} from '../../component/comm/RefreshListView'
+import _blogService from '../../api/blogService'
+import RefreshListView, {RefreshState} from 'react-native-refresh-list-view'
+import CommentInput from '../../component/comm/commentInput'
 
-@observer
+/**
+ * 博客评论
+ * 
+ * @class Comments
+ * @extends {React.Component}
+ */
 class Comments extends React.Component{
     static navigationOptions= {
         headerTitle: '评论',
-    }
+     }
     constructor(){
         super()
         this.state={
+            refreshState: RefreshState.Idle,
+            listData:[],
+            isLoading:true,
             index:1,
-            reply:''
+            reply:'',            
         }
     }
 
-   async componentWillMount(){
-       const Id=this.props.navigation.state.params.Id;
-       const blogApp=this.props.navigation.state.params.BlogApp;
-       await BlogService.getBlogComments(blogApp,Id);
+   async componentDidMount(){
+       const {PostId,BlogApp}=this.props.navigation.state.params;
+       let data=await this._getAndUpdateData(BlogApp,PostId,1,10);
+        this.setState({
+           listData:data,
+        })
     }
 
-    replyComment(name){
+    componentWillReceiveProps(nextProps){
+        if(this.props!=nextProps){
+            this.porps=nextProps
+        }
+    }
+
+    /**
+     * 添加·@·
+     * 
+     * @memberof Comments
+     */
+    replyComment=(name)=>{
         this.setState({
             reply:`@${name} `
         })
     }
 
+    /**
+     * 分页获取评论列表
+     * 
+     * @memberof Comments
+     */
+    _getAndUpdateData=async (blogApp, postId, index, size)=>{
+        let response=await _blogService.getBlogComments(blogApp, postId, index, size);
+        if(response.status!=200){
+            Toast.show({
+                text:'服务器走丢了.',
+                position:"center",
+                type:'danger'
+             })
+        }
+        return response.data;
+    }
+
+   /**
+    * 更新数据
+    * 
+    * @memberof Comments
+    */
+    updateData=async()=>{
+    const {PostId,BlogApp}=this.props.navigation.state.params;
+    let data=await this._getAndUpdateData(BlogApp,PostId,1,10);
+    this.setState({
+        listData:data
+    })
+   }
+
+  /**
+   * 发布博客评论
+   * 
+   * @param {any} content 
+   * @memberof Comments
+   */
+   postBlogComment=async(content)=>{
+      const {PostId,BlogApp}=this.props.navigation.state.params;
+      await _blogService.postBlogComment(BlogApp,PostId,content)
+   }
+
+    /**
+     * 下拉刷新postBlogComment
+     * 
+     * @memberof Comments
+     */
     onHeaderRefresh =async () => {
         this.setState({refreshState: RefreshState.HeaderRefreshing})
-        const Id=this.props.navigation.state.params.Id;
-        const blogApp=this.props.navigation.state.params.BlogApp;
-        await BlogService.getBlogComments(blogApp,Id,1,10);
+        const {PostId,BlogApp}=this.props.navigation.state.params;
+        let data=await this._getAndUpdateData(BlogApp,PostId,1,10);
         this.setState({
             refreshState: RefreshState.Idle,
+            listData:data
         })
     }
 
-    onFooterRefresh =() => {
+    /**
+     * 上拉加载
+     * 
+     * @memberof Comments
+     */
+    onFooterRefresh =async () => {
         this.setState({refreshState: RefreshState.FooterRefreshing}) 
-        setTimeout(async() => {
-            const Id=this.props.navigation.state.params.Id;
-            const blogApp=this.props.navigation.state.params.BlogApp;
-            await BlogService.loadBlogComments(blogApp,Id,this.state.index+1,10);
-            this.setState({
-                refreshState:RefreshState.Idle,
-                index:this.state.index+1
-            })
-        },1000)    
+        const {PostId,BlogApp}=this.props.navigation.state.params;
+        let data=await this._getAndUpdateData(BlogApp,PostId,this.state.index+1,10);
+        this.state.listData.push(...data);
+        this.setState({
+            refreshState:RefreshState.Idle,
+            listData:this.state.listData,
+            index:this.state.index+1
+        })  
     }
 
+    /**
+     * 生成Key
+     * 
+     * @memberof Comments
+     */
     keyExtractor = (item, index) => {
         return index
     }
 
+    /**
+     * 渲染item
+     * 
+     * @memberof Comments
+     */
     _renderItem=({item})=>{
         return <BlogComment 
                    data={item} 
                    replyComment={this.replyComment.bind(this)} />
     }
+
     render(){
         return(
-            <View style={{flex:1}}>
+           <View style={{flex:1}}>
              <View style={{flex:1}}>
              <RefreshListView
-                data={BlogService.blogComments}
+                data={this.state.listData}
                 keyExtractor={this.keyExtractor}
                 renderItem={this._renderItem}
                 refreshState={this.state.refreshState}
@@ -81,11 +163,10 @@ class Comments extends React.Component{
               />
             </View>
             <View>
-              <BlogInput 
-                blogApp={this.props.navigation.state.params.BlogApp}
-                id={this.props.navigation.state.params.Id}
-                type='blogs'
-                reply={this.state.reply}/>
+              <CommentInput
+                postComment={this.postBlogComment}
+                update={this.updateData}
+                reply={this.state.reply} />
            </View>
         </View>
         )

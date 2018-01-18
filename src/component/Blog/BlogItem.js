@@ -1,110 +1,142 @@
-import * as React from 'react'
-import {Image,Text,StyleSheet,View,FlatList,TouchableHighlight} from 'react-native'
-import Avatar from '../comm/Avatar'
-import Loading from '../comm/Loading'
-import moment from 'moment'
+import React from 'react';
+import {Image,Text,StyleSheet,View,TouchableHighlight} from 'react-native'
+import {Thumbnail} from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
+import moment from '../../config/momentConfig'
+import GlobalStyles from '../../config/GlobalStyles'
+import CAvatar from '../comm/Avatar';
 
-class BlogContent extends React.Component{
-    _navigateToContent(item){
-        this.props.GoTo(item);
+/**
+ * 博客组件
+ * 
+ * @class BlogItem
+ * @extends {React.Component}
+ */
+class BlogItem extends React.Component{
+    linkToDetails(id,title,avatar,author,postDate,blogApp){
+        this.props.linkToDetails(id,title,avatar,author,postDate,blogApp);
     }
+
+    /**
+     * 头像 作者名 发布时间
+     * 
+     * @memberof BlogItem
+     */
+    renderItemAvatar=(avatar,author,postdate)=>{
+        return(
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Grid>
+                    <Col>
+                       <CAvatar avatar={avatar} author={author} color={'black'}/>
+                    </Col>
+                    <Col>
+                         <View style={styles.fromDate}>
+                            <Text>{moment(postdate).startOf('minute').fromNow()}</Text>
+                          </View>
+                       </Col>
+                </Grid>
+            </View>
+        )
+    }
+
+    /**
+     * 标题
+     * 
+     * @memberof BlogItem
+     */
+    renderItemTitle=(title)=>{
+            return( 
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+               <Text style={styles.title}>
+                 {title}
+               </Text>
+            </View>)
+    }
+
+    /**
+     * 简介
+     * 
+     * @memberof BlogItem
+     */
+    renderItemDesc=(description)=>{
+        return (
+        <Text style={styles.description}>
+            {description+'...'}
+         </Text>)
+    }
+
+    /**
+     * 文章统计
+     * 
+     * @param {any} count 
+     * @param {any} labelname 
+     * @returns 
+     * @memberof BlogItem
+     */
+    renderItemFootOption=(count,labelname)=>{
+      return(
+      <View style={styles.count}>
+            <Text style={styles.countText}>{count}</Text>
+            <Text style={{marginLeft:3,marginRight:5}}>{labelname}</Text>
+      </View>)                                                         
+    }
+    
     render(){
-        //接口获取blog数据
-        const item=this.props;
+        const {
+            Author,
+            Avatar,
+            BlogApp,
+            CommentCount,
+            Description,
+            DiggCount,
+            Title,
+            PostDate,
+            ViewCount,Id}=this.props;
         return(
             <TouchableHighlight
-            onPress={()=>this._navigateToContent(item)}>
-            <View style={styles.container}>
-                <Avatar Author={item.Author} Url={item.Avatar} />
-
-                <View style={styles.itemBody}>
-                    <Text style={styles.itemTitle}>{item.Title}</Text>
-                    <Text style={styles.itemDesc}>{item.Description+'...'}</Text>
-                </View>
-                <View style={styles.itemFooter}>
-                    <View style={styles.itemCount}>
-                        <View style={styles.ViewCount}>
-                            <Text>
-                              {item.DiggCount}
-                            </Text>
-                            <Text style={{marginLeft:6}}>
-                            推荐 ·
-                            </Text>
-                        </View>
-
-                        <View style={styles.ViewCount}>
-                            <Text  style={{marginLeft:6}}>
-                                {item.ViewCount}
-                            </Text>
-                            <Text style={{marginLeft:6}}>
-                            阅读  ·
-                            </Text>
-                        </View>
-
-                        <View style={styles.CommentCount}>
-                            <Text style={{marginLeft:6}}>
-                            {item.CommentCount}
-                            </Text>
-                            <Text style={{marginLeft:6}}>
-                             评论
-                            </Text>
-                        </View>
-
-                    </View>
-                    <View style={styles.itemPostDate}>
-                       <Text>{moment(item.PostDate).startOf('minute').fromNow()}</Text>
-                    </View>
-                </View>
+            onPress={()=>this.linkToDetails(Id,Title,Avatar,Author,PostDate,BlogApp)}>
+            <View style={GlobalStyles.cell_container}>
+               {this.renderItemAvatar(Avatar,Author,PostDate)}
+               {this.renderItemTitle(Title)}
+               {this.renderItemDesc(Description)}
+              <View style={{flexDirection: 'row'}}>
+                {this.renderItemFootOption(DiggCount,'推荐 ·')}
+                {this.renderItemFootOption(ViewCount,'阅读 ·')}
+                {this.renderItemFootOption(CommentCount,'评论')}
+              </View>
             </View>
             </TouchableHighlight>
         )
     }
 }
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor:'white',
+    title: {
+        fontSize: 16,
+        marginBottom: 2,
+        color: '#212121',
+        flex:1
     },
-    itemBody:{
-        flexDirection:'column',
-        marginTop:5,
-        marginLeft:8
+    description: {
+        fontSize: 14,
+        marginBottom: 2,
+        color: '#757575'
     },
-    itemTitle:{
-      fontSize:16,
-      fontFamily:'Noto',
-      color:'black'
+    avatar:{
+        width:25, 
+        height: 25, 
+        marginLeft: 8, 
+        marginRight: 8,
+        borderRadius:12.5
     },
-    itemDesc:{
-        marginTop:5,
-        marginRight:8,
-        fontSize:13,
-        lineHeight:25,
-    },
-    itemFooter:{
-        marginLeft:8,
-        marginTop:5,
-        marginBottom:10,
-        flexDirection:'row',
-        justifyContent: 'flex-end'
-    },
-    itemCount:{
-        flex:5,
+    count:{
         flexDirection:'row',
         justifyContent:'flex-start',
         alignItems:'center',
     },
-    ViewCount:{
-        flexDirection:'row',
-        justifyContent:'flex-start',
-        alignItems:'center',
+    countText:{
+        fontSize:14
     },
-    CommentCount:{
-        flexDirection:'row',
-        justifyContent:'flex-start',
-        alignItems:'center',
-        paddingLeft:5
-    },
-    itemPostDate:{
+    fromDate:{
         flex:5,
         flexDirection:'row',
         justifyContent:'flex-end',
@@ -113,4 +145,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default BlogContent;
+export default BlogItem;

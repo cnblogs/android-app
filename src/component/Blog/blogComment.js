@@ -1,22 +1,41 @@
 import React from 'react'
 import {View,Text,StyleSheet,Platform,Dimensions,TouchableHighlight} from 'react-native'
-import {Avatar} from 'react-native-elements'
-import AutoHeightWebView from 'react-native-autoheight-webview'
+import {Thumbnail} from 'native-base'
 import moment from 'moment'
 
-
+/**
+ * 评论组件
+ * 
+ * @class BlogComment
+ * @extends {React.Component}
+ */
 class BlogComment extends React.Component{
+
+    /**
+     * 渲染头像 (faceUrl为空是设置默认头像)
+     * 
+     * @memberof BlogComment
+     */
+    renderAvatar=(faceUrl)=>{
+        if(!faceUrl){
+            return(
+               <Thumbnail
+                small
+                source={require('../../images/d_avatar.png')}
+              />)
+           }
+           return(
+           <Thumbnail
+            small
+            source={{uri:faceUrl}} />)   
+     }
+
     render(){
-        const data=this.props.data
+        const {data}=this.props;
         return(
             <View style={styles.container}>
               <View style={styles.container_left}>
-                 <Avatar
-                  small
-                  source={{uri:data.FaceUrl}}
-                  onPress={() => console.log("Works!")}
-                  activeOpacity={0.7}
-               />
+                 {this.renderAvatar(data.FaceUrl)}
                 </View>
                 <View style={styles.container_right}>
                     <View>
@@ -24,41 +43,10 @@ class BlogComment extends React.Component{
                     </View>
 
                     <View style={{marginRight:8}}>
-                    <AutoHeightWebView
-                      onHeightUpdated={height => console.log(height)}
-                      hasIframe={true}
-                      scalesPageToFit={Platform.OS === 'android' ? true : false} 
-                      enableBaseUrl={true}
-                      enableAnimation={true}
-                      animationDuration={255}
-                      source={{ html:data.Body}} 
-                      style={{ width: Dimensions.get('window').width -15-48}}
-                      customScript={`document.body.style.background = 'white';`}
-                      onError={() => console.log('on error')}
-                      onLoad={() => console.log('on load')}
-                      onLoadStart={() => console.log('on load start')}
-                      onLoadEnd={() => console.log('on load end')}
-                      onShouldStartLoadWithRequest={result => {
-                      console.log(result)
-                       return true;
-                     }}
-                    customStyle={`
-                     * {
-                        font-family: 'Times New Roman';
-                         margin-top:3px
-                       }
-                     p {
-                        font-size: 13px;
-                       }
-                    img {
-                      width:100%;
-                      height:auto;
-                     }
-                    `}
-                    />
+                      <Text style={{color:'black',fontSize:15}}>{data.Body}</Text>
                     </View>
                     <View style={styles.container_bottom}>
-                        <Text style={{marginLeft:5}}>{moment(data.DateAdded).startOf('minute').fromNow()}</Text>
+                        <Text style={{fontSize:12}}>{moment(data.DateAdded).startOf('minute').fromNow()}</Text>
                     </View>
                 </View>
             </View>
@@ -83,10 +71,10 @@ const styles=StyleSheet.create({
     },
     container_bottom:{
         flexDirection:'row',
-        marginBottom:5
+        marginBottom:5,
     },
     author:{
-        fontSize:15,
+        fontSize:13,
         color:'#333333'
     }
 })

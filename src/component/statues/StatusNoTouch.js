@@ -9,8 +9,7 @@ import {
     TouchableNativeFeedback
 } from 'react-native'
 import CommentList from './CommentList'
-import CommentBox from './CommentBox'
-import {Icon, Avatar} from 'react-native-elements'
+import {Icon, Thumbnail,StyleProvider,getthem} from 'native-base'
 import moment from 'moment'
 
 class Say extends React.Component {
@@ -35,12 +34,11 @@ class Say extends React.Component {
             <TouchableNativeFeedback>
                 <View style={styles.contains}>
                     <View style={styles.container_left}>
-                        <Avatar
+                        <Thumbnail
                             small
                             source={{
                             uri: sayItem.UserIconUrl
-                        }}
-                            onPress={() => console.log("Works!")}
+                            }}
                             activeOpacity={0.7}/>
                     </View>
 

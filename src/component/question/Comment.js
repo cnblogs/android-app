@@ -1,22 +1,33 @@
 import React from 'react'
-import {View,Text,StyleSheet,Platform,Dimensions,TouchableHighlight} from 'react-native'
-import {Avatar} from 'react-native-elements'
+import {View,Text,StyleSheet,Platform,Dimensions,TouchableHighlight,Image} from 'react-native'
 import AutoHeightWebView from 'react-native-autoheight-webview'
 import moment from 'moment'
 
 
 class Comment extends React.Component{
+    setDefaultAvatar=(avatar)=>{
+        if(avatar.indexOf('.gif')<0){
+            return(
+            <View style={styles.container}>
+            <Image source={require('../../images/d_avatar.png')}
+                       style={styles.avatar}
+                       />
+        </View>)
+        }
+        return(
+            <View style={styles.container}>
+                <Image source={{uri:`https://pic.cnblogs.com/avatar/${avatar}`}} 
+                           style={styles.avatar}
+                           />
+            </View>
+        );
+    }
     render(){
-        const data=this.props.data
+        const data=this.props.data;
         return(
             <View style={styles.container}>
               <View style={styles.container_left}>
-                 <Avatar
-                  small
-                  source={{uri:`https://pic.cnblogs.com/avatar/${data.PostUserInfo.IconName}`}}
-                  onPress={() => console.log("Works!")}
-                  activeOpacity={0.7}
-               />
+                 {this.setDefaultAvatar(data.PostUserInfo.IconName)}
                 </View>
                 <View style={styles.container_right}>
                     <View>
@@ -24,7 +35,6 @@ class Comment extends React.Component{
                     </View>
                     <View style={{marginRight:8}}>
                     <AutoHeightWebView
-                      onHeightUpdated={height => console.log(height)}
                       hasIframe={true}
                       scalesPageToFit={Platform.OS === 'android' ? true : false} 
                       enableBaseUrl={true}
@@ -33,27 +43,19 @@ class Comment extends React.Component{
                       source={{ html:data.Content}} 
                       style={{ width: Dimensions.get('window').width -15-48}}
                       customScript={`document.body.style.background = 'white';`}
-                      onError={() => console.log('on error')}
-                      onLoad={() => console.log('on load')}
-                      onLoadStart={() => console.log('on load start')}
-                      onLoadEnd={() => console.log('on load end')}
-                      onShouldStartLoadWithRequest={result => {
-                      console.log(result)
-                       return true;
-                     }}
-                    customStyle={`
-                     * {
-                        font-family: 'Times New Roman';
+                      customStyle={`
+                      * {
+                         font-family: 'Times New Roman';
                          margin-top:3px
+                        }
+                      p {
+                         font-size: 13px;
+                        }
+                      img {
+                        width:100%;
+                        height:auto;
                        }
-                     p {
-                        font-size: 13px;
-                       }
-                    img {
-                      width:100%;
-                      height:auto;
-                     }
-                    `}
+                     `}
                     />
                     </View>
                     <View style={styles.container_bottom}>
@@ -69,6 +71,11 @@ const styles=StyleSheet.create({
     container:{
         flexDirection:'row',
         backgroundColor:'white'
+    },
+    avatar:{
+        width:25, 
+        height: 25,
+        borderRadius:12.5
     },
     container_left:{
         width:50,

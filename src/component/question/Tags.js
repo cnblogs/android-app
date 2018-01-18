@@ -1,7 +1,6 @@
 import * as React from 'react'
 import {Image,Text,StyleSheet,View,FlatList,TouchableHighlight} from 'react-native'
-
-const { Button }=require('react-native-elements')
+import { Button } from 'native-base'
 
 class Tags extends React.Component{
     _renderItem(item){

@@ -1,9 +1,8 @@
 import React from 'react'
 import {Text,View,StyleSheet,ScrollView,Dimensions} from 'react-native'
 import KbBody from '../../component/comm/htmlBody'
-import Loading from './../../component/comm/Loading'
-import kbService from './../../services/kbService'
-let Spinner=require('react-native-spinkit');
+import _kbService from './../../api/kbService'
+import {Container,Content} from 'native-base'
 
 class ShowContent extends React.Component{
     static navigationOptions=({navigation})=>({
@@ -13,18 +12,27 @@ class ShowContent extends React.Component{
     constructor(){
         super();
         this.state={
-            isLoading:true,
+            htmlCode:'',
         }
     }
 
-    async componentWillMount(){
-        await kbService.getKnowledgeContent(this.props.navigation.state.params.Id)
+    async componentDidMount(){
+        const {Id}=this.props.navigation.state.params;
+        let data=await this.getOrUpdateData(Id);
         this.setState({
-            isLoading:false
+            htmlCode:data
         })
     }
 
-    _navigationComments(blogApp,id){
+    getOrUpdateData=async (id)=>{
+        let response=await _kbService.getKbContent(id);
+        if(response.status!=200){
+            console.log('error')
+        }
+        return response.data;
+    }
+
+    linkToComments=(blogApp,id)=>{
         const { navigate } = this.props.navigation;
         navigate("NewsComments",{
             Id:id,
@@ -32,22 +40,14 @@ class ShowContent extends React.Component{
         });
     }
     render(){
-        if(this.state.isLoading){
-            return(
-                <Loading />
-            )
-        }
+        const {Data}=this.props.navigation.state.params;
+        console.log(Data);
         return(
-            <View style={styles.container}>
-                 <ScrollView style={{flex:1}}>
-                   <View style={{margin:10}}>
-                      <Text style={{fontSize:18,fontWeight:'bold',color:'black'}}>{this.props.navigation.state.params.Title}</Text>
-                    </View>
-                   <KbBody html={kbService.knowledgeContent} />
-                 </ScrollView>
-                <View>
-                </View>
-            </View>
+            <Container>
+                 <Content>
+                   <KbBody html={this.state.htmlCode} data={Data} type="kb"/>
+                 </Content>
+            </Container>
         )
     }
 }

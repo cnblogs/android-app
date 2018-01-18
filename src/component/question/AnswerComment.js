@@ -15,7 +15,7 @@ import Comment from './Comment'
 import axios from 'axios'
 import AutoHeightWebView from 'react-native-autoheight-webview'
 import moment from 'moment'
-import {Icon} from 'react-native-elements'
+import {Icon,StyleProvider,getTheme} from 'native-base'
 import AppToken from '../../config/AppToken';
 
 class AnswerComment extends React.Component {
@@ -27,34 +27,24 @@ class AnswerComment extends React.Component {
             comments: []
         }
     }
-    async componentWillMount() {
-        const item = this.props.data
-        this.setState({answer: item, answerUserInfo: item.AnswerUserInfo})
-        let commentArray = await this._requestComments(item.AnswerID);
-        this.setState({comments: commentArray})
+    componentDidMount() {
+        this.setState({
+            answer:this.props.data,
+            answerUserInfo:this.props.data.AnswerUserInfo
+        })
     }
 
     _navigationToAnswerDetail(comments){
         const {navigate} =this.props.navigation;
         navigate('QAnswerDetail',{
-            comments:comments,
             Qid:this.state.answer.Qid,
             AnswerID:this.state.answer.AnswerID
         })
     }
     
-    async _requestComments(answerId) {
-        const access_token = await AppToken.Update_Client_Token();
-        let response = await axios({
-            method: 'Get',
-            url: `https://api.cnblogs.com/api/questions/answers/${answerId}/comments`,
-            headers: {
-                "Authorization": `Bearer ${access_token}`
-            }
-        })
-        return response.data;
-    }
+    
     render() {
+        console.log(this.state.answerUserInfo.IconName);
         return (
             <View>
                 <View style={styles.container}>
@@ -65,7 +55,7 @@ class AnswerComment extends React.Component {
                                 source={{
                                 uri: `https://pic.cnblogs.com/avatar/${this.state.answerUserInfo.IconName}`
                             }}
-                                style={styles.UserIcon}/>
+                            style={styles.UserIcon}/>
                         </View>
 
                         <View style={styles.user}>
@@ -83,9 +73,7 @@ class AnswerComment extends React.Component {
                     <View style={styles.containerComment}>
                         <AutoHeightWebView
                             hasIframe={true}
-                            scalesPageToFit={Platform.OS === 'android'
-                            ? true
-                            : false}
+                            scalesPageToFit={Platform.OS === 'android'? true: false}
                             enableBaseUrl={true}
                             heightOffset={5}
                             enableAnimation={true}
@@ -107,12 +95,10 @@ class AnswerComment extends React.Component {
                       </View>
 
                     <View style={styles.commentIcon}>
-                        <Icon
-                            name='comment-o'
-                            type='font-awesome' 
-                            color='#B9B9B9'
-                            size={15}/>
-                            <Text style={{marginLeft:5}}>{this.state.answer.CommentCounts}</Text>
+                      <StyleProvider style={getTheme({ iconFamily: 'FontAwesome' })}>
+                        <Icon style={{color:'#B9B9B9'}} name='comment-o'/>
+                      </StyleProvider>
+                        <Text style={{marginLeft:5}}>{this.state.answer.CommentCounts}</Text>
                     </View>
                 </View>
                 </View>
@@ -163,8 +149,8 @@ const styles = StyleSheet.create({
     comment:{
         flexDirection:'row',
         justifyContent:'flex-end',
-        marginLeft:8,
-        marginBottom:8          
+        marginBottom:8,
+        marginLeft:16       
     },
     commentIcon:{
         flex:1,

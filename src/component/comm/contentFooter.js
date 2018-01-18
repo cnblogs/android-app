@@ -1,11 +1,15 @@
 import React from 'react'
-import { View,Text,StyleSheet,TouchableHighlight,AsyncStorage} from 'react-native'
-import {Icon,Badge} from 'react-native-elements'
-import { observer } from 'mobx-react/native';
-import collectionService from '../../services/collectionService'
-import {Info,Success,Error,Waring} from './CustomToast'
+import { View,Text,StyleSheet,TouchableHighlight,AsyncStorage,Dimensions} from 'react-native'
+import {Icon,Badge,StyleProvider,getTheme,Button,Toast} from 'native-base';
+import _bookmarkService from '../../api/bookmarksService'
 
-@observer
+const height=Dimensions.get("window").height;
+/**
+ * 底部推荐 收藏 评论功能组件
+ * 
+ * @class ContentFooter
+ * @extends {React.Component}
+ */
 class ContentFooter extends React.Component{
     constructor(){
         super()
@@ -16,21 +20,27 @@ class ContentFooter extends React.Component{
         }
     }
 
-    componentWillMount(){
-        this._checkCollection()
+  async  componentWillMount(){       
+       await this._checkCollection();
         this.setState({
             DiggCount:this.props.data.DiggCount
         })
     }
 
+   /**
+    * 检查重复收藏
+    * 
+    * @returns 
+    * @memberof ContentFooter
+    */
    async _checkCollection(){
+        let linkUrl=this.props.data.Url;
         const data=await AsyncStorage.getItem('a_token');
         if(data!=null){
-            let linkUrl=this.props.data.Url;
-          if(this.props.data.url==null){
+         if(this.props.data.url==null){
               linkUrl=`https://news.cnblogs.com/n/${this.props.data.Id}/`
-           }
-          let code=await collectionService.Check(linkUrl)
+         }
+          let code=await _bookmarkService.checkBookmarks(linkUrl)
           if(code==200){
               this.setState({
                 isCollection:true,
@@ -40,116 +50,162 @@ class ContentFooter extends React.Component{
         return;
     }
 
-   async _saveUrl(){
+   /**
+    * 是否登陆
+    * 
+    * @returns 
+    * @memberof ContentFooter
+    */
+   async isLogin(){
         const data=await AsyncStorage.getItem('a_token');
         if(data==null){
-            Info('请先登录！')
-        }else{
-            if(!this.state.isCollection){
-                let linkUrl=this.props.data.Url;
-                if(this.props.data.url==null){
-                    linkUrl=`https://news.cnblogs.com/n/${this.props.data.Id}/`
-                }
-                let data={
-                    "Title":this.props.data.Title,
-                    "LinkUrl":linkUrl,
-                    "Tags":[],
-                    "Summary":this.props.data.Description,
-                }
-               let code= await collectionService.Save(data);
-               if(code==201){
-                  Success('已添加收藏')
-                   this.setState({
-                      isCollection:!this.state.isCollection
-                   })
-               }else{
-                   Error('收藏失败,请联系管理员!')
-               }     
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 点击推荐
+     * 
+     * @memberof ContentFooter
+     */
+   async _recommend(){
+        let isLogin=await this.isLogin();
+        if(isLogin){
+            this.setState({
+              isDigg:!this.state.isDigg
+            })
+            return;
+        }
+      return  Toast.show({
+            text:'请先登陆！',
+            position: "bottom",
+            style:{'marginBottom':height/2-49-49},
+            type:'warning'
+         })
+    }
+
+   /**
+    * 点击收藏按钮
+    * 
+    * @memberof ContentFooter
+    */
+   async diggBookmark(){
+        let isLogin=await this.isLogin();
+        if(isLogin){
+            if(this.state.isCollection){
+                console.log('删除')
+                await this._removeBookmark();
+                return;
             }else{
-                let linkUrl=this.props.data.Url;
-                if(this.props.data.url==null){
-                    linkUrl=`https://news.cnblogs.com/n/${this.props.data.Id}/`
-                }
-                let code =await collectionService.Remove(linkUrl)
-                this.setState({
-                    isCollection:!this.state.isCollection
-                 })
+                console.log('添加')
+                await this._addBookmark();
+                return;
             }
         }
-            
+      return  Toast.show({
+          text:'请先登陆！',
+          position: "bottom",
+          style:{'marginBottom':height/2-49-49},
+          type:'warning'
+        })
+      }
+
+   /**
+    * 添加收藏
+    * 
+    * @returns 
+    * @memberof ContentFooter
+    */
+   async _addBookmark(){
+        let linkUrl=this.props.data.Url;
+        if(this.props.data.url==null){
+            linkUrl=`https://news.cnblogs.com/n/${this.props.data.Id}/`
+        }
+        let data={        
+            "Title":this.props.data.Title,
+            "LinkUrl":linkUrl,
+            "Tags":[],
+            "Summary":this.props.data.Description,
+            }
+         let response= await _bookmarkService.addBookmarks(data);
+        if(response.status!=201){
+          return  Toast.show({
+              text:'服务器走丢了.',
+              position: "bottom",
+              style:{'marginBottom':height/2-49-49},
+              type:'danger'
+            })
+        }
+        this.setState({
+            isCollection:!this.state.isCollection
+        })
+        return  Toast.show({
+            text:'已收藏',
+            position: "bottom",
+            style:{'marginBottom':height/2-49-49},
+            type:'success'
+         })
+    }
+
+    /**
+     * 删除收藏
+     * 
+     * @memberof ContentFooter
+     */
+    async _removeBookmark(){
+        let linkUrl=this.props.data.Url;
+        if(this.props.data.url==null){
+            linkUrl=`https://news.cnblogs.com/n/${this.props.data.PostId}/`
+        }
+        console.log(linkUrl);
+        this.setState({
+            isCollection:!this.state.isCollection
+         })
+        await _bookmarkService.removeBookmarkByUrl(linkUrl)
         
     }
 
-    _recommend(){
-        if(!this.state.isDigg){
-           this.setState({
-             DiggCount:this.state.DiggCount+1,
-             isDigg:true
-        })
-       }else{
-          this.setState({
-            isDigg:false,
-            DiggCount:this.state.DiggCount-1
-          })
-       }
-    }
 
     render(){
-        const data=this.props.data
+        const {data}=this.props;
         return(
             <View style={styles.container}>  
                 <TouchableHighlight 
                     style={styles.container_comment_box}
-                    onPress={()=>this.props.navigation(data.BlogApp,data.Id)}>
+                    onPress={()=>this.props.linkToComments(data.BlogApp,data.PostId)}>
                     <View style={styles.container_comment}>
+                    <StyleProvider style={getTheme({ iconFamily: 'MaterialIcons' })}>
                     <Icon
                         name='create' 
-                        color='#757575'
-                        containerStyle={{marginLeft:10}}/>
+                        style={{fontSize: 20, color:'#757575',marginLeft:10}}
+                        />
+                        </StyleProvider>
                     <Text style={{marginLeft:10}}>评论一下</Text>
                     </View>
                 </TouchableHighlight>
            
-                <View style={styles.container_tool}>
+                <View style={styles.container_tool}>                      
                     <View style={styles.thumb_up}>
-                        <Icon 
+                        <StyleProvider style={getTheme({ iconFamily: 'FontAwesome' })}>
+                        <Icon
                            name='thumbs-o-up'
-                           type='font-awesome'
-                           color='#757575'
+                        style={{fontSize: 20, color:this.state.isDigg?'#2096F3':'#757575'}}
                            onPress={()=>this._recommend()}/>
-                           
-                        <View style={{alignItems:'flex-start',marginTop:5}}>
-                          <Badge
-                           value={this.state.DiggCount}
-                           containerStyle={{backgroundColor:'#2096F3'}}
-                           textStyle={{ color: 'white',fontSize:6}}
-                         /> 
-                        </View>            
-                    </View>
-
-                    <View style={styles.comment}>
-                      <Icon name="chat-bubble-outline"
-                      color='#757575'
-                      onPress={()=>this.props.navigation(data.BlogApp,data.Id)}/>
-                      <View style={{alignItems:'flex-start',marginTop:5}}>
-                      <Badge
-                       value={data.CommentCount}
-                       containerStyle={{backgroundColor:'#2096F3'}}
-                       textStyle={{ color: 'white',fontSize:6}}
-                     /> 
-                    </View>
-                    </View>
+                        </StyleProvider>
+                    </View> 
 
                     <View style={styles.favorite}>
-                    <Icon 
-                      name="favorite-border"
-                      color={this.state.isCollection?'#2096F3':'#757575'}
-                      onPress={()=>this._saveUrl()}
-                      />
+                      <StyleProvider style={getTheme({ iconFamily: 'MaterialIcons' })}>                    
+                      <Icon 
+                        name="favorite-border"
+                        style={{fontSize: 20, color:this.state.isCollection?'#2096F3':'#757575'}}
+                        onPress={()=>this.diggBookmark()}
+                        />
+                      </StyleProvider>
                  </View>
-
-                </View>            
-            </View> 
+             </View>          
+        </View>
         )
     }
 }
@@ -191,15 +247,11 @@ const styles=StyleSheet.create({
         marginRight:5
     },
     thumb_up:{
-        flexDirection:'row',
+        justifyContent:'center',        
         marginRight:10
     },
     favorite:{
-        flexDirection:'row',
-    },
-    comment:{
-        flexDirection:'row',
-        marginRight:10        
+        justifyContent:'center',        
     }
 })
 

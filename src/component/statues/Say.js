@@ -9,16 +9,34 @@ import {
     TouchableNativeFeedback
 } from 'react-native'
 import CommentList from './CommentList'
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import CommentBox from './CommentBox'
-import {Icon,Avatar} from 'react-native-elements'
-import HtmlBody from '../comm/htmlBody';
 import moment from 'moment'
+import {Thumbnail,Icon,StyleProvider,getTheme} from 'native-base'
 
+/**
+ * 单条闪存组件
+ * 
+ * @class Say
+ * @extends {React.Component}
+ */
 class Say extends React.Component {
-    _navigateToContent(item) {
-        this .props.GoTo(item);
+
+    /**
+     * 跳转到详情页
+     * 
+     * @param {any} item 
+     * @memberof Say
+     */
+    linkToDetails(item) {
+        this.props.linkToDetails(item);
     }
+
+    /**
+     * 处理回复人名
+     * 
+     * @param {any} content 
+     * @returns 
+     * @memberof Say
+     */
     _getReplyUser(content) {
         let regx = /<a.*?>(.*?)<\/a>/ig;
         let replyUser = regx.exec(content);
@@ -27,6 +45,14 @@ class Say extends React.Component {
         }
         return '';
     }
+
+    /**
+     * 处理内容
+     * 
+     * @param {any} content 
+     * @returns 
+     * @memberof Say
+     */
     _getReplyContent(content) {
         if (content.includes("</a>")) {
             let commentStr = content.split('</a>');
@@ -37,15 +63,14 @@ class Say extends React.Component {
     render() {
         const sayItem = this.props
         return (
-            <TouchableNativeFeedback onPress={() => this._navigateToContent(sayItem)}>
+            <TouchableNativeFeedback onPress={() => this.linkToDetails(sayItem)}>
                 <View style={styles.contains}>
                     <View style={styles.container_left}>
-                        <Avatar
+                        <Thumbnail
                             small
                             source={{
                             uri: sayItem.UserIconUrl
                         }}
-                            onPress={() => console.log("Works!")}
                             activeOpacity={0.7}/>
                     </View>
 
@@ -62,7 +87,9 @@ class Say extends React.Component {
 
                             <View style={styles.comment}>
                                 <View style={styles.commentIcon}>
-                                    <Icon name='comment-o' type='font-awesome' color='#B9B9B9' size={15}/>
+                                <StyleProvider style={getTheme({ iconFamily: 'FontAwesome' })}>
+                                    <Icon name='comment' style={{color:'#B9B9B9',fontSize:15}} />
+                                </StyleProvider>
                                     <Text
                                         style={{
                                         marginLeft: 5
@@ -107,12 +134,13 @@ const styles = StyleSheet.create({
     },
     comment: {
         flexDirection: 'row',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
         marginBottom: 8
     },
     commentIcon: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
+        marginTop:5,
         marginRight: 8
     }
 });

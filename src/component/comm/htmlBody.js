@@ -1,32 +1,34 @@
 import React from 'react'
-import {View,Text,Platform} from 'react-native'
+import {Platform} from 'react-native'
+import {Spinner} from 'native-base'
+import _htmlService from '../../utils/htmlService';
 import AutoHeightWebView from 'react-native-autoheight-webview'
-import HtmlHelper from '../../utils/htmlHelper'
 
 class HtmlBody extends React.Component{
-    formatHtml(html){
-        return HtmlHelper.formatHtml(html);
+    constructor(){
+        super()
+        this.state={
+            height:500
+        }
     }
     render(){
+        const {html,data,type}=this.props;
+        const htmlCode=_htmlService.generateHtmlCode(data,html,type);
         return(
                 <AutoHeightWebView
-                  hasIframe={true}
-                  scalesPageToFit={Platform.OS === 'android' ? true : false} 
-                  enableBaseUrl={true}
-                  heightOffset={5}
-                  enableAnimation={true}
-                  animationDuration={255}
-                  startInLoadingState={true}
-                  source={{ html:this.formatHtml(this.props.html),baseUrl:'file:///android_asset/web/'
-                }} 
-                 customScript={`document.body.style.background = 'white';`}
-                 customStyle={`
-                  img {
-                    width:100%;
-                    height:auto;
-                  }
-                `}
-                />
+                    source={{html:htmlCode,baseUrl:'file:///android_asset/web/'}}
+                    hasIframe={true}
+                    scalesPageToFit={Platform.OS === 'android' ? true : false}
+                    enableBaseUrl={true}
+                    enableAnimation={true}
+                    animationDuration={255}
+                    bounces={false}
+                    scrollEnabled={false}
+                    automaticallyAdjustContentInsets={true}
+                    contentInset={{top:0,left:0}}
+                    scalesPageToFit={false}
+                    startInLoadingState={true}>
+               </AutoHeightWebView>
         )
     }
 }

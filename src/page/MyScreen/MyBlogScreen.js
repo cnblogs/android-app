@@ -1,231 +1,145 @@
-import * as React from 'react';
-import {
-	AppRegistry,
-	ListView,
-	StyleSheet,
-	Text,
-	TouchableOpacity,
-	TouchableHighlight,
-	View,
-    AsyncStorage
-} from 'react-native';
+import React, {Component} from 'react'
+import {View,AsyncStorage} from 'react-native'
+import {Toast,Spinner,Container} from 'native-base'
+import RefreshListView, {RefreshState} from 'react-native-refresh-list-view'
+import BlogItem  from '../../component/Blog/BlogItem'
+import BlogList from '../../component/Blog/BlogList'
 import Http from '../../utils/Http'
-import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view'
-import AppConfig from '../../config/AppConfig'
-import moment from 'moment'
 
 class MyBlogScreen extends React.Component {
 	static navigationOptions={
         title:'我的博客'
-    }
+	}
+	
 	constructor(props) {
 		super(props)
-        this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         const { params } = this.props.navigation.state               
 		this.state = {
-            listViewData:[],
+			refreshState: RefreshState.Idle,
+            listData:[],
+            isLoading:true,
+            index:1,
             blogApp:params.BlogApp
 		};
-    }
-    async componentWillMount(){
+	}
+	
+    async componentDidMount(){
         const tokenStr=await AsyncStorage.getItem('a_token');
-        let url=`https://api.cnblogs.com/api/blogs/${this.state.blogApp}/posts?pageIndex=1`
          if(tokenStr){
-             let access_token=JSON.parse(tokenStr).access_token;
-             let data=await this._request(url,access_token);
+             let data=await this._getOrUpdateData(this.state.blogApp,1);
              this.setState({
-                listViewData:data
+                listData:data
              })
          }
 	}
-	
-    _goDeail(item){
-        const { navigate } = this.props.navigation;
-        navigate("Content",{
-            Url:item.Url,
-            title:`${item.Author}的博客`,
-            type:'blog'
-        });
+
+	componentWillReceiveProps(nextProps){
+        if(this.props!=nextProps){
+            this.porps=nextProps
+        }
     }
 
-	deleteRow(secId, rowId, rowMap) {
-		rowMap[`${secId}${rowId}`].closeRow();
-		const newData = [...this.state.listViewData];
-		newData.splice(rowId, 1);
-		this.setState({listViewData: newData});
-    }
-    
-    async _request(url,access_token){
-        let response=await Http.GetAsync(url,access_token);
+    /**
+     * 分页获取最新的博客列表
+     * @memberof BlogList
+     */
+	async _getOrUpdateData(blogApp,index){
+		const tokenStr=await AsyncStorage.getItem('a_token');
+		let access_token=JSON.parse(tokenStr).access_token;	
+        let url=`https://api.cnblogs.com/api/blogs/${blogApp}/posts?pageIndex=${index}`		
+		let response=await Http.GetAsync(url,access_token);
+		if(response.status!=200){
+			Toast.show({
+                text:'服务器走丢了.',
+                position:"center",
+                type:'danger'
+             })
+        }
         return response.data;
     }
 
-	render() {
-        const { params } = this.props.navigation.state       
+    /**
+     * 下拉刷新
+     * 
+     * @memberof BlogList
+     */
+    onHeaderRefresh =async () => {
+        this.setState({refreshState: RefreshState.HeaderRefreshing})
+        let data=await this._getOrUpdateData(this.state.blogApp,1);
+        this.setState({
+            refreshState: RefreshState.Idle,
+            listData:data
+        })
+    }
+
+    /**
+     * 上拉加载
+     * 
+     * @memberof BlogList
+     */
+    onFooterRefresh =async () => {
+        this.setState({refreshState: RefreshState.FooterRefreshing})       
+        let data=await this._getOrUpdateData(this.state.blogApp,this.state.index+1);
+        this.state.listData.push(...data);
+        this.setState({
+            refreshState:RefreshState.Idle,
+            listData:this.state.listData,
+            index:this.state.index+1
+        })
+    }
+
+    /**
+     * 生成Key
+     * 
+     * @memberof BlogList
+     */
+    keyExtractor = (item, index) => {
+        return index
+    }
+
+    /**
+     * 渲染BlogItem
+     * 
+     * @memberof BlogList
+     */
+    _renderItem = ({item}) => {        
+        return <BlogItem {...item} linkToDetails={this.linkToDetails}/>
+    }
+	
+    linkToDetails=(id,title,avatar,author,postDate,blogApp)=>{
+		const { navigate } = this.props.navigation;
+		navigate("BlogContent",{
+					Data:{
+						Title:title,
+						Avatar:avatar,
+						Author:author,
+						PostDate:postDate,
+						BlogApp:blogApp,
+						PostId:id,
+					},
+					Id:id,
+					title:`${author}的博客`,
+					Type:'blogposts'
+			});
+	}
+
+	render() {    
 		return (
-			<View style={styles.container}>
-					<SwipeListView
-					    disableRightSwipe={true}
-						dataSource={this.ds.cloneWithRows(this.state.listViewData)}
-						renderRow={ data => (
-							<TouchableHighlight
-								onPress={()=>this._goDeail(data) }
-								style={styles.rowFront}
-							>
-								<View>
-									<Text style={styles.title}>{data.Title}</Text>
-                                    <View style={styles.itemFooter}>
-									<View style={styles.itemCount}>
-										<View style={styles.ViewCount}>
-											<Text>
-												{data.DiggCount} 推荐 · 
-											</Text>
-										</View> 
-										<View style={styles.ViewCount}>
-											<Text>
-												{data.ViewCount} 阅读 ·
-											</Text>
-										</View> 
-										<View style={styles.CommentCount}>
-											<Text>
-												 {data.CommentCount} 评论
-											</Text>
-										</View>
-									</View>
-									<View style={styles.itemPostDate}>
-									   <Text>{moment(data.PostDate).startOf('minute').fromNow()}</Text>
-									</View>
-								</View>
-								</View>
-							</TouchableHighlight>
-						)}
-						renderHiddenRow={ (data, secId, rowId, rowMap) => (
-							<View style={styles.rowBack}>
-                            <Text>分享</Text>
-								<View style={[styles.backRightBtn, styles.backRightBtnLeft]}>
-									<Text style={styles.backTextWhite}></Text>
-								</View>
-								<TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnRight]} onPress={ _ => this.deleteRow(secId, rowId, rowMap,data) }>
-								    <Text style={styles.backTextWhite}>分享</Text>
-							   </TouchableOpacity>
-							</View>
-						)}
-						leftOpenValue={0}
-						rightOpenValue={-75}
-					/>
-			</View>
+			<Container>
+                <RefreshListView
+                    data={this.state.listData}
+                    keyExtractor={this.keyExtractor}
+                    renderItem={this._renderItem}
+                    refreshState={this.state.refreshState}
+                    onHeaderRefresh={this.onHeaderRefresh}
+                    onFooterRefresh={this.onFooterRefresh}                   
+                    footerRefreshingText= '玩命加载中 >.<'
+                    footerFailureText = '我擦嘞，居然失败了 =.=!'
+                    footerNoMoreDataText= '-我是有底线的-'
+                />
+			</Container>
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		backgroundColor: '#E9E9EF',
-		flex: 1
-	},
-	title:{
-		color:'black',
-		fontSize:15,
-		margin:10		
-	},
-	itemFooter:{
-        marginLeft:8,
-        marginTop:5,
-        flexDirection:'row',
-        justifyContent: 'flex-end'
-    },
-    itemCount:{
-        flex:5,
-        flexDirection:'row',
-        justifyContent:'flex-start',
-        alignItems:'center',
-    },
-    ViewCount:{
-        flexDirection:'row',
-        justifyContent:'flex-start',
-        alignItems:'center',
-    },
-    CommentCount:{
-        flexDirection:'row',
-        justifyContent:'flex-start',
-        alignItems:'center',
-        paddingLeft:5
-    },
-    itemPostDate:{
-        flex:5,
-        flexDirection:'row',
-        justifyContent:'flex-end',
-        alignItems:'center' ,
-        marginRight:8   
-    },
-	standalone: {
-		marginTop: 30,
-		marginBottom: 30,
-	},
-	standaloneRowFront: {
-		alignItems: 'center',
-		backgroundColor: 'white',
-		justifyContent: 'center',
-		height: 50,
-	},
-	standaloneRowBack: {
-		alignItems: 'center',
-		backgroundColor: '#8BC645',
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		padding: 15
-	},
-	backTextWhite: {
-		color: '#FFF'
-	},
-	rowFront: {
-		backgroundColor: 'white',
-		borderBottomColor: '#dddddd',
-		borderBottomWidth: 1,
-		justifyContent: 'flex-start',
-		height:75,
-	},
-	rowBack: {
-		alignItems: 'center',
-		backgroundColor: '#DDD',
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		paddingLeft: 15,
-	},
-	backRightBtn: {
-		alignItems: 'center',
-		bottom: 0,
-		justifyContent: 'center',
-		position: 'absolute',
-		top: 0,
-		width: 75
-	},
-	backRightBtnLeft: {
-		backgroundColor: '#EB5F6B',
-		right: 75
-	},
-	backRightBtnRight: {
-		backgroundColor: '#2196F3',
-		right: 0
-	},
-	controls: {
-		alignItems: 'center',
-		marginBottom: 30
-	},
-	switchContainer: {
-		flexDirection: 'row',
-		justifyContent: 'center',
-		marginBottom: 5
-	},
-	switch: {
-		alignItems: 'center',
-		borderWidth: 1,
-		borderColor: 'black',
-		paddingVertical: 10,
-		width: 100,
-	}
-});
 
 export default MyBlogScreen;

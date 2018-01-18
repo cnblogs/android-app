@@ -6,12 +6,15 @@ import {
   TextInput,
   AsyncStorage
 } from 'react-native';
-import {CheckBox,Icon,Button} from 'react-native-elements'
-import {observer} from 'mobx-react';
-import observableStatuesStore from '../../services/statuesService';
-import {Info,Error,Success} from '../../component/comm/CustomToast'
+import {CheckBox,Icon,Button,Toast} from 'native-base'
+import _statuesService from '../../api/statuesService';
 
-@observer
+/**
+ * 发布闪存
+ * 
+ * @class PublishStatus
+ * @extends {React.Component}
+ */
 class PublishStatus extends React.Component{
     static navigationOptions= {
         headerTitle: '发布闪存'
@@ -32,14 +35,21 @@ class PublishStatus extends React.Component{
 
    async _publishStatus(){
      const data=await AsyncStorage.getItem('a_token');
-
      if(data==null){
-        Info("请先登录");
+        Toast.show({
+            text:'请先登陆',
+            position:"center",
+            type:'warning'
+         })
       return;
     }
 
-      await observableStatuesStore.publishStatues(this.state.txtValue,this.state.check)
-      Success("发布成功");
+      await _statuesService.publishStatues(this.state.txtValue,this.state.check)
+      Toast.show({
+        text:'发布成功',
+        position:"center",
+        type:'success'
+     })
       this.refs.input.clear();   
       this.props.navigation.navigate('Status')  
     }
@@ -61,21 +71,19 @@ class PublishStatus extends React.Component{
                            }}/>
                 </View>
                 <View style={styles.publish}>
-                <CheckBox
-                    title='公开'
-                    checked={!this.state.check}
+                  <CheckBox
+                     style={{marginRight:2}}
+                     checked={!this.state.check}
+                     onPress={()=>this._onPress_checkbox()}
+                  />
+                  <Text style={{marginLeft:8}}>私有</Text>
+                  <CheckBox
+                    style={{marginRight:2}}
+                    checked={this.state.check}
                     onPress={()=>this._onPress_checkbox()}
-                />
-                <CheckBox
-                  title='私有'
-                  checked={this.state.check}
-                   onPress={()=>this._onPress_checkbox()}
-                 />
-                <Button
-                    title='发布'
-                    backgroundColor={this.state.sendBtnColor}
-                    onPress={this._publishStatus.bind(this)}
-                />
+                   />
+                  <Text style={{marginLeft:8,marginRight:2}}>公开</Text>               
+                <Button primar onPress={this._publishStatus.bind(this)} style={{width:50,height:30,marginRight:8,flexDirection:'row',justifyContent:'center'}}><Text style={{color:'white'}}>发布</Text></Button>
                 </View>
             </View>
         )

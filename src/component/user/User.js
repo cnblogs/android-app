@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet,Image, TouchableHighlight, AsyncStorage } from 'react-native';
 import Http from '../../utils/Http'
-
-const {Grid,Row,Col,Avatar,Icon}=require('react-native-elements');
+import {Icon,Thumbnail} from 'native-base'
 
 class User extends React.Component{
     _navigateToLogin(){
@@ -10,18 +9,14 @@ class User extends React.Component{
     }
     render(){       
         if(this.props.isLogin){
-            const user=this.props.userinfo
+            const {user}=this.props;
             return(
                 <View style={styles.contains}>
                     <View style={styles.top}>
                         <View>
-                        <Avatar
-                        medium
-                        rounded
-                        source={{uri:user.Avatar}}
-                        onPress={() => console.log("Works!")}
-                        activeOpacity={0.7}
-                      />
+                        <Thumbnail
+                           source={{uri:user.Avatar}}
+                         />
                         </View>
                         <View style={styles.user}>
                             <View><Text style={styles.nickName}>{user.DisplayName}</Text></View>
@@ -52,10 +47,9 @@ class User extends React.Component{
             onPress={()=>this._navigateToLogin()}>
             <View style={styles.login}>
             <Icon
-                name='user-circle'
+                name='md-contact'
                 size={30}
                 style={styles.icons}
-                type='font-awesome'
             />
             <Text style={styles.loginText}>登录/注册</Text>
             </View>
@@ -76,15 +70,15 @@ const styles=StyleSheet.create({
     login:{
         flexDirection:'row',
         alignItems:'center',
-        height:60,
-        marginLeft:10,   
+        height:49
     },
     loginText:{
         fontSize:18,
         margin:10
     },
     icons:{
-        marginLeft:22
+        marginLeft:15,
+        color:'#708090'
     },
     top:{
         flexDirection:'row',

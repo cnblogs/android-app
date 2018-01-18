@@ -1,6 +1,6 @@
 import  * as React from 'react';
 import {Text, AsyncStorage,StyleSheet,View} from 'react-native';
-import {Button} from 'react-native-elements'
+import {Button} from 'native-base';
 import CookieManager from 'react-native-cookies'
 
 class SettingScreen extends React.Component{
@@ -36,12 +36,12 @@ async componentWillMount(){
         return(
             <View style={styles.container}>
               <Button
-                 title='退出登录'
+                 full
                  backgroundColor={this.state.btnBackgroundColor}
                  color='white'
                  disabled={!this.state.isLogin}
                  onPress={()=>this.loginout()}
-            />
+            ><Text>退出登录</Text></Button>
             </View>
         )
     }
@@ -49,7 +49,8 @@ async componentWillMount(){
 
 const styles=StyleSheet.create({
     container:{
-        marginTop:50
+        marginTop:50,
+        flex:1
     }
 })
 

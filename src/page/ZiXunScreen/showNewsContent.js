@@ -2,10 +2,17 @@ import React from 'react'
 import {Text,View,StyleSheet,ScrollView,Dimensions} from 'react-native'
 import NewsBody from '../../component/comm/htmlBody'
 import NewsFooter from '../../component/comm/contentFooter'
-import Loading from './../../component/comm/Loading'
-import newsService from './../../services/newsService'
-let Spinner=require('react-native-spinkit');
+import _newsService from './../../api/newsService'
+import {Spinner,Container,Content,Toast} from 'native-base'
 
+
+const height=Dimensions.get('window').height;
+/**
+ * 新闻内容页
+ * 
+ * @class ShowContent
+ * @extends {React.Component}
+ */
 class ShowContent extends React.Component{
     static navigationOptions=({navigation})=>({
         headerTitle:'新闻'
@@ -14,43 +21,62 @@ class ShowContent extends React.Component{
     constructor(){
         super();
         this.state={
-            isLoading:true,
+            htmlCode:''
         }
     }
 
-    async componentWillMount(){
-        await newsService.getNewsContent(this.props.navigation.state.params.Id)
+    async componentDidMount(){
+        const {Id}=this.props.navigation.state.params;
+        let data=await this.getOrUpdateData(Id);
         this.setState({
-            isLoading:false
+            htmlCode:data
         })
+
     }
 
-    _navigationComments(blogApp,id){
-        const { navigate } = this.props.navigation;
+    /**
+     * 跳转到新闻评论
+     * 
+     * @memberof ShowContent
+     */
+    linkToComments=()=>{
+        const {navigate} = this.props.navigation;
+        const {Id}=this.props.navigation.state.params;
         navigate("NewsComments",{
-            Id:id,
-            BlogApp:blogApp,
+            Id:Id
         });
     }
-    render(){
-        if(this.state.isLoading){
-            return(
-                <Loading />
-            )
+
+    /**
+     * 获取最新数据
+     * 
+     * @memberof ShowContent
+     */
+    getOrUpdateData=async (id)=>{
+        let response=await _newsService.getNewsContent(id);
+        if(response.status!=200){
+            return  Toast.show({
+                text:'服务器走丢了',
+                position: "bottom",
+                style:{'marginBottom':height/2-49-49},
+                type:'error'
+              })
         }
+        return response.data;
+    }
+
+    render(){
+        const {Data}=this.props.navigation.state.params;
         return(
-            <View style={styles.container}>
-                 <ScrollView style={{flex:1}}>
-                    <View style={{margin:10}}>
-                        <Text style={{fontSize:18,fontWeight:'bold',color:'black'}}>{this.props.navigation.state.params.Title}</Text>
-                    </View>
-                   <NewsBody html={newsService.newsContent} />
-                 </ScrollView>
+            <Container>
+                 <Content>
+                   <NewsBody html={this.state.htmlCode} data={Data} type='news'/>
+                 </Content>
                 <View>
-                   <NewsFooter data={this.props.navigation.state.params.Data} 
-                    navigation={this._navigationComments.bind(this)}/>
+                   <NewsFooter data={Data} 
+                      linkToComments={this.linkToComments}/>
                 </View>
-            </View>
+            </Container>
         )
     }
 }

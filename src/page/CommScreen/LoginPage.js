@@ -22,7 +22,7 @@ export default class LoginPage extends React.Component {
   static navigationOptions={
     title:'登录',
 }
-  componentWillMount(){
+componentWillMount(){
     CookieManager.clearAll().then((res)=>{
       console.log("CookieManager.ClearAll is Ok")
     })
@@ -36,7 +36,6 @@ export default class LoginPage extends React.Component {
           `&code=${authorizationCode}`+
           `&redirect_uri=https://oauth.cnblogs.com/auth/callback`
           let response=await Http.PostAsFormAsync(AppConfig.authorizedUrl,data)
-          console.log(response.data)
           //保存 token
           await this._saveToken('a_token',JSON.stringify(response.data))
           //哪里来回那里去

@@ -35,6 +35,16 @@ class Http{
         });
         return response;
     }
+    
+    static async DeleteAsync(url,access_token){
+        let response = await axios({
+            method: 'Delete',
+            url:url,
+            headers: {
+                "Authorization": `Bearer ${access_token}`
+            }
+        })
+    }
 }
 
 export default Http;

@@ -7,12 +7,10 @@ import {
     TextInput,
     AsyncStorage
 } from 'react-native'
-import {Button} from 'react-native-elements'
-import questionService from '../../services/questionService'
-import { observer } from 'mobx-react/native';
-import {Info,Error,Success} from '../../component/comm/CustomToast'
+import {Button,Toast} from 'native-base'
+import _qService from '../../api/questionService'
 
-@observer
+
 class PublishQuestion extends Component {
   static navigationOptions= {
     headerTitle: '提问'
@@ -30,11 +28,19 @@ class PublishQuestion extends Component {
   async onSubmit(){
     const data=await AsyncStorage.getItem('a_token');
     if(data==null){
-        Info("请先登录");
+      Toast.show({
+        text:'请先登陆',
+        position:"center",
+        type:'warning'
+     })
       return;
     }
-    await questionService.publishQuestion(this.state.titleValue,this.state.contentValue,this.state.labelValue)
-      Success("发布成功")
+    await _qService.publishQuestion(this.state.titleValue,this.state.contentValue,this.state.labelValue)
+    Toast.show({
+      text:'发布成功',
+      position:"center",
+      type:'success'
+   })
       this.refs.inputTitle.clear();
       this.refs.inputLabel.clear();
       this.refs.inputQuestion.clear();
@@ -81,10 +87,12 @@ class PublishQuestion extends Component {
              </View>
              <View style={{marginTop:10,marginBottom:10}}>
              <Button 
-              title='发布' 
-              buttonStyle={{height:30}}
-              backgroundColor="#2096F3" 
-              onPress={()=>this.onSubmit()}/>
+               full
+               primar 
+               onPress={()=>this.onSubmit()}
+               style={{marginLeft:8,marginRight:8,flexDirection:'row',justifyContent:'center'}}>
+             <Text style={{color:'white'}}>发布</Text>
+             </Button>
           </View>
        </View>
     );
