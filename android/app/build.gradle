@@ -106,6 +106,10 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+         manifestPlaceholders = [
+            JPUSH_APPKEY: "d0eb02f2740753d7c146b768", //在此替换你的APPKey
+            JPUSH_CHANNEL: "developer-default",       //应用渠道号, 默认即可
+         ]
     }
     splits {
         abi {
@@ -142,10 +146,14 @@ android {
                         versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
             }
         }
+
     }
 }
 
 dependencies {
+    compile project(':janalytics-react-native')
+    compile project(':jcore-react-native')
+    compile project(':rn-splash-screen')
     compile project(':react-native-cookies')
     compile project(':react-native-autoheight-webview')
     compile fileTree(dir: "libs", include: ["*.jar"])

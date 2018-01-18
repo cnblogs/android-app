@@ -4,6 +4,7 @@ import { Container,Tabs,Tab,ScrollableTab} from 'native-base';
 import BlogList from '../../component/Blog/BlogList';
 import GlobalStyles from '../../config/GlobalStyles'
 import SplashScreen from "rn-splash-screen";
+import JAnalyticsModule from 'janalytics-react-native';
 
 export default class Main extends Component {
    constructor(props) {
@@ -25,8 +26,19 @@ export default class Main extends Component {
 
 	componentDidMount(){
 		SplashScreen.hide();
+		var param = {
+      pageName: "博客列表"
+    };
+    JAnalyticsModule.startLogPageView(param);
 	}
 
+	componecomponentWillUnmount() {
+    var param = {
+      pageName: "博客列表"
+    };
+    JAnalyticsModule.stopLogPageView(param);
+	}
+	
 	   /**
     * 转到详情页
     * 

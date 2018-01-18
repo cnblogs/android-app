@@ -1585,10 +1585,6 @@ event-target-shim@^1.0.5:
   version "1.1.1"
   resolved "http://registry.npm.taobao.org/event-target-shim/download/event-target-shim-1.1.1.tgz#a86e5ee6bdaa16054475da797ccddf0c55698491"
 
-eventemitter2@^1.0.0:
-  version "1.0.5"
-  resolved "http://registry.npm.taobao.org/eventemitter2/download/eventemitter2-1.0.5.tgz#f983610517b1737c0b9dc643beca93893c04df18"
-
 events@^1.1.0:
   version "1.1.1"
   resolved "http://registry.npm.taobao.org/events/download/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
@@ -2072,7 +2068,7 @@ hoist-non-react-statics@^1.0.5:
   version "1.2.0"
   resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
 
-hoist-non-react-statics@^2.2.0, hoist-non-react-statics@^2.2.1:
+hoist-non-react-statics@^2.2.0:
   version "2.3.1"
   resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-2.3.1.tgz#343db84c6018c650778898240135a1420ee22ce0"
 
@@ -2096,18 +2092,6 @@ html-encoding-sniffer@^1.0.1:
 html-entities@^1.2.0:
   version "1.2.1"
   resolved "http://registry.npm.taobao.org/html-entities/download/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
-
-htmlparser2-without-node-native@^3.9.2:
-  version "3.9.2"
-  resolved "http://registry.npm.taobao.org/htmlparser2-without-node-native/download/htmlparser2-without-node-native-3.9.2.tgz#b3ed050d877d0ff3465969e339877b7f9f6631f6"
-  dependencies:
-    domelementtype "^1.3.0"
-    domhandler "^2.3.0"
-    domutils "^1.5.1"
-    entities "^1.1.1"
-    eventemitter2 "^1.0.0"
-    inherits "^2.0.1"
-    readable-stream "^2.0.2"
 
 htmlparser2@^3.9.0:
   version "3.9.2"
@@ -2205,7 +2189,7 @@ inquirer@^3.0.6:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-invariant@^2.0.0, invariant@^2.1.0, invariant@^2.2.2:
+invariant@^2.1.0, invariant@^2.2.2:
   version "2.2.2"
   resolved "http://registry.npm.taobao.org/invariant/download/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
   dependencies:
@@ -2424,6 +2408,14 @@ istanbul-reports@^1.1.3:
   resolved "http://registry.npm.taobao.org/istanbul-reports/download/istanbul-reports-1.1.3.tgz#3b9e1e8defb6d18b1d425da8e8b32c5a163f2d10"
   dependencies:
     handlebars "^4.0.3"
+
+janalytics-react-native@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/janalytics-react-native/download/janalytics-react-native-1.1.0.tgz#0f16e6f277fa56ef7b2165dcd8a1f003c3be3531"
+
+jcore-react-native@^1.2.3:
+  version "1.2.3"
+  resolved "http://registry.npm.taobao.org/jcore-react-native/download/jcore-react-native-1.2.3.tgz#eaa8eb7a0cb5c5cd66d445c29f7a30b1e3e37165"
 
 jest-changed-files@^22.0.3:
   version "22.0.3"
@@ -2852,10 +2844,6 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash-es@^4.2.0, lodash-es@^4.2.1:
-  version "4.17.4"
-  resolved "http://registry.npm.taobao.org/lodash-es/download/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
-
 lodash._basecopy@^3.0.0:
   version "3.0.1"
   resolved "http://registry.npm.taobao.org/lodash._basecopy/download/lodash._basecopy-3.0.1.tgz#8da0e6a876cf344c0ad8a54882111dd3c5c7ca36"
@@ -2959,7 +2947,7 @@ lodash.templatesettings@^3.0.0:
     lodash._reinterpolate "^3.0.0"
     lodash.escape "^3.0.0"
 
-lodash@4.17.4, lodash@^4.0.0, lodash@^4.10.1, lodash@^4.11.1, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.16.6, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
+lodash@4.17.4, lodash@^4.0.0, lodash@^4.10.1, lodash@^4.11.1, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.16.6, lodash@^4.17.4, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.4"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -3747,13 +3735,6 @@ react-native-easy-grid@0.1.15:
   dependencies:
     lodash "^4.11.1"
 
-react-native-htmlview@^0.12.1:
-  version "0.12.1"
-  resolved "http://registry.npm.taobao.org/react-native-htmlview/download/react-native-htmlview-0.12.1.tgz#4b987f1f34fae89f7bbd3c478f8f20d601019639"
-  dependencies:
-    entities "^1.1.1"
-    htmlparser2-without-node-native "^3.9.2"
-
 "react-native-keyboard-aware-scroll-view@https://github.com/GeekyAnts/react-native-keyboard-aware-scroll-view":
   version "0.2.9"
   resolved "https://github.com/GeekyAnts/react-native-keyboard-aware-scroll-view#f4805f254d6cc8e3329f5fb224944401f66655db"
@@ -3868,17 +3849,6 @@ react-proxy@^1.1.7:
     lodash "^4.6.1"
     react-deep-force-update "^1.0.0"
 
-react-redux@^5.0.6:
-  version "5.0.6"
-  resolved "http://registry.npm.taobao.org/react-redux/download/react-redux-5.0.6.tgz#23ed3a4f986359d68b5212eaaa681e60d6574946"
-  dependencies:
-    hoist-non-react-statics "^2.2.1"
-    invariant "^2.0.0"
-    lodash "^4.2.0"
-    lodash-es "^4.2.0"
-    loose-envify "^1.1.0"
-    prop-types "^15.5.10"
-
 react-test-renderer@16.0.0:
   version "16.0.0"
   resolved "http://registry.npm.taobao.org/react-test-renderer/download/react-test-renderer-16.0.0.tgz#9fe7b8308f2f71f29fc356d4102086f131c9cb15"
@@ -3969,15 +3939,6 @@ realpath-native@^1.0.0:
   resolved "http://registry.npm.taobao.org/realpath-native/download/realpath-native-1.0.0.tgz#7885721a83b43bd5327609f0ddecb2482305fdf0"
   dependencies:
     util.promisify "^1.0.0"
-
-redux@^3.7.2:
-  version "3.7.2"
-  resolved "http://registry.npm.taobao.org/redux/download/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
-  dependencies:
-    lodash "^4.2.1"
-    lodash-es "^4.2.1"
-    loose-envify "^1.1.0"
-    symbol-observable "^1.0.3"
 
 regenerate@^1.2.1:
   version "1.3.3"
@@ -4150,6 +4111,10 @@ rimraf@2, rimraf@^2.5.1, rimraf@^2.5.4, rimraf@^2.6.1:
 rimraf@~2.2.6:
   version "2.2.8"
   resolved "http://registry.npm.taobao.org/rimraf/download/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
+
+rn-splash-screen@^5.2.0:
+  version "5.2.0"
+  resolved "http://registry.npm.taobao.org/rn-splash-screen/download/rn-splash-screen-5.2.0.tgz#1ce509e27d14d3dd0949427667fbc3d2a8dd853c"
 
 rndm@1.2.0:
   version "1.2.0"
@@ -4499,10 +4464,6 @@ supports-color@^4.0.0:
   resolved "http://registry.npm.taobao.org/supports-color/download/supports-color-4.5.0.tgz#be7a0de484dec5c5cddf8b3d59125044912f635b"
   dependencies:
     has-flag "^2.0.0"
-
-symbol-observable@^1.0.3:
-  version "1.1.0"
-  resolved "http://registry.npm.taobao.org/symbol-observable/download/symbol-observable-1.1.0.tgz#5c68fd8d54115d9dfb72a84720549222e8db9b32"
 
 symbol-tree@^3.2.1:
   version "3.2.2"
