@@ -3,6 +3,7 @@ import {StatusBar} from 'react-native'
 import { Container,Tabs,Tab,ScrollableTab} from 'native-base';
 import BlogList from '../../component/Blog/BlogList';
 import GlobalStyles from '../../config/GlobalStyles'
+import SplashScreen from "rn-splash-screen";
 
 export default class Main extends Component {
    constructor(props) {
@@ -20,6 +21,10 @@ export default class Main extends Component {
 			 }
 		],
 	 }
+	}
+
+	componentDidMount(){
+		SplashScreen.hide();
 	}
 
 	   /**
