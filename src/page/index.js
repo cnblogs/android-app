@@ -11,6 +11,7 @@ import MimePage from './MyScreen/index';
 import QuestionPage from './QuestionScreen/index';
 import StatusPage from './StatuesScreen/index';
 import ZiXunPage from './ZiXunScreen/index'
+import {Icon,StyleProvider,getTheme} from 'native-base'
 
 const MainPage = TabNavigator({
     Home: {
@@ -19,10 +20,12 @@ const MainPage = TabNavigator({
             tabBarLabel: '首页',            
             header:null,
             tabBarIcon:({tintColor}) => (
+                <StyleProvider style={getTheme({ iconFamily: 'MaterialIcons' })}>
                 <Image
                     source={require('../images/fonts/home.png')}
                     style={[styles.icon,{tintColor: tintColor}]}
-                />),
+                />
+                </StyleProvider>),
         }
     },
     ZiXun: {
