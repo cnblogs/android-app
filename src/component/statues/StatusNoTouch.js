@@ -28,6 +28,21 @@ class Say extends React.Component {
         }
         return content;
     }
+
+     /**
+    * 幸运闪
+    * 
+    * @memberof Say
+    */
+   renderStatuesContent=(content,isLucky)=>{
+    if(isLucky){
+      return(<View style={{flexDirection:'row'}}>
+            <Text style={styles.content}> {this._getReplyContent(content)}</Text>
+            <Image source={{uri:'https://common.cnblogs.com/images/ing/lucky-star-20170120.png'}} style={{width: 24, height: 24}}/>
+         </View>)
+    }
+    return <Text style={styles.content}> {this._getReplyContent(content)}</Text>
+  }
     render() {
         const sayItem = this.props
         return (
@@ -57,10 +72,10 @@ class Say extends React.Component {
                         </View>
 
                         <View style={styles.body}>
-                            <Text style={styles.content}>
+                           <Text style={styles.content}>
                                 {this._getReplyUser(sayItem.Content)}
-                                {this._getReplyContent(sayItem.Content)}
                             </Text>
+                            {this.renderStatuesContent(sayItem.Content,sayItem.IsLucky)}
                         </View>
                     </View>
 
